@@ -25,19 +25,6 @@
 * A web application makes a cross-origin HTTP request when it requests a resource that has a different domain (i.e. different ports)
 * Web application using APIs can only request HTTP resources from the same origin the application was loaded from, unless the response from the other origin includes the right CORS headers.
 
-## Proxy API Calls on The Client
-
-Add a proxy to package.json:
-
-``` js
-{
-    "name": "client",
-    "version": "0.1.0",
-    "private": true,
-    "proxy": "http://localhost:3001",
-    ...
-```
-
 ## References
 
 [Create React App with an Express Backend](https://daveceddia.com/create-react-app-express-backend/)
