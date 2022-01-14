@@ -16,7 +16,7 @@
 ## Ports
 
 * React front-end is running on port 3000
-* Rails back-end is running on port 3001 (or any other)
+* Express back-end is running on port 3001 (or any other)
 
 ## Cors
 
