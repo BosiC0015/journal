@@ -3,19 +3,18 @@
   border: 0;
   font-size: 1.5rem;
   height: 2rem;
-  line-height: 1.2rem;
-  margin-right: 1rem;
-  width: 8rem;
+  line-height: 0rem;
+  width: 100%;
   border-width: 2px;
   border-style: solid;
-  border-color: white;
-  color: white;
+  border-color: transparent;
+  color: rgb(177, 143, 100);
   background-color: transparent;
 }
 
 .button:hover {
-  color: black;
-  background-color: white;
+  color: rgb(153, 153, 153);
+  background-color: rgb(238, 218, 192);
   border: 2px solid transparent;
 }
 
