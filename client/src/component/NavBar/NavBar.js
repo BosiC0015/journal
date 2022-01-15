@@ -1,7 +1,7 @@
 import React from 'react';
 import './NavBar.scss';
 
-export default function NavBar() {
+export default function NavBar(props) {
   return (
     <div className='nav-bar'>
       <div className='nav-bar__redirect'>
