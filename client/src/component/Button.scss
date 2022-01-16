@@ -1,0 +1,57 @@
+.button {
+  border-radius: 1rem;
+  border: 0;
+  font-size: 1.5rem;
+  height: 2rem;
+  line-height: 0rem;
+  width: 100%;
+  border-width: 2px;
+  border-style: solid;
+  border-color: transparent;
+  color: rgb(177, 143, 100);
+  background-color: transparent;
+}
+
+.button:hover {
+  color: rgb(153, 153, 153);
+  background-color: rgb(238, 218, 192);
+  border: 2px solid transparent;
+}
+
+.button--danger {
+  color: #ee5253;
+  border-color: #ee5253;
+  background-color: transparent;
+}
+
+.button--confirm {
+  color: #10ac84;
+  border-color: #10ac84;
+  background-color: transparent;
+}
+
+.button--danger:hover {
+  color: white;
+  background-color: #ee5253;
+}
+
+.button--confirm:hover {
+  color: white;
+  background-color: #10ac84;
+}
+
+.button:last-of-type {
+  margin-right: 0;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:disabled {
+  border-style: solid;
+  border-color: white;
+  color: white;
+  background-color: transparent;
+  opacity: 0.7;
+}

@@ -1,0 +1,36 @@
+.nav-bar {
+  background-color: blanchedalmond;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  
+  &__redirect {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+
+    &-link {
+      list-style-type: disc;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      padding-inline-start: 20px;
+      padding-inline-end: 20px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__user {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+
+    &-action {
+      list-style-type: disc;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      padding-inline-start: 20px;
+      padding-inline-end: 20px;
+    }
+  }
+}
