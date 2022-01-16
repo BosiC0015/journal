@@ -30,40 +30,37 @@ const localizer = dateFnsLocalizer({
     {
       title: "Big Meeting",
       allDay:true,
-      start: new Date(2021,6,0),
-      end: new Date(2021,6,0)
+      start: new Date(2022,2,0),
+      end: new Date(2022,2,0)
 
     },
     {
       title: "Vacation",
-      start: new Date(2021,6,0),
-      end: new Date(2021,6,0)
+      start: new Date(2022,1,7),
+      end: new Date(2022,1,10)
 
     },
     {
       title: "Conference",
-      start: new Date(2021,6,0),
-      end: new Date(2021,6,0)
+      start: new Date(2022,6,20),
+      end: new Date(2022,6,23)
 
     }
   ]
 
 function App() {
-  
+  const [newEvent, setNewEvent] = useState({title:"",start:"",end:""});
+  const [allEvents, setallEvents] = useState(events)
   return (
     <div className="App">
       <NavBar />
       <Calendar
       localizer={localizer}
-      events={events}
+      events={allEvents}
       startAccessor="start"
       endAccessor="end"
-      style={{ height: 500 }}
+      style={{ height: 500, margin: "50px" }}
     />
-     
-      <header className="App-header">
-        <h1>This is our Final Project</h1>
-      </header>
     </div>
   );
 }
