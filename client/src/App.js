@@ -5,11 +5,10 @@ import format from 'date-fns/format'
 import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
-import enUS from 'date-fns/locale/en-US'
-
-
+import enUS from 'date-fns/locale/en-US';
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import {React,useState} from 'react';
 import NavBar from './component/NavBar/NavBar';
 
@@ -50,10 +49,27 @@ const localizer = dateFnsLocalizer({
 
 function App() {
   const [newEvent, setNewEvent] = useState({title:"",start:"",end:""});
-  const [allEvents, setallEvents] = useState(events)
+  const [allEvents, setallEvents] = useState(events);
+
+  function handleAddEvent() {
+    setallEvents([...allEvents, newEvent])
+  }
   return (
     <div className="App">
       <NavBar />
+      <h1>Calendar</h1>
+      <h2>Add New Event</h2>
+      <div>
+        <input type="text" placeholder='Add Title' style={{width: '20%', margin: "10px"}} value={newEvent.title}
+        onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}/>
+      </div>
+      <DatePicker placeholderText='Start Date' style={{marginRight:'10px'}} selected={newEvent.start}
+      onChange={(start) => setNewEvent({...newEvent, start})}/>
+       <DatePicker placeholderText='End Date' selected={newEvent.end}
+      onChange={(end) => setNewEvent({...newEvent, end})}/>
+      <button style={{marginTop: "10px"}} onClick={handleAddEvent}>
+        Add Event
+      </button>
       <Calendar
       localizer={localizer}
       events={allEvents}
