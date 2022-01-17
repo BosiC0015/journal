@@ -9,8 +9,8 @@ import enUS from 'date-fns/locale/en-US';
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import {React,useState} from 'react';
-import NavBar from './component/NavBar/NavBar';
+import { React, useState } from 'react';
+import NavBar from './components/NavBar/NavBar';
 
 const locales = {
   'en-US': enUS,
@@ -25,30 +25,30 @@ const localizer = dateFnsLocalizer({
 })
 
 
-  const events = [
-    {
-      title: "Big Meeting",
-      allDay:true,
-      start: new Date(2022,2,0),
-      end: new Date(2022,2,0)
+const events = [
+  {
+    title: "Big Meeting",
+    allDay: true,
+    start: new Date(2022, 2, 0),
+    end: new Date(2022, 2, 0)
 
-    },
-    {
-      title: "Vacation",
-      start: new Date(2022,1,7),
-      end: new Date(2022,1,10)
+  },
+  {
+    title: "Vacation",
+    start: new Date(2022, 1, 7),
+    end: new Date(2022, 1, 10)
 
-    },
-    {
-      title: "Conference",
-      start: new Date(2022,6,20),
-      end: new Date(2022,6,23)
+  },
+  {
+    title: "Conference",
+    start: new Date(2022, 6, 20),
+    end: new Date(2022, 6, 23)
 
-    }
-  ]
+  }
+]
 
 function App() {
-  const [newEvent, setNewEvent] = useState({title:"",start:"",end:""});
+  const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
   const [allEvents, setallEvents] = useState(events);
 
   function handleAddEvent() {
@@ -60,23 +60,23 @@ function App() {
       <h1>Calendar</h1>
       <h2>Add New Event</h2>
       <div>
-        <input type="text" placeholder='Add Title' style={{width: '20%', margin: "10px"}} value={newEvent.title}
-        onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}/>
+        <input type="text" placeholder='Add Title' style={{ width: '20%', margin: "10px" }} value={newEvent.title}
+          onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
       </div>
-      <DatePicker placeholderText='Start Date' style={{marginRight:'10px'}} selected={newEvent.start}
-      onChange={(start) => setNewEvent({...newEvent, start})}/>
-       <DatePicker placeholderText='End Date' selected={newEvent.end}
-      onChange={(end) => setNewEvent({...newEvent, end})}/>
-      <button style={{marginTop: "10px"}} onClick={handleAddEvent}>
+      <DatePicker placeholderText='Start Date' style={{ marginRight: '10px' }} selected={newEvent.start}
+        onChange={(start) => setNewEvent({ ...newEvent, start })} />
+      <DatePicker placeholderText='End Date' selected={newEvent.end}
+        onChange={(end) => setNewEvent({ ...newEvent, end })} />
+      <button style={{ marginTop: "10px" }} onClick={handleAddEvent}>
         Add Event
       </button>
       <Calendar
-      localizer={localizer}
-      events={allEvents}
-      startAccessor="start"
-      endAccessor="end"
-      style={{ height: 500, margin: "50px" }}
-    />
+        localizer={localizer}
+        events={allEvents}
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 500, margin: "50px" }}
+      />
     </div>
   );
 }
