@@ -32,7 +32,7 @@ const useApplicationData = () => {
 
   return {
     state,
-    dispatch,
+    dispatch
   };
 };
 

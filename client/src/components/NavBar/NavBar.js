@@ -7,7 +7,9 @@ import LoginButton from './LoginButton';
 import SignupButton from './SignupButton';
 import './NavBar.scss';
 
+
 export default function NavBar(props) {
+
   return (
     <div className='nav-bar'>
       <div className='nav-bar__redirect'>
@@ -18,7 +20,11 @@ export default function NavBar(props) {
       </div>
       <div className='nav-bar__user'>
         <ul className='nav-bar__user-action'><LoginButton /></ul>
-        <ul className='nav-bar__user-action'><SignupButton /></ul>
+        <ul className='nav-bar__user-action'>
+          <SignupButton
+            name='Sign Up'
+          />
+        </ul>
       </div>
     </div>
   );
