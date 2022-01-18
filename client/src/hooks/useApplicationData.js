@@ -38,19 +38,19 @@ const useApplicationData = () => {
       password: password,
       name: name
     };
-    console.log(user);
-    dispatch(
-      {
-        type: SET_USER,
-        user: user
-      }
-    );
+    // dispatch(
+    //   {
+    //     type: SET_USER,
+    //     user: user
+    //   }
+    // );
   }
 
   const [state, dispatch] = useReducer(dataReducer, {
     users: {}
   });
 
+  console.log(state.user);
   return { state, signup }
 };
 
