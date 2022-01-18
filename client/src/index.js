@@ -8,7 +8,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import Signup from "./routes/signup";
+import Signup from "./components/Signup";
 
 ReactDOM.render(
   <BrowserRouter>
