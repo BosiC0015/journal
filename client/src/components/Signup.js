@@ -8,7 +8,10 @@ export default function Signup() {
   return (
     <main>
       <h2>Sign Up Page</h2>
-      <SignupForm user={state.user} onSignup={signup} />
+      <SignupForm
+        user={state.user}
+        onSignup={signup}
+      />
     </main>
   );
 }

@@ -32,7 +32,13 @@ const useApplicationData = () => {
   //   state,
   //   dispatch
   // };
-  function signup(user) {
+  function signup(email, password, name) {
+    const user = {
+      email: email,
+      password: password,
+      name: name
+    };
+    console.log(user);
     dispatch(
       {
         type: SET_USER,
