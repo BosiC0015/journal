@@ -6,34 +6,46 @@ import {
 } from 'react';
 
 import dataReducer, {
-  SET_USERS
-} from '../reducer/data_reducer';
+  SET_USER
+} from '../reducers/dataReducer';
 
 const useApplicationData = () => {
-  const [state, dispatch] = useReducer(dataReducer, {
-    users: []
-  });
-  useEffect(() => {
-    axios({
-      method: 'GET',
-      url: '/api/users',
-    })
-      .then(({
-        data
-      }) => {
-        console.log(data);
-        dispatch({
-          type: SET_USERS,
-          users: data
-        });
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
-  return {
-    state,
-    dispatch
-  };
+  // useEffect(() => {
+  //   axios({
+  //     method: 'GET',
+  //     url: '/api/users',
+  //   })
+  //     .then(({
+  //       data
+  //     }) => {
+  //       console.log(data);
+  //       dispatch({
+  //         type: SET_USERS,
+  //         users: data
+  //       });
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
+
+  // return {
+  //   state,
+  //   dispatch
+  // };
+  function signup(user) {
+    dispatch(
+      {
+        type: SET_USER,
+        user: user
+      }
+    );
+  }
+
+  const [state, dispatch] = useReducer(dataReducer, {
+    users: {}
+  });
+
+  return { state, signup }
 };
 
 export default useApplicationData;
