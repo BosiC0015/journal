@@ -1,4 +1,5 @@
 import Button from "../Button";
+import "./SignupForm.scss";
 
 export default function SignupForm(props) {
 
@@ -6,34 +7,42 @@ export default function SignupForm(props) {
   const validate = () => { };
 
   return (
-    <section className="signup__form">
+    <section className="signup">
       <form autoComplete="off" onSubmit={event => event.preventDefault()}>
-        <input className="email"
-          placeholder="Please Enter Your Email"
-          //value={props.user.email}
-          type="text"
-        />
-        <input className="password"
-          placeholder="Please Enter Your Password"
-          //value={props.user.password}
-          type="text"
-        />
-        <input className="password__confirmation"
-          placeholder="Please Enter Your Password Again"
-          //value={props.user.password_confirmation}
-          type="text"
-        />
-        <input className="name"
-          placeholder="Please Enter Your Name"
-          //value={props.user.name}
-          type="text"
-        />
+        <div className="email">
+          <input
+            placeholder="Please Enter Your Email"
+            //value={props.user.email}
+            type="text"
+          />
+        </div>
+        <div className="password">
+          <input
+            placeholder="Please Enter Your Password"
+            //value={props.user.password}
+            type="text"
+          />
+        </div>
+        <div className="password__confirmation">
+          <input
+            placeholder="Please Enter Your Password Again"
+            //value={props.user.password_confirmation}
+            type="text"
+          />
+        </div>
+        <div className="name">
+          <input
+            placeholder="Please Enter Your Name"
+            //value={props.user.name}
+            type="text"
+          />
+        </div>
+
         <section className="signup__button">
           <Button danger onClick={() => cancel()}>Cancel</Button>
           <Button confirm onClick={() => validate()} >Confirm</Button>
         </section>
       </form>
-
     </section>
   );
 }

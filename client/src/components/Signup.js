@@ -1,11 +1,12 @@
 import useApplicationData from "../hooks/useApplicationData";
 import SignupForm from "./Forms/SignupForm";
+import "./Signup.scss"
 
 export default function Signup() {
   const { state, signup } = useApplicationData();
 
   return (
-    <main style={{ padding: "1rem 0" }}>
+    <main>
       <h2>Sign Up Page</h2>
       <SignupForm user={state.user} onSignup={signup} />
     </main>
