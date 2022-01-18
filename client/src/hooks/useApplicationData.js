@@ -32,12 +32,19 @@ const useApplicationData = () => {
   //   state,
   //   dispatch
   // };
+
+  // Signup an account by given account info
   function signup(email, password, name) {
     const user = {
       email: email,
       password: password,
       name: name
     };
+    return axios.post(`http://localhost:3001/api/users`, user)
+      // return axios.get(`http://localhost:3001/api/users`)
+      .then((res) => {
+        console.log(res.data);
+      });
     // dispatch(
     //   {
     //     type: SET_USER,
