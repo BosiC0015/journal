@@ -105,16 +105,25 @@ function App() {
   }}
   dateClick = {handleDateClick} // bind with an arrow function
     
-  eventContent={renderEventContent}
+  //eventContent={renderEventContent}
 
   //{this.handleDateClick}
 
   initialView="dayGridMonth"
+  editable={true}
+  selectable={true}
+  selectMirror={true}
+  dayMaxEvents={true}
   weekends={false}
+  //weekends={this.state.weekendsVisible}
+  initialEvents={INITIAL_EVENTS}
   events={[
-    { title: 'event 1', date: '2022-04-01' },
+    { title: 'event 1', date: '2022-01-01' },
     { title: 'event 2', date: '2022-04-02' }
   ]}
+
+  select={handleDateSelect}
+ 
 />
         </div>
     </div>
