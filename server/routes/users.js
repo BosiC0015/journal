@@ -37,7 +37,9 @@ module.exports = ({
     getUserByEmail(email)
       .then(user => {
         if (user) {
-          throw new Error('Sorry, a user account with this email already exists');
+          res.json({
+            msg: 'Sorry, a user account with this email already exists'
+          });
         }
         else {
           return addUser(email, password, name)

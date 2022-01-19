@@ -36,15 +36,7 @@ const useApplicationData = () => {
   // Signup an account by given account info
   function signup(user) {
     return axios.post(`http://localhost:3001/api/users`, user)
-      .then((res) => {
-        if (!res.data.email) {
-          throw new Error('Sorry, a user account with this email already exists');
-        }
-        else {
-          console.log(res.data);
-        }
-      });
-
+      .then((res) => res.data);
   }
 
   const [state, dispatch] = useReducer(dataReducer, {

@@ -1,15 +1,21 @@
 import { useState } from "react";
 import Button from "../Button";
 import "./SignupForm.scss";
+import { useNavigate } from "react-router-dom";
 
 export default function SignupForm(props) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [password_confirmation, setPassword_confirmation] = useState("");
   const [error, setError] = useState('');
 
-  const cancel = () => { };
+  const cancel = () => {
+    navigate("/");
+    // transition(BACK);
+  };
+
   const validate = () => {
     if (!email.length ||
       !password.length ||
@@ -22,20 +28,30 @@ export default function SignupForm(props) {
       setError('Passwords are different');
       return false;
     }
+    else if (!name.replace(/\s/g, '').length) {
+      setError('Name only contains whitespace');
+      return false;
+    }
     setError('');
     return true;
   };
+
   const createAccount = (email, password, name) => {
-    const user = {
-      email: email,
-      password: password,
-      name: name
-    };
+    const user = { email: email, password: password, name: name };
     if (validate()) {
       props.onSignup(user)
-        .then(() => {
-          alert('Successfully Signed Up');
-          // transition(HOME);
+        .then((data) => {
+          if (data.msg) {
+            alert(data.msg);
+          }
+          else if (data.error) {
+            throw new Error('Something wrong. Please try again!');
+          }
+          else {
+            alert('Successfully Signed Up');
+            navigate("/");
+            // transition(HOME);
+          }
         })
         .catch(err => {
           alert(err);
