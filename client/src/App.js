@@ -5,7 +5,9 @@ import { sliceEvents, createPlugin } from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
- import { INITIAL_EVENTS, createEventId,handleDateClick, renderEventContent, renderSidebar, handleWeekendsToggle, handleDateSelect, handleEventClick, handleEvents, renderSidebarEvent } from './event-utils'
+import RenderSidebar from './components/RenderSidebar.js'
+
+ import { INITIAL_EVENTS, createEventId,handleDateClick, renderEventContent, handleWeekendsToggle, handleDateSelect, handleEventClick, handleEvents} from './event-utils'
 
  import NavBar from './components/NavBar/NavBar';
 
@@ -17,10 +19,11 @@ function App() {
   }
   return (
     <div className="App">
+      
       <NavBar />
-      
-      
-
+      <div className='demo-app'>
+      <RenderSidebar/>
+     
 <div className='demo-app-main'>
 <FullCalendar
   style={{ height: 300, margin: "30px" }}
@@ -49,6 +52,7 @@ function App() {
             eventRemove={function(){}}
  */
 />
+        </div>
         </div>
     </div>
   );
