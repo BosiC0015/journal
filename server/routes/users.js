@@ -7,12 +7,54 @@ var router = express.Router();
 //   getPostsByUsers
 // } = require('../helpers/dataHelpers');
 
-// module.exports = ({
-//   getUsers,
-//   getUserByEmail,
-//   addUser,
-//   getUsersPosts
-// }) => {
+module.exports = ({
+  getUsers,
+  getUserByEmail,
+  addUser
+}) => {
+  /* GET all users listing */
+  router.get('/', (req, res) => {
+    getUsers()
+      .then(users => res.json(users))
+      .catch(err => res.json({
+        error: err.message
+      }));
+  });
+
+  /* GET a user listing by Email */
+  router.get('/:email', (req, res) => {
+    const { email } = req.params;
+    getUserByEmail(email)
+      .then(user => res.json(user))
+      .catch(err => res.json({
+        error: err.message
+      }));
+  });
+
+  /* Add a new user to database */
+  router.post('/', (req, res) => {
+    const { email, password, name } = req.body;
+    getUserByEmail(email)
+      .then(user => {
+        if (user) {
+          res.json({
+            msg: 'Sorry, a user account with this email already exists'
+          });
+        }
+        else {
+          return addUser(email, password, name)
+        }
+      })
+      .then(newUser => res.json(newUser))
+      .catch(err => res.json({
+        error: err.message
+      }));
+  });
+
+
+  return router;
+};
+
 //   /* GET users listing. */
 //   router.get('/', (req, res) => {
 //     getUsers()
@@ -32,34 +74,4 @@ var router = express.Router();
 //         error: err.message
 //       }));
 //   });
-
-//   router.post('/', (req, res) => {
-
-//     const {
-//       first_name,
-//       last_name,
-//       email,
-//       password
-//     } = req.body;
-
-//     getUserByEmail(email)
-//       .then(user => {
-
-//         if (user) {
-//           res.json({
-//             msg: 'Sorry, a user account with this email already exists'
-//           });
-//         } else {
-//           return addUser(first_name, last_name, email, password)
-//         }
-
-//       })
-//       .then(newUser => res.json(newUser))
-//       .catch(err => res.json({
-//         error: err.message
-//       }));
-
 //   })
-
-//   return router;
-// };

@@ -1,39 +1,39 @@
+const bcrypt = require('bcrypt');
+
 module.exports = (db) => {
-  // Examples:
-  // const getUsers = () => {
-  //   const query = {
-  //     text: 'SELECT * FROM users',
-  //   };
+  // List all users from the database
+  const getUsers = () => {
+    const query = {
+      text: 'SELECT * FROM users',
+    }
+    return db
+      .query(query)
+      .then((result) => result.rows);
+  };
 
-  //   return db
-  //     .query(query)
-  //     .then((result) => result.rows)
-  //     .catch((err) => err);
-  // };
+  // Get a single user given its email
+  const getUserByEmail = email => {
+    const query = {
+      text: `SELECT * FROM users WHERE email = $1`,
+      values: [email]
+    }
+    return db
+      .query(query)
+      .then((result) => result.rows[0]);
+  };
 
-  // const getUserByEmail = email => {
-
-  //   const query = {
-  //     text: `SELECT * FROM users WHERE email = $1`,
-  //     values: [email]
-  //   }
-
-  //   return db
-  //     .query(query)
-  //     .then(result => result.rows[0])
-  //     .catch((err) => err);
-  // }
-
-  // const addUser = (firstName, lastName, email, password) => {
-  //   const query = {
-  //     text: `INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *`,
-  //     values: [firstName, lastName, email, password]
-  //   }
-
-  //   return db.query(query)
-  //     .then(result => result.rows[0])
-  //     .catch(err => err);
-  // }
+  // Add a new user to database
+  const addUser = (email, password, name) => {
+    const hash = bcrypt.hashSync(password, 10);
+    const query = {
+      text:
+        `INSERT INTO users (email, PASSWORD, name)
+        VALUES ($1, $2, $3) RETURNING *`,
+      values: [email, hash, name]
+    }
+    return db.query(query)
+      .then(result => result.rows[0]);
+  };
 
   // const getUsersPosts = () => {
   //   const query = {
@@ -49,10 +49,9 @@ module.exports = (db) => {
 
   // }
 
-  // return {
-  //   getUsers,
-  //   getUserByEmail,
-  //   addUser,
-  //   getUsersPosts
-  // };
+  return {
+    getUsers,
+    getUserByEmail,
+    addUser
+  };
 };
