@@ -19,11 +19,11 @@ export default function NavBar(props) {
         <ul className='nav-bar__redirect-link'><TrackerButton /></ul>
       </div>
       <div className='nav-bar__user'>
-        <ul className='nav-bar__user-action'><LoginButton /></ul>
         <ul className='nav-bar__user-action'>
-          <SignupButton
-            name='Sign Up'
-          />
+          <LoginButton name='Login' />
+        </ul>
+        <ul className='nav-bar__user-action'>
+          <SignupButton name='Sign Up' />
         </ul>
       </div>
     </div>
