@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../Button';
 
 export default function TrackerButton(props) {
+  const navigate = useNavigate();
+
   return (
-    <Button  onClick={() => console.log("Tracker")}>Tracker</Button>
+    <Button onClick={() => navigate('/tracker')}>Tracker</Button>
   );
 };

@@ -9,7 +9,7 @@ import './NavBar.scss';
 
 export default function NavBar(props) {
   return (
-    <div className='nav-bar'>
+    <header className='nav-bar'>
       <div className='nav-bar__redirect'>
         <ul className='nav-bar__redirect-link'><TodayButton /></ul>
         <ul className='nav-bar__redirect-link'><ThisWeekButton /></ul>
@@ -20,6 +20,6 @@ export default function NavBar(props) {
         <ul className='nav-bar__user-action'><LoginButton /></ul>
         <ul className='nav-bar__user-action'><SignupButton /></ul>
       </div>
-    </div>
+    </header>
   );
 };
