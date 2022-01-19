@@ -34,13 +34,10 @@ module.exports = ({
   /* Add a new user to database */
   router.post('/', (req, res) => {
     const { email, password, name } = req.body;
-
     getUserByEmail(email)
       .then(user => {
         if (user) {
-          res.json({
-            error: 'Sorry, a user account with this email already exists'
-          });
+          throw new Error('Sorry, a user account with this email already exists');
         }
         else {
           return addUser(email, password, name)

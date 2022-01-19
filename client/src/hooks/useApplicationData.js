@@ -34,23 +34,17 @@ const useApplicationData = () => {
   // };
 
   // Signup an account by given account info
-  function signup(email, password, name) {
-    const user = {
-      email: email,
-      password: password,
-      name: name
-    };
+  function signup(user) {
     return axios.post(`http://localhost:3001/api/users`, user)
-      // return axios.get(`http://localhost:3001/api/users`)
       .then((res) => {
-        console.log(res.data);
+        if (!res.data.email) {
+          throw new Error('Sorry, a user account with this email already exists');
+        }
+        else {
+          console.log(res.data);
+        }
       });
-    // dispatch(
-    //   {
-    //     type: SET_USER,
-    //     user: user
-    //   }
-    // );
+
   }
 
   const [state, dispatch] = useReducer(dataReducer, {

@@ -25,6 +25,24 @@ export default function SignupForm(props) {
     setError('');
     return true;
   };
+  const createAccount = (email, password, name) => {
+    const user = {
+      email: email,
+      password: password,
+      name: name
+    };
+    if (validate()) {
+      props.onSignup(user)
+        .then(() => {
+          alert('Successfully Signed Up');
+          // transition(HOME);
+        })
+        .catch(err => {
+          alert(err);
+          // transition(ERROR_SIGNUP, true);
+        });
+    }
+  };
 
   return (
     <section className="signup">
@@ -64,12 +82,8 @@ export default function SignupForm(props) {
         <section className="signup__validation">{error}</section>
         <section className="signup__button">
           <Button danger onClick={() => cancel()}>Cancel</Button>
-          <Button confirm onClick={() => {
-            if (validate()) {
-              props.onSignup(email, password, name);
-            }
-          }
-          } >Confirm</Button>
+          <Button confirm onClick={() =>
+            createAccount(email, password, name)}>Confirm</Button>
         </section>
       </form>
     </section>
