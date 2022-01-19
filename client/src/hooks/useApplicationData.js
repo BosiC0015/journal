@@ -39,12 +39,18 @@ const useApplicationData = () => {
       .then((res) => res.data);
   }
 
+  function login(pair) {
+    return axios.
+      post(`http://localhost:3001/api/users/${pair.email}`, pair)
+      .then((res) => res.data);
+  }
+
   const [state, dispatch] = useReducer(dataReducer, {
     users: {}
   });
 
   console.log(state.user);
-  return { state, signup }
+  return { state, signup, login }
 };
 
 export default useApplicationData;
