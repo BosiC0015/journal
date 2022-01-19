@@ -9,12 +9,14 @@ import {
   Route
 } from "react-router-dom";
 import Signup from "./components/Signup";
+import Login from "./components/Login"
 
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
