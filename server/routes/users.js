@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const bcrypt = require('bcrypt');
 
 // Examples:
 // /* GET users listing. */
@@ -21,11 +22,20 @@ module.exports = ({
       }));
   });
 
-  /* GET a user listing by Email */
-  router.get('/:email', (req, res) => {
-    const { email } = req.params;
+  /* Login a user given by email */
+  router.post(`/:email`, (req, res) => {
+    const { email, password } = req.body;
     getUserByEmail(email)
-      .then(user => res.json(user))
+      .then(user => {
+        if (!user || !bcrypt.compareSync(password, user.password)) {
+          res.json({
+            msg: 'Sorry, you enter a wrong email or password'
+          });
+        }
+        else {
+          res.json(user)
+        }
+      })
       .catch(err => res.json({
         error: err.message
       }));
