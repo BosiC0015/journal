@@ -5,11 +5,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import TrackerPage from './components/Tracker/TrackerPage';
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
 import Signup from "./components/Signup";
 import Login from "./components/Login"
 
