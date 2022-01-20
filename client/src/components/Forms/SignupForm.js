@@ -21,15 +21,15 @@ export default function SignupForm(props) {
       !password.length ||
       !password_confirmation.length ||
       !name.length) {
-      setError('Necessary fileds cannot be blank');
+      setError('Error: Necessary fileds cannot be blank');
       return false;
     }
     else if (password !== password_confirmation) {
-      setError('Passwords are different');
+      setError('Error: Passwords are different');
       return false;
     }
     else if (!name.replace(/\s/g, '').length) {
-      setError('Name only contains whitespace');
+      setError('Error: Name only contains whitespace');
       return false;
     }
     setError('');
@@ -46,7 +46,7 @@ export default function SignupForm(props) {
           // transition(HOME);
         })
         .catch(err => {
-          alert(err);
+          setError(`${err}`);
           // transition(ERROR_SIGNUP, true);
         });
     }

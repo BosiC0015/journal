@@ -4,13 +4,13 @@ import "./Signup.scss"
 import NavBar from './NavBar/NavBar';
 
 export default function Signup() {
-  const { signup } = useApplicationData();
+  const { state, signup } = useApplicationData();
 
   return (
     <main>
       <NavBar />
       <h2>Sign Up Page</h2>
       <SignupForm onSignup={signup} />
-    </main>
+    </main >
   );
 }

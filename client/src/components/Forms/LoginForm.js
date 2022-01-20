@@ -17,7 +17,7 @@ export default function LoginForm(props) {
   const validate = () => {
     if (!email.length ||
       !password.length) {
-      setError('Necessary fileds cannot be blank');
+      setError('Error: Necessary fileds cannot be blank');
       return false;
     }
     setError('');
@@ -33,8 +33,8 @@ export default function LoginForm(props) {
           navigate("/");
         })
         .catch(err => {
-          alert(err);
-          // transition(ERROR_SIGNUP, true);
+          setError(`${err}`);
+          // transition(ERROR_LOGIN, true);
         });
     }
   };

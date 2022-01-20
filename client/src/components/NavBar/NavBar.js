@@ -5,7 +5,9 @@ import ThisMonthButton from './ThisMonthButton';
 import TrackerButton from './TrackerButton';
 import LoginButton from './LoginButton';
 import SignupButton from './SignupButton';
+import LogoutButton from './LogoutButton';
 import './NavBar.scss';
+
 
 
 export default function NavBar(props) {
@@ -24,6 +26,9 @@ export default function NavBar(props) {
         </ul>
         <ul className='nav-bar__user-action'>
           <SignupButton name='Sign Up' />
+        </ul>
+        <ul className='nav-bar__user-action'>
+          <LogoutButton name='Logout' />
         </ul>
       </div>
     </div>
