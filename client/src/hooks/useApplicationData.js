@@ -32,8 +32,12 @@ const useApplicationData = () => {
     // );
   };
 
-  async function login(pair) {
-    return await axios.post(`http://localhost:3001/api/users/${pair.email}`, pair)
+  async function submitDiary(title, content) {
+    console.log(title, content);
+  };
+
+  async function login(email, password) {
+    return await axios.post(`http://localhost:3001/api/users/${email}`, { email, password })
       .then((res) => {
         const data = res.data
         if (data.msg) {
@@ -81,7 +85,7 @@ const useApplicationData = () => {
   }, []);
 
   //console.log(state.user, state.isLoggedin);
-  return { state, signup, login, logout }
+  return { state, signup, login, logout, submitDiary }
 };
 
 export default useApplicationData;
