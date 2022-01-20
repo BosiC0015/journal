@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../Button";
-import "./LoginForm.scss";
+import "./styles.scss";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginForm(props) {
