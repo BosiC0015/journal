@@ -1,0 +1,141 @@
+div.main-container {
+  margin: auto;
+  width: 90%;
+}
+
+.month {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  margin: auto;
+  width: 90%;
+
+  &__title {
+    margin: auto;
+    width: 30%;
+  }
+}
+
+.tracker {
+  display: flex;
+  flex-direction: row;
+
+  &__habits-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__checkboxes {
+    overflow-x: scroll;
+  }
+}
+
+.table {
+
+  &__habit {
+    display: flex;
+    align-items: center;
+    width: 10em;
+  }
+
+  &__date {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__date-box {
+    font-size: large;
+    background-color: transparent;
+    border: solid;
+    border-width: 1px;
+    border-color: darkgray;
+    height: 50px;
+    width: 50px;
+    float: left;
+  }
+
+  &__checker {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.tracker-box {
+  background-color: transparent;
+  border: solid;
+  border-width: 1px;
+  border-color: darkgray;
+  height: 50px;
+  width: 50px;
+  float: left;
+
+  &__checked {
+    background-color: rgb(250, 237, 120);
+    border: solid;
+    border-width: 1px;
+    border-color: rgb(209, 184, 73);
+    height: 50px;
+    width: 50px;
+    float: left;
+  }
+}
+
+.habit {
+  background-color: white;
+  border: solid;
+  border-width: 1px;
+  border-color: darkgray;
+  height: 50px;
+  width: 250px;
+  font-size: large;
+}
+
+.add-habit {
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  width: 400px;
+  margin: auto;
+  padding-top: 5%;
+
+  &__input {
+    display: block;
+    width: 300px;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    margin: auto;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+  }
+
+  &__submit {
+    display:inline-block;
+    width: 100px;
+    font-weight:400;
+    font-size: large;
+    text-align:center;
+    vertical-align:middle;
+    background-color:transparent;
+    border:1px solid transparent;
+    padding:.375rem .75rem;
+    font-size:1rem;
+    line-height:1.5;
+    border-radius:.25rem;
+    color:rgb(0, 0, 0);
+    background-color:#f3d942;
+    border-color:#cfb025;
+  }
+}
+
+.validation {
+  color: #ff8843;
+  width: 40%;
+  padding: 1rem;
+  margin: auto;
+  font-size: large;
+}
