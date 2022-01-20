@@ -35,6 +35,22 @@ module.exports = (db) => {
       .then(result => result.rows[0]);
   };
 
+  const getDiariesByUser = (user_id) => {
+
+  };
+
+  const addDiary = (user_id, title, content) => {
+    //console.log(user_id, title, content);
+    // const query = {
+    //   text:
+    //     `INSERT INTO diaries (user_id, title, content)
+    //     VALUES ($1, $2, $3) RETURNING *`,
+    //   values: [user_id, title, content]
+    // }
+    // return db.query(query)
+    //   .then(result => result.rows[0]);
+  };
+
   // const getUsersPosts = () => {
   //   const query = {
   //     text: `SELECT users.id as user_id, first_name, last_name, email, posts.id as post_id, title, content
@@ -52,6 +68,8 @@ module.exports = (db) => {
   return {
     getUsers,
     getUserByEmail,
-    addUser
+    addUser,
+    getDiariesByUser,
+    addDiary
   };
 };

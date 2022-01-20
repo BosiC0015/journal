@@ -12,7 +12,7 @@ export default function Diary(props) {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [error, setError] = useState('');
-  const { submitDiary } = useApplicationData();
+  const { state, submitDiary } = useApplicationData();
 
   const editor = useEditor({
     extensions: [
@@ -35,7 +35,7 @@ export default function Diary(props) {
   const onSubmit = (title) => {
     const content = editor.getJSON();
     if (validate()) {
-      submitDiary(title, content);
+      submitDiary(state.user.email, title, content);
     }
   };
 

@@ -15,7 +15,7 @@ const useApplicationData = () => {
   async function signup(user) {
     return await axios.post(`http://localhost:3001/api/users`, user)
       .then((res) => {
-        const data = res.data
+        const data = res.data;
         if (data.msg) {
           throw new Error(data.msg);
         }
@@ -32,10 +32,7 @@ const useApplicationData = () => {
     // );
   };
 
-  async function submitDiary(title, content) {
-    console.log(title, content);
-  };
-
+  //
   async function login(email, password) {
     return await axios.post(`http://localhost:3001/api/users/${email}`, { email, password })
       .then((res) => {
@@ -55,6 +52,12 @@ const useApplicationData = () => {
       })
   };
 
+  //
+  async function submitDiary(email, title, content) {
+    return await axios.post(`http://localhost:3001/api/diaries/${email}`, { email, title, content })
+  };
+
+  //
   function logout() {
     dispatch({
       type: SET_USER,
@@ -63,6 +66,7 @@ const useApplicationData = () => {
     localStorage.clear();
   };
 
+  //
   function setCurrentUser(data) {
     dispatch({
       type: SET_USER,
