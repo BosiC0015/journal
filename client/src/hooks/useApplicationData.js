@@ -36,13 +36,37 @@ const useApplicationData = () => {
   // Signup an account by given account info
   function signup(user) {
     return axios.post(`http://localhost:3001/api/users`, user)
-      .then((res) => res.data);
+      .then((res) => {
+        const data = res.data
+        if (data.msg) {
+          throw new Error(data.msg);
+        }
+        else if (data.error) {
+          throw new Error('Something wrong. Please try again!');
+        }
+      })
   }
 
   function login(pair) {
     return axios.
       post(`http://localhost:3001/api/users/${pair.email}`, pair)
-      .then((res) => res.data);
+      .then((res) => {
+        const data = res.data
+        if (data.msg) {
+          throw new Error(data.msg);
+        }
+        else if (data.error) {
+          throw new Error('Something wrong. Please try again!');
+        }
+        else {
+          // set current user and update login status
+          // transition(HOME);
+        }
+      })
+    // .catch(err => {
+    //   alert(err);
+    //   // transition(ERROR_SIGNUP, true);
+    // });
   }
 
   const [state, dispatch] = useReducer(dataReducer, {
@@ -50,7 +74,7 @@ const useApplicationData = () => {
   });
 
   console.log(state.user);
-  return { state, signup, login }
+  return { state, dispatch, signup, login }
 };
 
 export default useApplicationData;

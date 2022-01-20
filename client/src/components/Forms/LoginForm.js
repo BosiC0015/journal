@@ -28,19 +28,9 @@ export default function LoginForm(props) {
     const pair = { email: email, password: password };
     if (validate()) {
       props.onLogin(pair)
-        .then((data) => {
-          if (data.msg) {
-            alert(data.msg);
-          }
-          else if (data.error) {
-            throw new Error('Something wrong. Please try again!');
-          }
-          else {
-            // set current user and update login status
-            alert('Successfully Logged in');
-            navigate("/");
-            // transition(HOME);
-          }
+        .then(() => {
+          alert('Successfully Logged in');
+          navigate("/");
         })
         .catch(err => {
           alert(err);

@@ -40,18 +40,10 @@ export default function SignupForm(props) {
     const user = { email: email, password: password, name: name };
     if (validate()) {
       props.onSignup(user)
-        .then((data) => {
-          if (data.msg) {
-            alert(data.msg);
-          }
-          else if (data.error) {
-            throw new Error('Something wrong. Please try again!');
-          }
-          else {
-            alert('Successfully Signed Up');
-            navigate("/");
-            // transition(HOME);
-          }
+        .then(() => {
+          alert('Successfully Signed Up');
+          navigate("/");
+          // transition(HOME);
         })
         .catch(err => {
           alert(err);
