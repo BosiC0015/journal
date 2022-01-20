@@ -35,6 +35,9 @@ export default function NavBar(props) {
         }
         {state.isLoggedin &&
           <ul className='nav-bar__user-action'>
+            <aside className='welcome__text'>
+              Hi {state.user.name}
+            </aside>
             <LogoutButton name='Logout' onLogout={logout} />
           </ul>
         }
