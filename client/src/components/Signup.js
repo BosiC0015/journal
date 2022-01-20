@@ -11,6 +11,6 @@ export default function Signup() {
       <NavBar />
       <h2>Sign Up Page</h2>
       <SignupForm onSignup={signup} />
-    </main>
+    </main >
   );
 }

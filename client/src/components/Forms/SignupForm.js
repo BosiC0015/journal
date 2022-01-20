@@ -21,15 +21,15 @@ export default function SignupForm(props) {
       !password.length ||
       !password_confirmation.length ||
       !name.length) {
-      setError('Necessary fileds cannot be blank');
+      setError('Error: Necessary fileds cannot be blank');
       return false;
     }
     else if (password !== password_confirmation) {
-      setError('Passwords are different');
+      setError('Error: Passwords are different');
       return false;
     }
     else if (!name.replace(/\s/g, '').length) {
-      setError('Name only contains whitespace');
+      setError('Error: Name only contains whitespace');
       return false;
     }
     setError('');
@@ -40,21 +40,13 @@ export default function SignupForm(props) {
     const user = { email: email, password: password, name: name };
     if (validate()) {
       props.onSignup(user)
-        .then((data) => {
-          if (data.msg) {
-            alert(data.msg);
-          }
-          else if (data.error) {
-            throw new Error('Something wrong. Please try again!');
-          }
-          else {
-            alert('Successfully Signed Up');
-            navigate("/");
-            // transition(HOME);
-          }
+        .then(() => {
+          alert('Successfully Signed Up');
+          navigate("/");
+          // transition(HOME);
         })
         .catch(err => {
-          alert(err);
+          setError(`${err}`);
           // transition(ERROR_SIGNUP, true);
         });
     }
