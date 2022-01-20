@@ -4,7 +4,7 @@ import "./Signup.scss"
 import NavBar from './NavBar/NavBar';
 
 export default function Signup() {
-  const { state, signup } = useApplicationData();
+  const { signup } = useApplicationData();
 
   return (
     <main>

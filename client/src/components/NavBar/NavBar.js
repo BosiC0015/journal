@@ -7,10 +7,12 @@ import LoginButton from './LoginButton';
 import SignupButton from './SignupButton';
 import LogoutButton from './LogoutButton';
 import './NavBar.scss';
+import useApplicationData from "../../hooks/useApplicationData";
 
 
 
 export default function NavBar(props) {
+  const { state, logout } = useApplicationData();
 
   return (
     <div className='nav-bar'>
@@ -21,15 +23,21 @@ export default function NavBar(props) {
         <ul className='nav-bar__redirect-link'><TrackerButton /></ul>
       </div>
       <div className='nav-bar__user'>
-        <ul className='nav-bar__user-action'>
-          <LoginButton name='Login' />
-        </ul>
-        <ul className='nav-bar__user-action'>
-          <SignupButton name='Sign Up' />
-        </ul>
-        <ul className='nav-bar__user-action'>
-          <LogoutButton name='Logout' />
-        </ul>
+        {!state.isLoggedin &&
+          <ul className='nav-bar__user-action'>
+            <LoginButton name='Login' />
+          </ul>
+        }
+        {!state.isLoggedin &&
+          <ul className='nav-bar__user-action'>
+            <SignupButton name='Sign Up' />
+          </ul>
+        }
+        {state.isLoggedin &&
+          <ul className='nav-bar__user-action'>
+            <LogoutButton name='Logout' onLogout={logout} />
+          </ul>
+        }
       </div>
     </div>
   );

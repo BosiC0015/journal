@@ -11,29 +11,6 @@ import dataReducer, {
 } from '../reducers/dataReducer';
 
 const useApplicationData = () => {
-
-  // useEffect(() => {
-  //   axios({
-  //     method: 'GET',
-  //     url: '/api/users',
-  //   })
-  //     .then(({
-  //       data
-  //     }) => {
-  //       console.log(data);
-  //       dispatch({
-  //         type: SET_USERS,
-  //         users: data
-  //       });
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
-  // return {
-  //   state,
-  //   dispatch
-  // };
-
   // Signup an account by given account info
   async function signup(user) {
     return await axios.post(`http://localhost:3001/api/users`, user)
@@ -103,7 +80,7 @@ const useApplicationData = () => {
     }
   }, []);
 
-  console.log(state.user, state.isLoggedin);
+  //console.log(state.user, state.isLoggedin);
   return { state, signup, login, logout }
 };
 
