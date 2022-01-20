@@ -5,12 +5,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import TrackerPage from './components/Tracker/TrackerPage';
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+import Signup from "./components/Signup";
+import Login from "./components/Login"
 
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path='/' element={<App />} />
       <Route path='/tracker' element={<TrackerPage />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

@@ -1,8 +1,10 @@
 import React from 'react';
 import Button from '../Button';
+import { useNavigate } from "react-router-dom";
 
 export default function LoginButton(props) {
+  const navigate = useNavigate();
   return (
-    <Button onClick={() => console.log("Login")}>Login</Button>
+    <Button onClick={() => navigate("/login")}>{props.name}</Button>
   );
 };
