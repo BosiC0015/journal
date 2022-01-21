@@ -52,7 +52,7 @@ module.exports = ({
           });
         }
         else {
-          return addUser(email, password, name)
+          return addUser(email, password, name);
         }
       })
       .then(newUser => res.json(newUser))

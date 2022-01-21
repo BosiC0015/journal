@@ -35,7 +35,14 @@ export default function Diary(props) {
   const onSubmit = (title) => {
     const content = editor.getJSON();
     if (validate()) {
-      submitDiary(state.user.email, title, content);
+      submitDiary(state.user.email, title, content)
+        .then(() => {
+          alert('Successfully Submitted');
+          //navigate("/");
+        })
+        .catch(err => {
+          setError(`${err}`);
+        });
     }
   };
 

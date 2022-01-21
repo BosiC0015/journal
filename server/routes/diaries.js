@@ -7,7 +7,7 @@ module.exports = ({
   addDiary
 }) => {
   /* GET all diaries listing from a user */
-  router.get('/:email', (req, res) => {
+  router.get('/', (req, res) => {
     const { email } = req.params;
     getUserByEmail(email)
       .then(user => {
@@ -15,16 +15,16 @@ module.exports = ({
           throw new Error('Sorry, user does not exist');
         }
         else {
-          getDiariesByUser(user.id)
-            .then(data => res.json(data));
+          return getDiariesByUser(user.id)
         }
       })
+      .then(data => res.json(data))
       .catch(err => res.json({
         error: err.message
       }));
   });
 
-  router.post(`/:email`, (req, res) => {
+  router.post(`/`, (req, res) => {
     const { email, title, content } = req.body;
     getUserByEmail(email)
       .then(user => {
@@ -32,9 +32,10 @@ module.exports = ({
           throw new Error('Sorry, user does not exist');
         }
         else {
-          addDiary(user.id, title, content);
+          return addDiary(user.id, title, content);
         }
       })
+      .then(newDiary => res.json(newDiary))
       .catch(err => res.json({
         error: err.message
       }));

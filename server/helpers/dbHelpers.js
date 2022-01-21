@@ -46,7 +46,6 @@ module.exports = (db) => {
   };
 
   const addDiary = (user_id, title, content) => {
-    console.log(user_id, title, content);
     const query = {
       text:
         `INSERT INTO diaries (user_id, title, content, DATE)

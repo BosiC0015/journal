@@ -13,8 +13,8 @@ const useApplicationData = () => {
   // Signup an account by given account info
   async function signup(user) {
     const timeout = setTimeout(() => {
-      console.log("Cannot Connect to the Server");
-    }, 2000)
+      alert("Cannot Connect to the Server");
+    }, 2000);
     return await axios.post(`http://localhost:3001/api/users`, user)
       .then((res) => {
         const data = res.data;
@@ -37,9 +37,13 @@ const useApplicationData = () => {
 
   //
   async function login(email, password) {
+    const timeout = setTimeout(() => {
+      alert("Cannot Connect to the Server");
+    }, 2000);
     return await axios.post(`http://localhost:3001/api/users/${email}`, { email, password })
       .then((res) => {
-        const data = res.data
+        const data = res.data;
+        clearTimeout(timeout);
         if (data.msg) {
           throw new Error(data.msg);
         }
@@ -57,7 +61,17 @@ const useApplicationData = () => {
 
   //
   async function submitDiary(email, title, content) {
-    return await axios.post(`http://localhost:3001/api/diaries/${email}`, { email, title, content })
+    const timeout = setTimeout(() => {
+      alert("Cannot Connect to the Server");
+    }, 2000);
+    return await axios.post(`http://localhost:3001/api/diaries/`, { email, title, content })
+      .then((res) => {
+        const data = res.data;
+        clearTimeout(timeout);
+        if (data.error) {
+          throw new Error('Something wrong. Please try again!');
+        }
+      });
   };
 
   //
