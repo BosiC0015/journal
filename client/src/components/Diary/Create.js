@@ -3,16 +3,14 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import './styles.scss';
 import MenuBar from './MenuBar';
-import NavBar from '../NavBar/NavBar';
 import Button from "../Button";
 import { useNavigate } from "react-router-dom";
-import useApplicationData from "../../hooks/useApplicationData";
 
-export default function Diary(props) {
+export default function Create(props) {
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
   const [error, setError] = useState('');
-  const { state, submitDiary } = useApplicationData();
+
 
   const editor = useEditor({
     extensions: [
@@ -39,7 +37,7 @@ export default function Diary(props) {
   const onSubmit = (title) => {
     const content = editor.getJSON();
     if (validate()) {
-      submitDiary(state.user.email, title, content)
+      props.onSubmitDiary(props.email, title, content)
         .then(() => {
           alert('Successfully Submitted');
           //navigate("/");
@@ -51,9 +49,7 @@ export default function Diary(props) {
   };
 
   return (
-    <main>
-      <NavBar />
-      <h2>Let's Write a Diary</h2>
+    <section>
       <section className='title'>
         <input
           placeholder="Title"
@@ -70,6 +66,6 @@ export default function Diary(props) {
         <Button confirm onClick={() =>
           onSubmit(title)}>Submit</Button>
       </section>
-    </main>
+    </section>
   )
 }

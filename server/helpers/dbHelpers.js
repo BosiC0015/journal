@@ -56,25 +56,26 @@ module.exports = (db) => {
       .then(result => result.rows[0]);
   };
 
-  // const getUsersPosts = () => {
-  //   const query = {
-  //     text: `SELECT users.id as user_id, first_name, last_name, email, posts.id as post_id, title, content
-  //       FROM users
-  //       INNER JOIN posts
-  //       ON users.id = posts.user_id`
-  //   }
+  const updateDiary = (id, title, content) => {
+    const query = {
+      text:
+        `UPDATE diaries
+        SET title = $2, content = $3
+        WHERE id = $1
+        RETURNING *`,
+      values: [id, title, content]
+    }
+    return db.query(query)
+      .then(result => result.rows[0]);
+  };
 
-  //   return db.query(query)
-  //     .then(result => result.rows)
-  //     .catch(err => err);
-
-  // }
 
   return {
     getUsers,
     getUserByEmail,
     addUser,
     getDiariesByUser,
-    addDiary
+    addDiary,
+    updateDiary
   };
 };

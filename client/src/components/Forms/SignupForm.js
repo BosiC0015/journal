@@ -11,6 +11,8 @@ export default function SignupForm(props) {
   const [password_confirmation, setPassword_confirmation] = useState("");
   const [error, setError] = useState('');
 
+  //console.log('Count');
+
   const cancel = () => {
     navigate("/");
     // transition(BACK);

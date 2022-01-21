@@ -19,7 +19,7 @@ const firstDay = 'Saturday';
 export default function TrackerPage(props) {
   const [newHabit, setNewHabit] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-  
+
 
   const save = (newHabit) => {
     myHabits.push(newHabit);
@@ -29,7 +29,7 @@ export default function TrackerPage(props) {
     event.target.value = '';
     setErrorMsg('');
   }
-  
+
   const validate = (newHabit) => {
     if (newHabit === '') {
       setErrorMsg('Your new habit cannot be empty!');
@@ -39,7 +39,7 @@ export default function TrackerPage(props) {
     save(newHabit);
     setNewHabit('');
   };
-  
+
 
   const countArray = [...Array(myHabits.length).keys()];
 
@@ -62,16 +62,16 @@ export default function TrackerPage(props) {
         <section className="tracker">
           <div className="tracker__habits-list">
             <HabitItem name="My Habits" />
-            { habitsList }
+            {habitsList}
           </div>
           <div className="tracker__checkboxes">
             <DateList days={days} />
-            { trackerBoxes }
+            {trackerBoxes}
           </div>
         </section>
         <section className="add-habit">
-          <input 
-            className="add-habit__input" 
+          <input
+            className="add-habit__input"
             placeholder="Add New Habit"
             type="text"
             onFocus={(event) => clear(event)}

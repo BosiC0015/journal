@@ -9,6 +9,8 @@ export default function LoginForm(props) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState('');
 
+  //console.log('Count');
+
   const cancel = () => {
     navigate("/");
     // transition(BACK);

@@ -9,18 +9,16 @@ import RenderSidebar from './components/RenderSidebar.js'
 
 import { INITIAL_EVENTS, createEventId, handleDateClick, renderEventContent, handleWeekendsToggle, handleDateSelect, handleEventClick, handleEvents } from './event-utils'
 
-import NavBar from './components/NavBar/NavBar';
+import NavBar from './components/NavBar/NavBar'; import useApplicationData from "./hooks/useApplicationData";
 
 function App() {
+  const { state, signup, login, logout, submitDiary } = useApplicationData();
 
-  let state = {
-    weekendsVisible: true,
-    currentEvents: []
-  }
   return (
     <div className="App">
 
       <NavBar />
+
       <div className='demo-app'>
         <RenderSidebar />
 
