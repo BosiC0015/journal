@@ -6,16 +6,19 @@ import {
 } from 'react';
 
 import dataReducer, {
-  SET_USER,
-  GET_ERRORS
+  SET_USER
 } from '../reducers/dataReducer';
 
 const useApplicationData = () => {
   // Signup an account by given account info
-  async function signup(user) {
-    return await axios.post(`http://localhost:3001/api/users`, user)
+  function signup(user) {
+    const timeout = setTimeout(() => {
+      console.log("Cannot Connect to the Server");
+    }, 1000)
+    return axios.post(`http://localhost:3001/api/users`, user)
       .then((res) => {
         const data = res.data;
+        clearTimeout(timeout);
         if (data.msg) {
           throw new Error(data.msg);
         }
@@ -33,8 +36,8 @@ const useApplicationData = () => {
   };
 
   //
-  async function login(email, password) {
-    return await axios.post(`http://localhost:3001/api/users/${email}`, { email, password })
+  function login(email, password) {
+    return axios.post(`http://localhost:3001/api/users/${email}`, { email, password })
       .then((res) => {
         const data = res.data
         if (data.msg) {
@@ -53,15 +56,16 @@ const useApplicationData = () => {
   };
 
   //
-  async function submitDiary(email, title, content) {
-    return await axios.post(`http://localhost:3001/api/diaries/${email}`, { email, title, content })
+  function submitDiary(email, title, content) {
+    return axios.post(`http://localhost:3001/api/diaries/${email}`, { email, title, content })
   };
 
   //
   function logout() {
     dispatch({
       type: SET_USER,
-      user: {}
+      user: {},
+      isLoggedin: false
     });
     localStorage.clear();
   };

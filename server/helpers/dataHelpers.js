@@ -1,28 +1,10 @@
-// Examples:
-// const getPostsByUsers = (usersPosts) => {
-//   const postsByUsers = {};
+const getDiariesByUser = (userDiaries) => {
 
-//   for (let post of usersPosts) {
-//     if (!postsByUsers[post.user_id]) {
-//       postsByUsers[post.user_id] = {
-//         userId: post.user_id,
-//         firstName: post.first_name,
-//         lastName: post.last_name,
-//         email: post.email,
-//         posts: [],
-//       };
-//     }
+  const diariesByUser = userDiaries.map(diary => { diary.title, diary.content, diary.date });
 
-//     postsByUsers[post.user_id].posts.push({
-//       title: post.title,
-//       content: post.content,
-//     });
+  return diariesByUser;
+};
 
-//   }
-
-//   return Object.values(postsByUsers);
-// };
-
-// module.exports = {
-//   getPostsByUsers,
-// };
+module.exports = {
+  getDiariesByUser
+};

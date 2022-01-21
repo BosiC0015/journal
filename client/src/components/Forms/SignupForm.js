@@ -37,7 +37,7 @@ export default function SignupForm(props) {
   };
 
   const createAccount = (email, password, name) => {
-    const user = { email: email, password: password, name: name };
+    const user = { email, password, name };
     if (validate()) {
       props.onSignup(user)
         .then(() => {

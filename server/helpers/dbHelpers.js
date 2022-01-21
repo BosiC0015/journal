@@ -35,20 +35,26 @@ module.exports = (db) => {
       .then(result => result.rows[0]);
   };
 
-  const getDiariesByUser = (user_id) => {
-
+  const getDiariesByUser = user_id => {
+    const query = {
+      text: `SELECT * FROM diaries WHERE user_id = $1`,
+      values: [user_id]
+    }
+    return db
+      .query(query)
+      .then((result) => result.rows);
   };
 
   const addDiary = (user_id, title, content) => {
-    //console.log(user_id, title, content);
-    // const query = {
-    //   text:
-    //     `INSERT INTO diaries (user_id, title, content)
-    //     VALUES ($1, $2, $3) RETURNING *`,
-    //   values: [user_id, title, content]
-    // }
-    // return db.query(query)
-    //   .then(result => result.rows[0]);
+    console.log(user_id, title, content);
+    const query = {
+      text:
+        `INSERT INTO diaries (user_id, title, content, DATE)
+        VALUES ($1, $2, $3, $4) RETURNING *`,
+      values: [user_id, title, content, new Date().toLocaleString()]
+    }
+    return db.query(query)
+      .then(result => result.rows[0]);
   };
 
   // const getUsersPosts = () => {
