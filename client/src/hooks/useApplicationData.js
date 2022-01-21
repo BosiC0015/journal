@@ -11,11 +11,11 @@ import dataReducer, {
 
 const useApplicationData = () => {
   // Signup an account by given account info
-  function signup(user) {
+  async function signup(user) {
     const timeout = setTimeout(() => {
       console.log("Cannot Connect to the Server");
-    }, 1000)
-    return axios.post(`http://localhost:3001/api/users`, user)
+    }, 2000)
+    return await axios.post(`http://localhost:3001/api/users`, user)
       .then((res) => {
         const data = res.data;
         clearTimeout(timeout);
@@ -36,8 +36,8 @@ const useApplicationData = () => {
   };
 
   //
-  function login(email, password) {
-    return axios.post(`http://localhost:3001/api/users/${email}`, { email, password })
+  async function login(email, password) {
+    return await axios.post(`http://localhost:3001/api/users/${email}`, { email, password })
       .then((res) => {
         const data = res.data
         if (data.msg) {
@@ -56,8 +56,8 @@ const useApplicationData = () => {
   };
 
   //
-  function submitDiary(email, title, content) {
-    return axios.post(`http://localhost:3001/api/diaries/${email}`, { email, title, content })
+  async function submitDiary(email, title, content) {
+    return await axios.post(`http://localhost:3001/api/diaries/${email}`, { email, title, content })
   };
 
   //
