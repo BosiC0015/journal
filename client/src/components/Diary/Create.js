@@ -40,7 +40,7 @@ export default function Create(props) {
       props.onSubmitDiary(props.email, title, content)
         .then(() => {
           alert('Successfully Submitted');
-          //navigate("/");
+          navigate("/");
         })
         .catch(err => {
           setError(`${err}`);

@@ -40,7 +40,7 @@ export default function Edit(props) {
       props.onSubmitDiary(props.email, props.id, title, content)
         .then(() => {
           alert('Successfully Updated');
-          //navigate("/");
+          navigate("/");
         })
         .catch(err => {
           setError(`${err}`);
