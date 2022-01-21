@@ -1,6 +1,6 @@
 import React from 'react';
 import renderSidebarEvent from './RenderSidebarEvent';
-//import "./sideBar.css";
+import "./sideBar.css";
 
 
 export default function renderSidebar(props) {
