@@ -25,14 +25,7 @@ const useApplicationData = () => {
         else if (data.error) {
           throw new Error('Something wrong. Please try again!');
         }
-      })
-    // .catch(err => {
-    //   dispatch({
-    //     type: GET_ERRORS,
-    //     payload: err
-    //   })
-    // }
-    // );
+      });
   };
 
   //
@@ -40,6 +33,7 @@ const useApplicationData = () => {
     const timeout = setTimeout(() => {
       alert("Cannot Connect to the Server");
     }, 2000);
+
     return await axios.post(`http://localhost:3001/api/users/${email}`, { email, password })
       .then(res => {
         const userData = res.data;
@@ -85,7 +79,23 @@ const useApplicationData = () => {
         if (data.error) {
           throw new Error('Something wrong. Please try again!');
         }
+        addUserDiary(data);
       });
+  };
+
+  function addUserDiary(diary) {
+    // Copy of current user diaries
+    let diaries = [...state.user.diaries];
+    // Add new diary to the copy
+    diaries.push(diary);
+    // Update cookie and current user data
+    state.user.diaries = diaries;
+    localStorage.setItem('user', JSON.stringify(state.user));
+    setCurrentUserData(state.user);
+  };
+
+  function updateUserDiary(diary) {
+
   };
 
   //
@@ -110,7 +120,9 @@ const useApplicationData = () => {
   const [state, dispatch] = useReducer(dataReducer, {
     user: {},
     diaries: [],
-    isLoggedin: false
+    isLoggedin: false,
+    weekendsVisible: true,
+    currentEvents: []
   });
 
   useEffect(() => {

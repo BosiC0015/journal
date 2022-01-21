@@ -50,7 +50,7 @@ module.exports = (db) => {
       text:
         `INSERT INTO diaries (user_id, title, content, DATE)
         VALUES ($1, $2, $3, $4) RETURNING *`,
-      values: [user_id, title, content, new Date().toLocaleString()]
+      values: [user_id, title, content, new Date().toISOString()]
     }
     return db.query(query)
       .then(result => result.rows[0]);

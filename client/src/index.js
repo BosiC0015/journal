@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import TrackerPage from './components/Tracker/TrackerPage';
 import Signup from "./components/Signup";
 import Login from "./components/Login"
-import Diary from "./components/Diary"
+import Diaries from "./components/Diaries"
 
 ReactDOM.render(
   <BrowserRouter>
@@ -16,7 +16,7 @@ ReactDOM.render(
       <Route path='/tracker' element={<TrackerPage />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/diary" element={<Diary />} />
+      <Route path="/diary" element={<Diaries />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
