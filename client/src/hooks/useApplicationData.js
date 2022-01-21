@@ -8,7 +8,7 @@ import {
 } from 'react';
 
 import dataReducer, {
-  SET_USER
+  SET_USER, SET_DIARIES, SET_PLANS, CLEAR_USER
 } from '../reducers/dataReducer';
 
 const useApplicationData = () => {
@@ -54,9 +54,10 @@ const useApplicationData = () => {
                 throw new Error('Something wrong. Please try again!');
               }
               // set current user data and update login status
-              userData['diaries'] = diaryData;
               localStorage.setItem('user', JSON.stringify(userData));
-              setCurrentUserData(userData);
+              localStorage.setItem('diaries', JSON.stringify(diaryData));
+              setUserData(userData);
+              setDiariesData(diaryData);
             });
         }
       });
@@ -102,39 +103,40 @@ const useApplicationData = () => {
 
   function addUserDiary(diary) {
     // Copy of current user diaries
-    let diaries = [...state.user.diaries];
+    let diaries = [...state.diaries];
     // Add new diary to the copy
     diaries.push(diary);
-    // Update cookie and current user data
-    state.user.diaries = diaries;
-    localStorage.setItem('user', JSON.stringify(state.user));
-    setCurrentUserData(state.user);
+    // Update cookie and current diary data
+    localStorage.setItem('diaries', JSON.stringify(diaries));
+    setDiariesData(diaries);
   };
 
   function updateUserDiary(diary) {
     // Copy of current user diaries
-    let diaries = [...state.user.diaries];
+    let diaries = [...state.diaries];
     // Update the copy of diaries
     diaries = updatetDiaryById(diaries, diary);
-    // Update cookie and current user data
-    state.user.diaries = diaries;
-    localStorage.setItem('user', JSON.stringify(state.user));
-    setCurrentUserData(state.user);
+    // Update cookie and current diary data
+    localStorage.setItem('diaries', JSON.stringify(diaries));
+    setDiariesData(diaries);
   };
 
 
   //
   function logout() {
     dispatch({
-      type: SET_USER,
+      type: CLEAR_USER,
       user: {},
-      isLoggedin: false
+      diaries: [],
+      plans: [],
+      isLoggedin: false,
+      weekendsVisible: true
     });
     localStorage.clear();
   };
 
   //
-  function setCurrentUserData(userData) {
+  function setUserData(userData) {
     dispatch({
       type: SET_USER,
       user: userData,
@@ -142,22 +144,31 @@ const useApplicationData = () => {
     })
   };
 
+  function setDiariesData(diariesData) {
+    dispatch({
+      type: SET_DIARIES,
+      diaries: diariesData
+    })
+  };
+
   const [state, dispatch] = useReducer(dataReducer, {
     user: {},
     diaries: [],
+    plans: [],
     isLoggedin: false,
-    weekendsVisible: true,
-    currentEvents: []
+    weekendsVisible: true
   });
 
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (user) {
-      setCurrentUserData(JSON.parse(user));
+      setUserData(JSON.parse(user));
+      const diaries = localStorage.getItem("diaries");
+      setDiariesData(JSON.parse(diaries));
     }
   }, []);
 
-  //console.log(state.user, state.isLoggedin);
+  console.log(state.user, state.diaries, state.isLoggedin);
   return { state, signup, login, logout, submitDiary, updateDiary }
 };
 

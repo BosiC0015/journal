@@ -3,7 +3,7 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import './styles.scss';
 import MenuBar from './MenuBar';
-import Button from "../Button";
+import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 
 export default function Edit(props) {

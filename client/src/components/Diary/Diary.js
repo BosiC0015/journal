@@ -1,15 +1,14 @@
 import React from "react";
-import useApplicationData from "../hooks/useApplicationData";
-import NavBar from './NavBar/NavBar';
-import Create from "./Diary/Create";
-import Edit from "./Diary/Edit";
-import { getDiaryForDay } from "../helpers/selectors";
+import useApplicationData from "../../hooks/useApplicationData";
+import NavBar from '../NavBar/NavBar';
+import Create from "./Create";
+import Edit from "./Edit";
+import { getDiaryForDay } from "../../helpers/selectors";
 
 export default function Diary() {
   const { state, submitDiary, updateDiary } = useApplicationData();
 
-  const diary = getDiaryForDay(state.user.diaries, new Date());
-
+  const diary = getDiaryForDay(state.diaries, new Date());
 
   return (
     <main>

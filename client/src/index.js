@@ -5,9 +5,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import TrackerPage from './components/Tracker/TrackerPage';
-import Signup from "./components/Signup";
-import Login from "./components/Login"
-import Diary from "./components/Diary"
+import Signup from "./components/Signup/Signup";
+import Login from "./components/Login/Login"
+import Diary from "./components/Diary/Diary"
 
 ReactDOM.render(
   <BrowserRouter>
