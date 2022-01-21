@@ -4,4 +4,5 @@ export function getDiaryForDay(diaries, date) {
     return diaries.find(diary =>
       diary.date.slice(0, 10) === currentDate);
   }
+  return null;
 };

@@ -17,10 +17,7 @@ function App() {
   return (
     <div className="App">
 
-      <NavBar
-        isLoggedin={state.isLoggedin}
-        name={state.user.name}
-        logout={logout} />
+      <NavBar />
 
       <div className='demo-app'>
         <RenderSidebar />

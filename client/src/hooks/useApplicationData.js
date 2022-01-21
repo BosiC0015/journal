@@ -83,6 +83,10 @@ const useApplicationData = () => {
       });
   };
 
+  async function updateDiary(diary) {
+
+  };
+
   function addUserDiary(diary) {
     // Copy of current user diaries
     let diaries = [...state.user.diaries];
@@ -94,9 +98,6 @@ const useApplicationData = () => {
     setCurrentUserData(state.user);
   };
 
-  function updateUserDiary(diary) {
-
-  };
 
   //
   function logout() {
@@ -133,7 +134,7 @@ const useApplicationData = () => {
   }, []);
 
   //console.log(state.user, state.isLoggedin);
-  return { state, signup, login, logout, submitDiary }
+  return { state, signup, login, logout, submitDiary, updateDiary }
 };
 
 export default useApplicationData;

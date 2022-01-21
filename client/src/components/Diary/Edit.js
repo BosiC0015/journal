@@ -6,9 +6,9 @@ import MenuBar from './MenuBar';
 import Button from "../Button";
 import { useNavigate } from "react-router-dom";
 
-export default function DiaryFramework(props) {
+export default function Edit(props) {
   const navigate = useNavigate();
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState(props.title);
   const [error, setError] = useState('');
 
 
@@ -16,7 +16,7 @@ export default function DiaryFramework(props) {
     extensions: [
       StarterKit,
     ],
-    content: ``,
+    content: props.content,
   })
   const cancel = () => {
     navigate("/");
@@ -39,7 +39,7 @@ export default function DiaryFramework(props) {
     if (validate()) {
       props.onSubmitDiary(props.email, title, content)
         .then(() => {
-          alert('Successfully Submitted');
+          alert('Successfully Updated');
           //navigate("/");
         })
         .catch(err => {
@@ -47,7 +47,6 @@ export default function DiaryFramework(props) {
         });
     }
   };
-
 
   return (
     <section>
@@ -65,7 +64,7 @@ export default function DiaryFramework(props) {
       <section className="diary__button">
         <Button danger onClick={() => cancel()}>Cancel</Button>
         <Button confirm onClick={() =>
-          onSubmit(title)}>Submit</Button>
+          onSubmit(title)}>Update</Button>
       </section>
     </section>
   )

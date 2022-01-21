@@ -12,6 +12,7 @@ import useApplicationData from "../../hooks/useApplicationData";
 
 
 export default function NavBar(props) {
+  const { state, logout } = useApplicationData();
 
   return (
     <header className='nav-bar'>
@@ -22,23 +23,22 @@ export default function NavBar(props) {
         <ul className='nav-bar__redirect-link'><TrackerButton /></ul>
       </div>
       <div className='nav-bar__user'>
-        {!props.isLoggedin &&
+        {!state.isLoggedin &&
           <ul className='nav-bar__user-action'>
             <LoginButton name='Login' />
           </ul>
         }
-        {!props.isLoggedin &&
+        {!state.isLoggedin &&
           <ul className='nav-bar__user-action'>
             <SignupButton name='Sign Up' />
           </ul>
         }
-        {props.isLoggedin &&
+        {state.isLoggedin &&
           <ul className='nav-bar__user-action'>
             <aside className='welcome__text'>
-              Hi {props.name}
+              Hi {state.user.name}
             </aside>
-            <LogoutButton name='Logout'
-              onLogout={props.logout} />
+            <LogoutButton name='Logout' onLogout={logout} />
           </ul>
         }
       </div>
