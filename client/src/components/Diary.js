@@ -10,6 +10,7 @@ export default function Diary() {
 
   const diary = getDiaryForDay(state.user.diaries, new Date());
 
+
   return (
     <main>
       <NavBar />
@@ -22,7 +23,9 @@ export default function Diary() {
       }
       {diary &&
         <Edit
+          key={diary.id}
           email={state.user.email}
+          id={diary.id}
           title={diary.title}
           content={diary.content}
           onSubmitDiary={updateDiary}
