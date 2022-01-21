@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useApplicationData from "../hooks/useApplicationData";
 import NavBar from './NavBar/NavBar';
 import Create from "./Diary/Create";
