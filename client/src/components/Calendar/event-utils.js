@@ -1,9 +1,9 @@
 import { formatDate } from '@fullcalendar/react';
 
-let events=[
-    { title: 'event 1', date: '2022-01-01' },
-    { title: 'event 2', date: '2022-04-02' }
-  ]
+let events = [
+  { title: 'event 1', date: '2022-01-01' },
+  { title: 'event 2', date: '2022-04-02' }
+]
 
 let eventGuid = 0
 let todayStr = new Date().toISOString().replace(/T.*$/, '') // YYYY-MM-DD of today
@@ -25,7 +25,7 @@ export function createEventId() {
   return String(eventGuid++)
 }
 
-export function handleDateClick(arg){ // bind with an arrow function
+export function handleDateClick(arg) { // bind with an arrow function
   alert(arg.dateStr)
 }
 
@@ -46,7 +46,7 @@ export function handleWeekendsToggle() {
   })
 }
 
-export function handleDateSelect(selectInfo){
+export function handleDateSelect(selectInfo) {
   let title = prompt('Please enter a new title for your event')
   let calendarApi = selectInfo.view.calendar
 
@@ -63,8 +63,8 @@ export function handleDateSelect(selectInfo){
   }
 }
 
-export function handleEventClick(clickInfo){
-  if (`Are you sure you want to delete the event '${clickInfo.event.title}'`){
+export function handleEventClick(clickInfo) {
+  if (`Are you sure you want to delete the event '${clickInfo.event.title}'`) {
     clickInfo.event.remove()
   }
 }
@@ -72,7 +72,7 @@ let state = {
   weekendsVisible: true,
   currentEvents: []
 }
-export function handleEvents(events){
+export function handleEvents(events) {
   this.setState({
     currentEvents: events
   })
