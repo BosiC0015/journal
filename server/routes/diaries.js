@@ -6,9 +6,10 @@ module.exports = ({
   getDiariesByUser,
   addDiary
 }) => {
-  /* GET all diaries listing from a user */
-  router.get('/', (req, res) => {
+  /* GET all diaries listing from a user by given email*/
+  router.get('/:email', (req, res) => {
     const { email } = req.params;
+    console.log(email);
     getUserByEmail(email)
       .then(user => {
         if (!user) {

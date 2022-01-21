@@ -29,6 +29,10 @@ export default function Diary(props) {
       setError('Error: Title must be filled');
       return false;
     }
+    else if (!title.replace(/\s/g, '').length) {
+      setError('Error: Title only contains whitespace');
+      return false;
+    }
     setError('');
     return true;
   };
@@ -64,7 +68,7 @@ export default function Diary(props) {
       <section className="diary__button">
         <Button danger onClick={() => cancel()}>Cancel</Button>
         <Button confirm onClick={() =>
-          onSubmit(title)}>Add Diary</Button>
+          onSubmit(title)}>Submit</Button>
       </section>
     </main>
   )

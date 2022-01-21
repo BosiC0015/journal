@@ -16,7 +16,7 @@ const useApplicationData = () => {
       alert("Cannot Connect to the Server");
     }, 2000);
     return await axios.post(`http://localhost:3001/api/users`, user)
-      .then((res) => {
+      .then(res => {
         const data = res.data;
         clearTimeout(timeout);
         if (data.msg) {
@@ -41,22 +41,36 @@ const useApplicationData = () => {
       alert("Cannot Connect to the Server");
     }, 2000);
     return await axios.post(`http://localhost:3001/api/users/${email}`, { email, password })
-      .then((res) => {
-        const data = res.data;
+      .then(res => {
+        const userData = res.data;
         clearTimeout(timeout);
-        if (data.msg) {
-          throw new Error(data.msg);
+        if (userData.msg) {
+          throw new Error(userData.msg);
         }
-        else if (data.error) {
+        else if (userData.error) {
           throw new Error('Something wrong. Please try again!');
         }
         else {
-          // set current user and update login status
-          localStorage.setItem('Token', JSON.stringify(data));
-          setCurrentUser(data);
-          // transition(HOME);
+          // Get all diaries by a user
+          return getDiaries(email)
+            .then(diaryData => {
+              if (diaryData.error) {
+                throw new Error('Something wrong. Please try again!');
+              }
+              // set current user data and update login status
+              userData['diaries'] = diaryData;
+              localStorage.setItem('user', JSON.stringify(userData));
+              setCurrentUserData(userData);
+            });
         }
-      })
+      });
+  };
+
+  //
+  async function getDiaries(email) {
+    return await axios
+      .get(`http://localhost:3001/api/diaries/${email}`)
+      .then(res => res.data);
   };
 
   //
@@ -65,7 +79,7 @@ const useApplicationData = () => {
       alert("Cannot Connect to the Server");
     }, 2000);
     return await axios.post(`http://localhost:3001/api/diaries/`, { email, title, content })
-      .then((res) => {
+      .then(res => {
         const data = res.data;
         clearTimeout(timeout);
         if (data.error) {
@@ -85,24 +99,24 @@ const useApplicationData = () => {
   };
 
   //
-  function setCurrentUser(data) {
+  function setCurrentUserData(userData) {
     dispatch({
       type: SET_USER,
-      user: data,
+      user: userData,
       isLoggedin: true
     })
   };
 
   const [state, dispatch] = useReducer(dataReducer, {
     user: {},
-    isLoggedin: false,
-    payload: ''
+    diaries: [],
+    isLoggedin: false
   });
 
   useEffect(() => {
-    const token = localStorage.getItem("Token");
-    if (token) {
-      setCurrentUser(JSON.parse(token));
+    const user = localStorage.getItem("user");
+    if (user) {
+      setCurrentUserData(JSON.parse(user));
     }
   }, []);
 

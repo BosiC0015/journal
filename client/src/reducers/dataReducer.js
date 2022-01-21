@@ -9,11 +9,6 @@ const dataReducer = (state, action) => {
         user: action.user,
         isLoggedin: action.isLoggedin
       };
-    case GET_ERRORS:
-      return {
-        ...state,
-        payload: action.payload
-      };
     default:
       return state;
   }
