@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../Button";
-import "./SignupForm.scss";
+import "./styles.scss";
 import { useNavigate } from "react-router-dom";
 
 export default function SignupForm(props) {
@@ -37,7 +37,7 @@ export default function SignupForm(props) {
   };
 
   const createAccount = (email, password, name) => {
-    const user = { email: email, password: password, name: name };
+    const user = { email, password, name };
     if (validate()) {
       props.onSignup(user)
         .then(() => {

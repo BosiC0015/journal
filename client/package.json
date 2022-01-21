@@ -11,6 +11,8 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "@tiptap/react": "^2.0.0-beta.105",
+    "@tiptap/starter-kit": "^2.0.0-beta.171",
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "classnames": "^2.3.1",

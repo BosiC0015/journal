@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../Button";
-import "./LoginForm.scss";
+import "./styles.scss";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginForm(props) {
@@ -25,9 +25,8 @@ export default function LoginForm(props) {
   };
 
   const loginAccount = (email, password) => {
-    const pair = { email: email, password: password };
     if (validate()) {
-      props.onLogin(pair)
+      props.onLogin(email, password)
         .then(() => {
           alert('Successfully Logged in');
           navigate("/");
@@ -58,7 +57,7 @@ export default function LoginForm(props) {
             type="text"
           />
         </div>
-        <section className="signup__validation">{error}</section>
+        <section className="login__validation">{error}</section>
         <section className="login__button">
           <Button danger onClick={() => cancel()}>Cancel</Button>
           <Button confirm onClick={() =>
