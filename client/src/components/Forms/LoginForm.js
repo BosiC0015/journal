@@ -42,24 +42,25 @@ export default function LoginForm(props) {
 
   return (
     <section className="login">
-      <form autoComplete="off"
+      <form
+        autoComplete="off"
         onKeyDown={e => e.key === 'Enter' && e.preventDefault()}
         onSubmit={e => e.preventDefault()}>
         <div className="email">
-        <label for="Email">Your Email </label>
+          <label for="Email">Your Email </label>
           <input
             placeholder="Please Enter Your Email"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             type="email"
           />
         </div>
         <div className="password">
-        <label for="Password">Password </label>
+          <label for="Password">Password </label>
           <input
             placeholder="Please Enter Your Password"
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             type="password"
           />
         </div>
