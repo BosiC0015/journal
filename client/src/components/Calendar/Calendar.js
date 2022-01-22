@@ -3,10 +3,14 @@ import FullCalendar, { formatDate } from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-
 import { INITIAL_EVENTS, createEventId, handleDateClick, renderEventContent, handleWeekendsToggle, handleDateSelect, handleEventClick, handleEvents } from './event-utils'
 
-export default function Calendar(props) {
+import useApplicationData from '../../hooks/useApplicationData'
+
+export default function Calendar() {
+  const { state } = useApplicationData();
+
+
   return (
     <FullCalendar
       style={{ height: 300, margin: "30px" }}
@@ -23,7 +27,7 @@ export default function Calendar(props) {
       selectable={true}
       selectMirror={true}
       dayMaxEvents={true}
-      weekends={props.weekendsVisible}
+      weekends={state.weekendsVisible}
       initialEvents={INITIAL_EVENTS}
       select={handleDateSelect}
       eventContent={renderEventContent} // custom render function
