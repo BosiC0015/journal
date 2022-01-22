@@ -47,6 +47,16 @@ export default function Edit(props) {
         });
     }
   };
+  const onDelete = () => {
+    props.onDeleteDiary(props.id)
+      .then(() => {
+        alert('Successfully Deleted');
+        navigate("/");
+      })
+      .catch(err => {
+        setError(`${err}`);
+      });
+  };
 
   return (
     <section>
@@ -65,6 +75,8 @@ export default function Edit(props) {
         <Button danger onClick={() => cancel()}>Cancel</Button>
         <Button confirm onClick={() =>
           onSubmit(title)}>Update</Button>
+        <Button onClick={() =>
+          onDelete()}>Delete</Button>
       </section>
     </section>
   )

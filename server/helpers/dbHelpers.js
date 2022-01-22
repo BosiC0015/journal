@@ -69,6 +69,17 @@ module.exports = (db) => {
       .then(result => result.rows[0]);
   };
 
+  const deleteDiary = (diary_id) => {
+    const query = {
+      text:
+        `DELETE FROM diaries WHERE id = $1
+        RETURNING *`,
+      values: [diary_id]
+    }
+    return db.query(query)
+      .then(result => result.rows[0]);
+  };
+
   const getPlansByUser = user_id => {
     const query = {
       text: `SELECT * FROM plans WHERE user_id = $1`,
@@ -90,7 +101,7 @@ module.exports = (db) => {
       .then(result => result.rows[0]);
   };
 
-  const deletePlansByUser = (plan_id) => {
+  const deletePlan = (plan_id) => {
     const query = {
       text:
         `DELETE FROM plans WHERE id = $1
@@ -114,8 +125,6 @@ module.exports = (db) => {
       .then(result => result.rows[0]);
   };
 
-
-
   return {
     getUsers,
     getUserByEmail,
@@ -123,9 +132,10 @@ module.exports = (db) => {
     getDiariesByUser,
     addDiary,
     updateDiary,
+    deleteDiary,
     getPlansByUser,
-    deletePlansByUser,
     addPlan,
-    updatePlan
+    updatePlan,
+    deletePlan
   };
 };

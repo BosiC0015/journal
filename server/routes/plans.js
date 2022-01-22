@@ -4,9 +4,9 @@ const router = express.Router();
 module.exports = ({
   getUserByEmail,
   getPlansByUser,
-  deletePlansByUser,
   addPlan,
-  updatePlan
+  updatePlan,
+  deletePlan
 }) => {
   /* GET all plans listing from a user by given email*/
   router.get('/:email', (req, res) => {
@@ -45,7 +45,7 @@ module.exports = ({
 
   router.delete('/:id', (req, res) => {
     const { id } = req.params;
-    deletePlansByUser(id)
+    deletePlan(id)
       .then(data => res.json(data))
       .catch(err => res.json({
         error: err.message

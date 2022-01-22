@@ -6,7 +6,7 @@ import Edit from "./Edit";
 import { getItemsForDay } from "../../helpers/selectors";
 
 export default function Diary() {
-  const { state, submitDiary, updateDiary } = useApplicationData();
+  const { state, submitDiary, updateDiary, deleteDiary } = useApplicationData();
 
   const diary = getItemsForDay(state.diaries, new Date());
 
@@ -28,6 +28,7 @@ export default function Diary() {
           title={diary.title}
           content={diary.content}
           onSubmitDiary={updateDiary}
+          onDeleteDiary={deleteDiary}
         />
       }
     </main >
