@@ -9,7 +9,7 @@ export default function Signup() {
   return (
     <main>
       <NavBar />
-      <h2>Sign Up Page</h2>
+      <h1>Sign Up Page</h1>
       <SignupForm onSignup={signup} />
     </main >
   );

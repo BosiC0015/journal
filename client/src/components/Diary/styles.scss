@@ -5,6 +5,7 @@
   height: 400px;
   margin-left: 10%;
   margin-bottom: 2%;
+  background-color: rgb(248, 244, 238);
 
   > * + * {
     margin-top: 0.75em;
@@ -60,12 +61,15 @@
     margin: 2rem 0;
   }
 }
+
 .title{
   margin-left: 30%;
   width: 80%;
 }
 .edit-Button-Class{
-  margin-left: 18%;
+  margin-left: 15%;
   margin-bottom: 2%;
   display: flex;
+ 
+ 
 }
