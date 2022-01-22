@@ -3,12 +3,12 @@ import useApplicationData from "../../hooks/useApplicationData";
 import NavBar from '../NavBar/NavBar';
 import Create from "./Create";
 import Edit from "./Edit";
-import { getDiaryForDay } from "../../helpers/selectors";
+import { getItemsForDay } from "../../helpers/selectors";
 
 export default function Diary() {
   const { state, submitDiary, updateDiary } = useApplicationData();
 
-  const diary = getDiaryForDay(state.diaries, new Date());
+  const diary = getItemsForDay(state.diaries, new Date());
 
   return (
     <main>

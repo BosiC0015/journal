@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { updatetDiaryById } from '../helpers/selectors';
+import { updatetItemsById } from '../helpers/selectors';
 
 import {
   useEffect,
@@ -45,7 +45,12 @@ const useApplicationData = () => {
         const diaryData = all[1].data;
         const planData = all[2].data;
         clearTimeout(timeout);
-        if (userData.error || diaryData.error || planData.error) {
+        if (userData.msg) {
+          throw new Error(userData.msg);
+        }
+        else if (userData.error ||
+          diaryData.error ||
+          planData.error) {
           throw new Error('Something wrong. Please try again!');
         }
         // set all realted data and update login status
@@ -103,6 +108,21 @@ const useApplicationData = () => {
       });
   };
   //
+  async function updatePlan(email, id, title) {
+    const timeout = setTimeout(() => {
+      alert("Cannot Connect to the Server");
+    }, 2000);
+    return await axios.put(`http://localhost:3001/api/plans/`, { email, id, title })
+      .then(res => {
+        const data = res.data;
+        clearTimeout(timeout);
+        if (data.error) {
+          throw new Error('Something wrong. Please try again!');
+        }
+        updateUserPlan(data);
+      });
+  };
+  //
   function addUserDiary(diary) {
     // Copy of current user diaries
     let diaries = [...state.diaries];
@@ -117,7 +137,7 @@ const useApplicationData = () => {
     // Copy of current user diaries
     let diaries = [...state.diaries];
     // Update the copy of diaries
-    diaries = updatetDiaryById(diaries, diary);
+    diaries = updatetItemsById(diaries, diary);
     // Update cookie and current diary data
     localStorage.setItem('diaries', JSON.stringify(diaries));
     setDiariesData(diaries);
@@ -128,6 +148,16 @@ const useApplicationData = () => {
     let plans = [...state.plans];
     // Add new plan to the copy
     plans.push(plan);
+    // Update cookie and current plan data
+    localStorage.setItem('plans', JSON.stringify(plans));
+    setPlansData(plans);
+  };
+  //
+  function updateUserPlan(plan) {
+    // Copy of current user diaries
+    let plans = [...state.plans];
+    // Update the copy of plans
+    plans = updatetItemsById(plans, plan);
     // Update cookie and current plan data
     localStorage.setItem('plans', JSON.stringify(plans));
     setPlansData(plans);

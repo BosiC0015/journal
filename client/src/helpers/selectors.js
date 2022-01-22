@@ -1,21 +1,20 @@
-export function getDiaryForDay(diaries, date) {
-  if (diaries && diaries.length) {
-    console.log(diaries);
+export function getItemsForDay(items, date) {
+  if (items && items.length) {
     const currentDate = date.toISOString().slice(0, 10);
-    return diaries.find(diary =>
+    return items.find(diary =>
       diary.date.slice(0, 10) === currentDate);
   }
   return null;
 };
 
-export function updatetDiaryById(diaries, target) {
-  if (diaries && diaries.length) {
-    for (let i in diaries) {
-      if (diaries[i].id === target.id) {
-        diaries[i] = target;
+export function updatetItemsById(items, target) {
+  if (items && items.length) {
+    for (let i in items) {
+      if (items[i].id === target.id) {
+        items[i] = target;
       }
     }
-    return diaries;
+    return items;
   }
   return null;
 };

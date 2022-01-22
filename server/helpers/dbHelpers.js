@@ -48,7 +48,7 @@ module.exports = (db) => {
   const addDiary = (user_id, title, content) => {
     const query = {
       text:
-        `INSERT INTO diaries (user_id, title, content, DATE)
+        `INSERT INTO diaries (user_id, title, content, date)
         VALUES ($1, $2, $3, $4) RETURNING *`,
       values: [user_id, title, content, new Date().toLocaleString()]
     }
@@ -82,7 +82,7 @@ module.exports = (db) => {
   const addPlan = (user_id, title) => {
     const query = {
       text:
-        `INSERT INTO plans (user_id, title,scheduled_at)
+        `INSERT INTO plans (user_id, title, date)
         VALUES ($1, $2, $3) RETURNING *`,
       values: [user_id, title, new Date().toLocaleString()]
     }

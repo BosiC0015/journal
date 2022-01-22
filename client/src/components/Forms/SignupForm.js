@@ -15,7 +15,6 @@ export default function SignupForm(props) {
 
   const cancel = () => {
     navigate("/");
-    // transition(BACK);
   };
 
   const validate = () => {
@@ -43,7 +42,7 @@ export default function SignupForm(props) {
     if (validate()) {
       props.onSignup(user)
         .then(() => {
-          alert('Successfully Signed Up');
+          alert('Successfully Signed Up\nPlease Login to Your Account');
           navigate("/");
           // transition(HOME);
         })
@@ -56,7 +55,9 @@ export default function SignupForm(props) {
 
   return (
     <section className="signup">
-      <form autoComplete="off" onSubmit={event => event.preventDefault()}>
+      <form autoComplete="off"
+        onKeyDown={e => e.key === 'Enter' && e.preventDefault()}
+        onSubmit={e => e.preventDefault()}>
         <div className="email">
           <input
             placeholder="Please Enter Your Email"
