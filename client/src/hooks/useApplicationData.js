@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { updatetItemsById } from '../helpers/selectors';
+import { updatetItemsById, deleteItemsById } from '../helpers/selectors';
 
 import {
   useEffect,
@@ -78,11 +78,11 @@ const useApplicationData = () => {
       });
   };
   //
-  async function updateDiary(email, id, title, content) {
+  async function updateDiary(id, title, content) {
     const timeout = setTimeout(() => {
       alert("Cannot Connect to the Server");
     }, 2000);
-    return await axios.put(`http://localhost:3001/api/diaries/`, { email, id, title, content })
+    return await axios.put(`http://localhost:3001/api/diaries/`, { id, title, content })
       .then(res => {
         const data = res.data;
         clearTimeout(timeout);
@@ -93,26 +93,27 @@ const useApplicationData = () => {
       });
   };
   //
-  async function addPlan(email, title) {
+  async function addPlan(email, title, start, end, allDay) {
     const timeout = setTimeout(() => {
       alert("Cannot Connect to the Server");
     }, 2000);
-    return await axios.post(`http://localhost:3001/api/plans/`, { email, title })
+    return await axios.post(`http://localhost:3001/api/plans/`, { email, title, start, end, allDay })
       .then(res => {
         const data = res.data;
         clearTimeout(timeout);
         if (data.error) {
+          console.log(data.error);
           throw new Error('Something wrong. Please try again!');
         }
         addUserPlan(data);
       });
   };
   //
-  async function updatePlan(email, id, title) {
+  async function updatePlan(id, title, start, end, allDay) {
     const timeout = setTimeout(() => {
       alert("Cannot Connect to the Server");
     }, 2000);
-    return await axios.put(`http://localhost:3001/api/plans/`, { email, id, title })
+    return await axios.put(`http://localhost:3001/api/plans/`, { id, title, start, end, allDay })
       .then(res => {
         const data = res.data;
         clearTimeout(timeout);
@@ -120,6 +121,24 @@ const useApplicationData = () => {
           throw new Error('Something wrong. Please try again!');
         }
         updateUserPlan(data);
+      });
+  };
+  //
+  async function deletePlan(id) {
+    const timeout = setTimeout(() => {
+      alert("Cannot Connect to the Server");
+    }, 2000);
+    return await axios.delete(`http://localhost:3001/api/plans/${id}`)
+      .then(res => {
+        const data = res.data;
+        clearTimeout(timeout);
+        if (!data) {
+          throw new Error('Cannot Delete the Removed Item!');
+        }
+        else if (data.error) {
+          throw new Error('Something wrong. Please try again!');
+        }
+        deleteUserPlan(data);
       });
   };
   //
@@ -158,6 +177,16 @@ const useApplicationData = () => {
     let plans = [...state.plans];
     // Update the copy of plans
     plans = updatetItemsById(plans, plan);
+    // Update cookie and current plan data
+    localStorage.setItem('plans', JSON.stringify(plans));
+    setPlansData(plans);
+  };
+  //
+  function deleteUserPlan(plan) {
+    // Copy of current user diaries
+    let plans = [...state.plans];
+    // Update the copy of plans
+    plans = deleteItemsById(plans, plan);
     // Update cookie and current plan data
     localStorage.setItem('plans', JSON.stringify(plans));
     setPlansData(plans);
@@ -218,7 +247,7 @@ const useApplicationData = () => {
   }, []);
 
   //console.log(state.user, state.diaries, state.plans, state.isLoggedin);
-  return { state, signup, login, logout, submitDiary, updateDiary, addPlan }
+  return { state, signup, login, logout, submitDiary, updateDiary, addPlan, deletePlan, updatePlan }
 };
 
 export default useApplicationData;

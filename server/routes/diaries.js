@@ -44,16 +44,8 @@ module.exports = ({
   });
 
   router.put(`/`, (req, res) => {
-    const { email, id, title, content } = req.body;
-    getUserByEmail(email)
-      .then(user => {
-        if (!user) {
-          throw new Error('Sorry, user does not exist');
-        }
-        else {
-          return updateDiary(id, title, content);
-        }
-      })
+    const { id, title, content } = req.body;
+    updateDiary(id, title, content)
       .then(newDiary => res.json(newDiary))
       .catch(err => res.json({
         error: err.message

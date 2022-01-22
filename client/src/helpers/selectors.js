@@ -18,3 +18,33 @@ export function updatetItemsById(items, target) {
   }
   return null;
 };
+
+export function deleteItemsById(items, target) {
+  console.log(items, target);
+  if (items && items.length) {
+    for (let i in items) {
+      if (items[i].id === target.id) {
+        items.splice(i, 1);
+      }
+    }
+    return items;
+  }
+  return null;
+};
+
+export function getCalendarEvents(plans) {
+  if (plans && plans.length) {
+    const events = [];
+    for (const plan of plans) {
+      events.push({
+        id: plan.id,
+        title: plan.title,
+        start: plan.start_date,
+        end: plan.end_date,
+        allDay: plan.all_day
+      });
+    }
+    return events;
+  }
+  return null;
+};
