@@ -44,6 +44,7 @@ export default function LoginForm(props) {
     <section className="login">
       <form autoComplete="off" onSubmit={event => event.preventDefault()}>
         <div className="email">
+        <label for="Email">Your Email </label>
           <input
             placeholder="Please Enter Your Email"
             value={email}
@@ -52,6 +53,7 @@ export default function LoginForm(props) {
           />
         </div>
         <div className="password">
+        <label for="Password">Password </label>
           <input
             placeholder="Please Enter Your Password"
             value={password}
