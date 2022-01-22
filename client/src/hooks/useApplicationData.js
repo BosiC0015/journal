@@ -93,6 +93,25 @@ const useApplicationData = () => {
       });
   };
   //
+  async function deleteDiary(id) {
+    const timeout = setTimeout(() => {
+      alert("Cannot Connect to the Server");
+    }, 2000);
+    return await axios.delete(`http://localhost:3001/api/diaries/${id}`)
+      .then(res => {
+        const data = res.data;
+        clearTimeout(timeout);
+        if (!data) {
+          throw new Error('Cannot Delete the Removed Item!');
+        }
+        else if (data.error) {
+          console.log(data.error);
+          throw new Error('Something wrong. Please try again!');
+        }
+        deleteUserDiary(data);
+      });
+  };
+  //
   async function addPlan(email, title, start, end, allDay) {
     const timeout = setTimeout(() => {
       alert("Cannot Connect to the Server");
@@ -157,6 +176,16 @@ const useApplicationData = () => {
     let diaries = [...state.diaries];
     // Update the copy of diaries
     diaries = updatetItemsById(diaries, diary);
+    // Update cookie and current diary data
+    localStorage.setItem('diaries', JSON.stringify(diaries));
+    setDiariesData(diaries);
+  };
+  //
+  function deleteUserDiary(diary) {
+    // Copy of current user diaries
+    let diaries = [...state.diaries];
+    // Update the copy of diaries
+    diaries = deleteItemsById(diaries, diary);
     // Update cookie and current diary data
     localStorage.setItem('diaries', JSON.stringify(diaries));
     setDiariesData(diaries);
@@ -247,7 +276,7 @@ const useApplicationData = () => {
   }, []);
 
   //console.log(state.user, state.diaries, state.plans, state.isLoggedin);
-  return { state, signup, login, logout, submitDiary, updateDiary, addPlan, deletePlan, updatePlan }
+  return { state, signup, login, logout, submitDiary, updateDiary, deleteDiary, addPlan, deletePlan, updatePlan }
 };
 
 export default useApplicationData;

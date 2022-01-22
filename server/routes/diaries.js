@@ -5,7 +5,8 @@ module.exports = ({
   getUserByEmail,
   getDiariesByUser,
   addDiary,
-  updateDiary
+  updateDiary,
+  deleteDiary
 }) => {
   /* GET all diaries listing from a user by given email*/
   router.get('/:email', (req, res) => {
@@ -47,6 +48,15 @@ module.exports = ({
     const { id, title, content } = req.body;
     updateDiary(id, title, content)
       .then(newDiary => res.json(newDiary))
+      .catch(err => res.json({
+        error: err.message
+      }));
+  });
+
+  router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+    deleteDiary(id)
+      .then(data => res.json(data))
       .catch(err => res.json({
         error: err.message
       }));
