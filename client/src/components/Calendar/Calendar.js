@@ -1,43 +1,30 @@
 
-import FullCalendar, { formatDate } from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import interactionPlugin from '@fullcalendar/interaction'
-import { INITIAL_EVENTS, createEventId, handleDateClick, renderEventContent, handleWeekendsToggle, handleDateSelect, handleEventClick, handleEvents } from './event-utils'
-
+import { getCalendarEvents } from '../../helpers/selectors';
 import useApplicationData from '../../hooks/useApplicationData'
+import Create from './Create';
+import Load from './Load';
 
 export default function Calendar() {
-  const { state, addPlan } = useApplicationData();
-
+  const { state, addPlan, deletePlan, updatePlan } = useApplicationData();
+  const events = getCalendarEvents(state.plans);
 
   return (
-    <FullCalendar
-      style={{ height: 300, margin: "30px" }}
-      plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-      headerToolbar={{
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      }}
-      dateClick={handleDateClick} // bind with an arrow function
-      eventContent={renderEventContent}
-      initialView="dayGridMonth"
-      editable={true}
-      selectable={true}
-      selectMirror={true}
-      dayMaxEvents={true}
-      weekends={state.weekendsVisible}
-      initialEvents={INITIAL_EVENTS}
-      select={handleDateSelect}
-      eventContent={renderEventContent} // custom render function
-      eventClick={handleEventClick}
-      eventAdd={(e) =>
-        addPlan(state.user.email, e.event.title)}
-    //eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
-    /* you can update a remote database when these fire:
-    eventChange={function(){}}
-    eventRemove={function(){}}*/
-    />
+    <main>
+      {!events &&
+        <Create
+          addPlan={addPlan}
+          email={state.user.email}
+          weekendsVisible={state.weekendsVisible}
+        />}
+      {events &&
+        <Load
+          addPlan={addPlan}
+          deletePlan={deletePlan}
+          updatePlan={updatePlan}
+          email={state.user.email}
+          events={events}
+          weekendsVisible={state.weekendsVisible}
+        />}
+    </main>
   );
 };

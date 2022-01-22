@@ -8,6 +8,7 @@ let events = [
 let eventGuid = 0
 let todayStr = new Date().toISOString().replace(/T.*$/, '') // YYYY-MM-DD of today
 
+
 export const INITIAL_EVENTS = [
   {
     id: createEventId(),
@@ -31,6 +32,12 @@ export function handleDateClick(arg) { // bind with an arrow function
 
 
 export function renderEventContent(eventInfo) {
+  // console.log(
+  //   eventInfo.event.title,
+  //   eventInfo.event.start,
+  //   eventInfo.event.end,
+  //   eventInfo.event.allDay
+  // );
   return (
     <>
       <b>{eventInfo.timeText}</b>

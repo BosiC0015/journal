@@ -37,7 +37,7 @@ export default function Edit(props) {
   const onSubmit = (title) => {
     const content = editor.getJSON();
     if (validate()) {
-      props.onSubmitDiary(props.email, props.id, title, content)
+      props.onSubmitDiary(props.id, title, content)
         .then(() => {
           alert('Successfully Updated');
           navigate("/");
