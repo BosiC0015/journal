@@ -48,7 +48,7 @@ export default function LoginForm(props) {
             placeholder="Please Enter Your Email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            type="text"
+            type="email"
           />
         </div>
         <div className="password">
@@ -56,7 +56,7 @@ export default function LoginForm(props) {
             placeholder="Please Enter Your Password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            type="text"
+            type="password"
           />
         </div>
         <section className="login__validation">{error}</section>
