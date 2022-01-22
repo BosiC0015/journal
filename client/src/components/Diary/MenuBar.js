@@ -3,7 +3,7 @@ export default function MenuBar({ editor }) {
     return null
   }
   return (
-    <>
+    <div className="edit-Button-Class">
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         className={editor.isActive('bold') ? 'is-active' : ''}
@@ -73,6 +73,6 @@ export default function MenuBar({ editor }) {
       <button onClick={() => editor.chain().focus().redo().run()}>
         redo
       </button>
-    </>
+    </div>
   )
 }
