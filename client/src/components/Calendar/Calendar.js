@@ -8,7 +8,7 @@ import { INITIAL_EVENTS, createEventId, handleDateClick, renderEventContent, han
 import useApplicationData from '../../hooks/useApplicationData'
 
 export default function Calendar() {
-  const { state } = useApplicationData();
+  const { state, addPlan } = useApplicationData();
 
 
   return (
@@ -32,9 +32,10 @@ export default function Calendar() {
       select={handleDateSelect}
       eventContent={renderEventContent} // custom render function
       eventClick={handleEventClick}
+      eventAdd={(e) =>
+        addPlan(state.user.email, e.event.title)}
     //eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
     /* you can update a remote database when these fire:
-    eventAdd={function(){}}
     eventChange={function(){}}
     eventRemove={function(){}}*/
     />

@@ -42,7 +42,9 @@ export default function LoginForm(props) {
 
   return (
     <section className="login">
-      <form autoComplete="off" onSubmit={event => event.preventDefault()}>
+      <form autoComplete="off"
+        onKeyDown={e => e.key === 'Enter' && e.preventDefault()}
+        onSubmit={e => e.preventDefault()}>
         <div className="email">
         <label for="Email">Your Email </label>
           <input

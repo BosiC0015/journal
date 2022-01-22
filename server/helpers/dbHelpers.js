@@ -48,7 +48,7 @@ module.exports = (db) => {
   const addDiary = (user_id, title, content) => {
     const query = {
       text:
-        `INSERT INTO diaries (user_id, title, content, DATE)
+        `INSERT INTO diaries (user_id, title, content, date)
         VALUES ($1, $2, $3, $4) RETURNING *`,
       values: [user_id, title, content, new Date().toLocaleString()]
     }
@@ -69,6 +69,28 @@ module.exports = (db) => {
       .then(result => result.rows[0]);
   };
 
+  const getPlansByUser = user_id => {
+    const query = {
+      text: `SELECT * FROM plans WHERE user_id = $1`,
+      values: [user_id]
+    }
+    return db
+      .query(query)
+      .then((result) => result.rows);
+  };
+
+  const addPlan = (user_id, title) => {
+    const query = {
+      text:
+        `INSERT INTO plans (user_id, title, date)
+        VALUES ($1, $2, $3) RETURNING *`,
+      values: [user_id, title, new Date().toLocaleString()]
+    }
+    return db.query(query)
+      .then(result => result.rows[0]);
+  };
+
+
 
   return {
     getUsers,
@@ -76,6 +98,8 @@ module.exports = (db) => {
     addUser,
     getDiariesByUser,
     addDiary,
-    updateDiary
+    updateDiary,
+    getPlansByUser,
+    addPlan
   };
 };
