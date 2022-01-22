@@ -69,6 +69,18 @@ module.exports = (db) => {
       .then(result => result.rows[0]);
   };
 
+  const addPlan = (user_id, title) => {
+    const query = {
+      text:
+        `INSERT INTO plans (user_id, title,scheduled_at)
+        VALUES ($1, $2, $3) RETURNING *`,
+      values: [user_id, title, new Date().toLocaleString()]
+    }
+    return db.query(query)
+      .then(result => result.rows[0]);
+  };
+
+
 
   return {
     getUsers,
@@ -76,6 +88,7 @@ module.exports = (db) => {
     addUser,
     getDiariesByUser,
     addDiary,
-    updateDiary
+    updateDiary,
+    addPlan
   };
 };

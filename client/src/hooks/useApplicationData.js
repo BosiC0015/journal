@@ -29,7 +29,6 @@ const useApplicationData = () => {
         }
       });
   };
-
   //
   async function login(email, password) {
     const timeout = setTimeout(() => {
@@ -62,14 +61,12 @@ const useApplicationData = () => {
         }
       });
   };
-
   //
   async function getDiaries(email) {
     return await axios
       .get(`http://localhost:3001/api/diaries/${email}`)
       .then(res => res.data);
   };
-
   //
   async function submitDiary(email, title, content) {
     const timeout = setTimeout(() => {
@@ -85,7 +82,7 @@ const useApplicationData = () => {
         addUserDiary(data);
       });
   };
-
+  //
   async function updateDiary(email, id, title, content) {
     const timeout = setTimeout(() => {
       alert("Cannot Connect to the Server");
@@ -100,7 +97,22 @@ const useApplicationData = () => {
         updateUserDiary(data);
       });
   };
-
+  //
+  async function addPlan(email, title) {
+    const timeout = setTimeout(() => {
+      alert("Cannot Connect to the Server");
+    }, 2000);
+    return await axios.post(`http://localhost:3001/api/plans/`, { email, title })
+      .then(res => {
+        const data = res.data;
+        clearTimeout(timeout);
+        if (data.error) {
+          throw new Error('Something wrong. Please try again!');
+        }
+        addUserPlan(data);
+      });
+  };
+  //
   function addUserDiary(diary) {
     // Copy of current user diaries
     let diaries = [...state.diaries];
@@ -110,7 +122,7 @@ const useApplicationData = () => {
     localStorage.setItem('diaries', JSON.stringify(diaries));
     setDiariesData(diaries);
   };
-
+  //
   function updateUserDiary(diary) {
     // Copy of current user diaries
     let diaries = [...state.diaries];
@@ -120,8 +132,16 @@ const useApplicationData = () => {
     localStorage.setItem('diaries', JSON.stringify(diaries));
     setDiariesData(diaries);
   };
-
-
+  //
+  function addUserPlan(plan) {
+    // Copy of current user plans
+    let plans = [...state.plans];
+    // Add new plan to the copy
+    plans.push(plan);
+    // Update cookie and current plan data
+    localStorage.setItem('plans', JSON.stringify(plans));
+    setPlansData(plans);
+  };
   //
   function logout() {
     dispatch({
@@ -134,7 +154,6 @@ const useApplicationData = () => {
     });
     localStorage.clear();
   };
-
   //
   function setUserData(userData) {
     dispatch({
@@ -143,14 +162,22 @@ const useApplicationData = () => {
       isLoggedin: true
     })
   };
-
+  //
   function setDiariesData(diariesData) {
     dispatch({
       type: SET_DIARIES,
       diaries: diariesData
     })
   };
+  //
+  function setPlansData(plansData) {
+    dispatch({
+      type: SET_PLANS,
+      plans: plansData
+    })
+  };
 
+  //
   const [state, dispatch] = useReducer(dataReducer, {
     user: {},
     diaries: [],
@@ -158,18 +185,20 @@ const useApplicationData = () => {
     isLoggedin: false,
     weekendsVisible: true
   });
-
+  //
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (user) {
       setUserData(JSON.parse(user));
       const diaries = localStorage.getItem("diaries");
+      const plans = localStorage.getItem("plans");
       setDiariesData(JSON.parse(diaries));
+      setDiariesData(JSON.parse(plans));
     }
   }, []);
 
-  console.log(state.user, state.diaries, state.isLoggedin);
-  return { state, signup, login, logout, submitDiary, updateDiary }
+  console.log(state.user, state.diaries, state.plans, state.isLoggedin);
+  return { state, signup, login, logout, submitDiary, updateDiary, addPlan }
 };
 
 export default useApplicationData;
