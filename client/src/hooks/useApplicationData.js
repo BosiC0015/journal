@@ -34,38 +34,28 @@ const useApplicationData = () => {
     const timeout = setTimeout(() => {
       alert("Cannot Connect to the Server");
     }, 2000);
-
-    return await axios.post(`http://localhost:3001/api/users/${email}`, { email, password })
-      .then(res => {
-        const userData = res.data;
+    return await Promise.all([
+      axios.post(`http://localhost:3001/api/users/${email}`,
+        { email, password }),
+      axios.get(`http://localhost:3001/api/diaries/${email}`),
+      axios.get(`http://localhost:3001/api/plans/${email}`)
+    ])
+      .then(all => {
+        const userData = all[0].data;
+        const diaryData = all[1].data;
+        const planData = all[2].data;
         clearTimeout(timeout);
-        if (userData.msg) {
-          throw new Error(userData.msg);
-        }
-        else if (userData.error) {
+        if (userData.error || diaryData.error || planData.error) {
           throw new Error('Something wrong. Please try again!');
         }
-        else {
-          // Get all diaries by a user
-          return getDiaries(email)
-            .then(diaryData => {
-              if (diaryData.error) {
-                throw new Error('Something wrong. Please try again!');
-              }
-              // set current user data and update login status
-              localStorage.setItem('user', JSON.stringify(userData));
-              localStorage.setItem('diaries', JSON.stringify(diaryData));
-              setUserData(userData);
-              setDiariesData(diaryData);
-            });
-        }
+        // set all realted data and update login status
+        localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('diaries', JSON.stringify(diaryData));
+        localStorage.setItem('plans', JSON.stringify(planData));
+        setUserData(userData);
+        setDiariesData(diaryData);
+        setPlansData(planData);
       });
-  };
-  //
-  async function getDiaries(email) {
-    return await axios
-      .get(`http://localhost:3001/api/diaries/${email}`)
-      .then(res => res.data);
   };
   //
   async function submitDiary(email, title, content) {
@@ -189,15 +179,15 @@ const useApplicationData = () => {
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (user) {
-      setUserData(JSON.parse(user));
       const diaries = localStorage.getItem("diaries");
       const plans = localStorage.getItem("plans");
+      setUserData(JSON.parse(user));
       setDiariesData(JSON.parse(diaries));
-      setDiariesData(JSON.parse(plans));
+      setPlansData(JSON.parse(plans));
     }
   }, []);
 
-  console.log(state.user, state.diaries, state.plans, state.isLoggedin);
+  //console.log(state.user, state.diaries, state.plans, state.isLoggedin);
   return { state, signup, login, logout, submitDiary, updateDiary, addPlan }
 };
 

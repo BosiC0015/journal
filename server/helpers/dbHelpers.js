@@ -69,6 +69,16 @@ module.exports = (db) => {
       .then(result => result.rows[0]);
   };
 
+  const getPlansByUser = user_id => {
+    const query = {
+      text: `SELECT * FROM plans WHERE user_id = $1`,
+      values: [user_id]
+    }
+    return db
+      .query(query)
+      .then((result) => result.rows);
+  };
+
   const addPlan = (user_id, title) => {
     const query = {
       text:
@@ -89,6 +99,7 @@ module.exports = (db) => {
     getDiariesByUser,
     addDiary,
     updateDiary,
+    getPlansByUser,
     addPlan
   };
 };
