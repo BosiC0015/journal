@@ -9,7 +9,7 @@ export default function Login() {
   return (
     <main>
       <NavBar />
-      <h2>Login Page</h2>
+      <h1>Login Page</h1>
       <LoginForm onLogin={login} />
     </main>
   );

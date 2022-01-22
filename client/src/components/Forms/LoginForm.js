@@ -46,19 +46,21 @@ export default function LoginForm(props) {
         onKeyDown={e => e.key === 'Enter' && e.preventDefault()}
         onSubmit={e => e.preventDefault()}>
         <div className="email">
+        <label for="Email">Your Email </label>
           <input
             placeholder="Please Enter Your Email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            type="text"
+            type="email"
           />
         </div>
         <div className="password">
+        <label for="Password">Password </label>
           <input
             placeholder="Please Enter Your Password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            type="text"
+            type="password"
           />
         </div>
         <section className="login__validation">{error}</section>

@@ -59,30 +59,34 @@ export default function SignupForm(props) {
         onKeyDown={e => e.key === 'Enter' && e.preventDefault()}
         onSubmit={e => e.preventDefault()}>
         <div className="email">
+        <label for="email">Your Email </label>
           <input
             placeholder="Please Enter Your Email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            type="text"
+            type="email"
           />
         </div>
         <div className="password">
+        <label for="Password">Password </label>
           <input
             placeholder="Please Enter Your Password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            type="text"
+            type="password"
           />
         </div>
         <div className="password__confirmation">
+        <label for="Password">Confirm Password </label>
           <input
             placeholder="Please Enter Your Password Again"
             value={password_confirmation}
             onChange={(event) => setPassword_confirmation(event.target.value)}
-            type="text"
+            type="password"
           />
         </div>
         <div className="name">
+        <label for="Password">Your Name   </label>
           <input
             placeholder="Please Enter Your Name"
             value={name}
