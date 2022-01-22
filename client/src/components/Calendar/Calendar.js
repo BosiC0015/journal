@@ -10,12 +10,14 @@ export default function Calendar() {
 
   return (
     <main>
+      {/* When plans are empty */}
       {!events &&
         <Create
           addPlan={addPlan}
           email={state.user.email}
           weekendsVisible={state.weekendsVisible}
         />}
+      {/* When there are plans exist */}
       {events &&
         <Load
           addPlan={addPlan}

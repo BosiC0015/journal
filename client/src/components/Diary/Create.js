@@ -10,18 +10,19 @@ export default function Create(props) {
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [error, setError] = useState('');
-
-
+  // Editor object for Rich-text
   const editor = useEditor({
     extensions: [
       StarterKit,
     ],
     content: ``,
   })
+
+  // Navigate to home page when user trigger cancel button
   const cancel = () => {
     navigate("/");
-    // transition(BACK);
   };
+  // Validation for user input
   const validate = () => {
     if (!title.length) {
       setError('Error: Title must be filled');
@@ -34,6 +35,7 @@ export default function Create(props) {
     setError('');
     return true;
   };
+  // Call onSubmitDiary() when user create a new diary
   const onSubmit = (title) => {
     const content = editor.getJSON();
     if (validate()) {

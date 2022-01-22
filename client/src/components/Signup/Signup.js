@@ -5,7 +5,7 @@ import NavBar from '../NavBar/NavBar';
 
 export default function Signup() {
   const { signup } = useApplicationData();
-
+  // Signup page
   return (
     <main>
       <NavBar />

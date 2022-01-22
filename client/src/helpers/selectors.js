@@ -1,4 +1,5 @@
-export function getItemsForDay(items, date) {
+// Get user today's diary
+export function getDiaryForToday(items, date) {
   if (items && items.length) {
     const currentDate = date.toISOString().slice(0, 10);
     return items.find(diary =>
@@ -6,7 +7,7 @@ export function getItemsForDay(items, date) {
   }
   return null;
 };
-
+// Update items array by given a target item
 export function updatetItemsById(items, target) {
   if (items && items.length) {
     for (let i in items) {
@@ -18,7 +19,7 @@ export function updatetItemsById(items, target) {
   }
   return null;
 };
-
+// Delete a target item from a given items array
 export function deleteItemsById(items, target) {
   console.log(items, target);
   if (items && items.length) {
@@ -31,7 +32,7 @@ export function deleteItemsById(items, target) {
   }
   return null;
 };
-
+// Convert plans into events to show them on calendar
 export function getCalendarEvents(plans) {
   if (plans && plans.length) {
     const events = [];

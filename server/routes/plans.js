@@ -8,7 +8,7 @@ module.exports = ({
   updatePlan,
   deletePlan
 }) => {
-  /* GET all plans listing from a user by given email*/
+  // GET all plans listing from a user by given email
   router.get('/:email', (req, res) => {
     const { email } = req.params;
     getUserByEmail(email)
@@ -26,6 +26,7 @@ module.exports = ({
       }));
   });
 
+  // Create a plan
   router.post(`/`, (req, res) => {
     const { email, title, start, end, allDay } = req.body;
     getUserByEmail(email)
@@ -43,6 +44,7 @@ module.exports = ({
       }));
   });
 
+  // Update existed plan
   router.delete('/:id', (req, res) => {
     const { id } = req.params;
     deletePlan(id)
@@ -52,6 +54,7 @@ module.exports = ({
       }));
   });
 
+  // Delete existed plan
   router.put(`/`, (req, res) => {
     const { id, title, start, end, allDay } = req.body;
     updatePlan(id, title, start, end, allDay)

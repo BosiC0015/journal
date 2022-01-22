@@ -8,7 +8,7 @@ module.exports = ({
   updateDiary,
   deleteDiary
 }) => {
-  /* GET all diaries listing from a user by given email*/
+  // GET all diaries listing from a user by given email
   router.get('/:email', (req, res) => {
     const { email } = req.params;
     console.log(email);
@@ -27,6 +27,7 @@ module.exports = ({
       }));
   });
 
+  // Create a diary
   router.post(`/`, (req, res) => {
     const { email, title, content } = req.body;
     getUserByEmail(email)
@@ -44,6 +45,7 @@ module.exports = ({
       }));
   });
 
+  // Update existed diary
   router.put(`/`, (req, res) => {
     const { id, title, content } = req.body;
     updateDiary(id, title, content)
@@ -53,6 +55,7 @@ module.exports = ({
       }));
   });
 
+  // Delete existed diary
   router.delete('/:id', (req, res) => {
     const { id } = req.params;
     deleteDiary(id)

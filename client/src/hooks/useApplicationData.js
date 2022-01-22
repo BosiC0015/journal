@@ -1,18 +1,12 @@
 import axios from 'axios';
-
 import { updatetItemsById, deleteItemsById } from '../helpers/selectors';
-
-import {
-  useEffect,
-  useReducer
-} from 'react';
-
-import dataReducer, {
-  SET_USER, SET_DIARIES, SET_PLANS, CLEAR_USER
-} from '../reducers/dataReducer';
+import { useEffect, useReducer } from 'react';
+import dataReducer,
+{ SET_USER, SET_DIARIES, SET_PLANS, CLEAR_USER }
+  from '../reducers/dataReducer';
 
 const useApplicationData = () => {
-  // Signup an account by given account info
+  // Signup an account by given an user object
   async function signup(user) {
     const timeout = setTimeout(() => {
       alert("Cannot Connect to the Server");
@@ -29,7 +23,8 @@ const useApplicationData = () => {
         }
       });
   };
-  //
+
+  // Login an account and retrieve account data
   async function login(email, password) {
     const timeout = setTimeout(() => {
       alert("Cannot Connect to the Server");
@@ -40,6 +35,7 @@ const useApplicationData = () => {
       axios.get(`http://localhost:3001/api/diaries/${email}`),
       axios.get(`http://localhost:3001/api/plans/${email}`)
     ])
+      // handle response
       .then(all => {
         const userData = all[0].data;
         const diaryData = all[1].data;
@@ -62,12 +58,14 @@ const useApplicationData = () => {
         setPlansData(planData);
       });
   };
-  //
+
+  // Create a diary for an user
   async function submitDiary(email, title, content) {
     const timeout = setTimeout(() => {
       alert("Cannot Connect to the Server");
     }, 2000);
     return await axios.post(`http://localhost:3001/api/diaries/`, { email, title, content })
+      // handle response
       .then(res => {
         const data = res.data;
         clearTimeout(timeout);
@@ -77,12 +75,14 @@ const useApplicationData = () => {
         addUserDiary(data);
       });
   };
-  //
+
+  // Update a existed diary for an user
   async function updateDiary(id, title, content) {
     const timeout = setTimeout(() => {
       alert("Cannot Connect to the Server");
     }, 2000);
     return await axios.put(`http://localhost:3001/api/diaries/`, { id, title, content })
+      // handle response
       .then(res => {
         const data = res.data;
         clearTimeout(timeout);
@@ -92,12 +92,14 @@ const useApplicationData = () => {
         updateUserDiary(data);
       });
   };
-  //
+
+  // Delete a existed diary for an user
   async function deleteDiary(id) {
     const timeout = setTimeout(() => {
       alert("Cannot Connect to the Server");
     }, 2000);
     return await axios.delete(`http://localhost:3001/api/diaries/${id}`)
+      // handle response
       .then(res => {
         const data = res.data;
         clearTimeout(timeout);
@@ -111,12 +113,14 @@ const useApplicationData = () => {
         deleteUserDiary(data);
       });
   };
-  //
+
+  // Create a plan for an user
   async function addPlan(email, title, start, end, allDay) {
     const timeout = setTimeout(() => {
       alert("Cannot Connect to the Server");
     }, 2000);
     return await axios.post(`http://localhost:3001/api/plans/`, { email, title, start, end, allDay })
+      // handle response
       .then(res => {
         const data = res.data;
         clearTimeout(timeout);
@@ -127,12 +131,14 @@ const useApplicationData = () => {
         addUserPlan(data);
       });
   };
-  //
+
+  // Update a existed plan for an user
   async function updatePlan(id, title, start, end, allDay) {
     const timeout = setTimeout(() => {
       alert("Cannot Connect to the Server");
     }, 2000);
     return await axios.put(`http://localhost:3001/api/plans/`, { id, title, start, end, allDay })
+      // handle response
       .then(res => {
         const data = res.data;
         clearTimeout(timeout);
@@ -142,12 +148,14 @@ const useApplicationData = () => {
         updateUserPlan(data);
       });
   };
-  //
+
+  // Delete a existed plan for an user
   async function deletePlan(id) {
     const timeout = setTimeout(() => {
       alert("Cannot Connect to the Server");
     }, 2000);
     return await axios.delete(`http://localhost:3001/api/plans/${id}`)
+      // handle response
       .then(res => {
         const data = res.data;
         clearTimeout(timeout);
@@ -160,7 +168,9 @@ const useApplicationData = () => {
         deleteUserPlan(data);
       });
   };
-  //
+
+
+  // Add new diary to local data and cookie
   function addUserDiary(diary) {
     // Copy of current user diaries
     let diaries = [...state.diaries];
@@ -170,7 +180,8 @@ const useApplicationData = () => {
     localStorage.setItem('diaries', JSON.stringify(diaries));
     setDiariesData(diaries);
   };
-  //
+
+  // Update existed local diaries data and cookie
   function updateUserDiary(diary) {
     // Copy of current user diaries
     let diaries = [...state.diaries];
@@ -180,7 +191,8 @@ const useApplicationData = () => {
     localStorage.setItem('diaries', JSON.stringify(diaries));
     setDiariesData(diaries);
   };
-  //
+
+  // Delete and update existed local diaries data and cookie
   function deleteUserDiary(diary) {
     // Copy of current user diaries
     let diaries = [...state.diaries];
@@ -190,7 +202,8 @@ const useApplicationData = () => {
     localStorage.setItem('diaries', JSON.stringify(diaries));
     setDiariesData(diaries);
   };
-  //
+
+  // Add new plan to local data and cookie
   function addUserPlan(plan) {
     // Copy of current user plans
     let plans = [...state.plans];
@@ -200,7 +213,8 @@ const useApplicationData = () => {
     localStorage.setItem('plans', JSON.stringify(plans));
     setPlansData(plans);
   };
-  //
+
+  // Update existed local plans data and cookie
   function updateUserPlan(plan) {
     // Copy of current user diaries
     let plans = [...state.plans];
@@ -210,7 +224,8 @@ const useApplicationData = () => {
     localStorage.setItem('plans', JSON.stringify(plans));
     setPlansData(plans);
   };
-  //
+
+  // Delete and update existed local plans data and cookie
   function deleteUserPlan(plan) {
     // Copy of current user diaries
     let plans = [...state.plans];
@@ -220,7 +235,8 @@ const useApplicationData = () => {
     localStorage.setItem('plans', JSON.stringify(plans));
     setPlansData(plans);
   };
-  //
+
+  // Reset local data and cookie when user logout
   function logout() {
     dispatch({
       type: CLEAR_USER,
@@ -232,7 +248,8 @@ const useApplicationData = () => {
     });
     localStorage.clear();
   };
-  //
+
+  // Call for set user data
   function setUserData(userData) {
     dispatch({
       type: SET_USER,
@@ -240,14 +257,16 @@ const useApplicationData = () => {
       isLoggedin: true
     })
   };
-  //
+
+  // Call for set diaries data
   function setDiariesData(diariesData) {
     dispatch({
       type: SET_DIARIES,
       diaries: diariesData
     })
   };
-  //
+
+  // Call for set plans data
   function setPlansData(plansData) {
     dispatch({
       type: SET_PLANS,
@@ -255,7 +274,7 @@ const useApplicationData = () => {
     })
   };
 
-  //
+  // Initialize necessary states
   const [state, dispatch] = useReducer(dataReducer, {
     user: {},
     diaries: [],
@@ -263,7 +282,8 @@ const useApplicationData = () => {
     isLoggedin: false,
     weekendsVisible: true
   });
-  //
+
+  // Get data from cookie when page refreshs
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (user) {

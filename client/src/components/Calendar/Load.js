@@ -7,6 +7,7 @@ import { INITIAL_EVENTS, initialized, createEventId, handleDateClick, renderEven
 
 
 export default function Load(props) {
+  // Call addPlan() when user click the grid
   const onAdd = (email, title, start, end, allDay) => {
     props.addPlan(email, title, start, end, allDay)
       .then(() => {
@@ -16,7 +17,7 @@ export default function Load(props) {
         alert(`${err}`);
       });
   };
-
+  // Call updatePlan() when user drag and drop the event
   const onChange = (id, title, start, end, allDay) => {
     props.updatePlan(id, title, start, end, allDay)
       .then(() => {
@@ -26,7 +27,7 @@ export default function Load(props) {
         alert(`${err}`);
       });
   };
-
+  // Call deletePlan() when user click the event
   const onDelete = (id) => {
     props.deletePlan(id)
       .then(() => {

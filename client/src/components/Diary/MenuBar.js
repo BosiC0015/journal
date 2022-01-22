@@ -2,6 +2,7 @@ export default function MenuBar({ editor }) {
   if (!editor) {
     return null
   }
+  // Menubar for changing text style buttons
   return (
     <div className="edit-Button-Class">
       <button

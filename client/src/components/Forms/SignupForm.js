@@ -11,12 +11,11 @@ export default function SignupForm(props) {
   const [password_confirmation, setPassword_confirmation] = useState("");
   const [error, setError] = useState('');
 
-  //console.log('Count');
-
+  // Navigate to home page when user trigger cancel button
   const cancel = () => {
     navigate("/");
   };
-
+  // Validation for user input
   const validate = () => {
     if (!email.length ||
       !password.length ||
@@ -36,7 +35,7 @@ export default function SignupForm(props) {
     setError('');
     return true;
   };
-
+  // Call onSignup() when user trigger confirm button
   const createAccount = (email, password, name) => {
     const user = { email, password, name };
     if (validate()) {

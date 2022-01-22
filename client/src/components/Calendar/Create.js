@@ -6,6 +6,7 @@ import interactionPlugin from '@fullcalendar/interaction'
 import { INITIAL_EVENTS, initialized, createEventId, handleDateClick, renderEventContent, handleWeekendsToggle, handleDateSelect, handleEventClick, handleEvents } from './event-utils'
 
 export default function Create(props) {
+  // Call addPlan() when user click the grid
   const onAdd = (email, title, start, end, allDay) => {
     props.addPlan(email, title, start, end, allDay)
       .then(() => {

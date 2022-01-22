@@ -9,13 +9,11 @@ export default function LoginForm(props) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState('');
 
-  //console.log('Count');
-
+  // Navigate to home page when user trigger cancel button
   const cancel = () => {
     navigate("/");
-    // transition(BACK);
   };
-
+  // Validation for user input
   const validate = () => {
     if (!email.length ||
       !password.length) {
@@ -25,7 +23,7 @@ export default function LoginForm(props) {
     setError('');
     return true;
   };
-
+  // Call onLogin() when user trigger confirm button
   const loginAccount = (email, password) => {
     if (validate()) {
       props.onLogin(email, password)
@@ -35,7 +33,6 @@ export default function LoginForm(props) {
         })
         .catch(err => {
           setError(`${err}`);
-          // transition(ERROR_LOGIN, true);
         });
     }
   };

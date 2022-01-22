@@ -4,6 +4,7 @@ export const SET_PLANS = 'SET_PLANS';
 export const CLEAR_USER = 'CLEAR_USER';
 export const GET_ERRORS = 'GET_ERRORS';
 
+// Reducer for setting application states
 const dataReducer = (state, action) => {
   switch (action.type) {
     case SET_USER: {

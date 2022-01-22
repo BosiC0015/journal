@@ -27,7 +27,7 @@ export function createEventId() {
 }
 
 export function handleDateClick(arg) { // bind with an arrow function
-  alert(arg.dateStr)
+  //alert(arg.dateStr)
 }
 
 

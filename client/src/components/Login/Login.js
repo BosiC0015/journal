@@ -5,7 +5,7 @@ import NavBar from '../NavBar/NavBar';
 
 export default function Login() {
   const { login } = useApplicationData();
-
+  // Login page
   return (
     <main>
       <NavBar />

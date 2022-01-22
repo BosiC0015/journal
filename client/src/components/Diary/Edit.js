@@ -10,18 +10,19 @@ export default function Edit(props) {
   const navigate = useNavigate();
   const [title, setTitle] = useState(props.title);
   const [error, setError] = useState('');
-
-
+  // Editor object for Rich-text
   const editor = useEditor({
     extensions: [
       StarterKit,
     ],
     content: props.content,
   })
+
+  // Navigate to home page when user trigger cancel button
   const cancel = () => {
     navigate("/");
-    // transition(BACK);
   };
+  // Validation for user input
   const validate = () => {
     if (!title.length) {
       setError('Error: Title must be filled');
@@ -34,6 +35,7 @@ export default function Edit(props) {
     setError('');
     return true;
   };
+  // Call onSubmitDiary() when user trigger update button
   const onSubmit = (title) => {
     const content = editor.getJSON();
     if (validate()) {
@@ -47,6 +49,7 @@ export default function Edit(props) {
         });
     }
   };
+  // Call onDeleteDiary() when user trigger delete button
   const onDelete = () => {
     props.onDeleteDiary(props.id)
       .then(() => {
