@@ -5,8 +5,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import TrackerPage from './components/Tracker/TrackerPage';
-import Signup from "./components/Signup";
-import Login from "./components/Login"
+import Signup from "./components/Signup/Signup";
+import Login from "./components/Login/Login"
+import Diary from "./components/Diary/Diary"
 
 ReactDOM.render(
   <BrowserRouter>
@@ -15,6 +16,7 @@ ReactDOM.render(
       <Route path='/tracker' element={<TrackerPage />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/diary" element={<Diary />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

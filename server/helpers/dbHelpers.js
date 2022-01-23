@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
-  // List all users from the database
+  // Select all users records from an user
   const getUsers = () => {
     const query = {
       text: 'SELECT * FROM users',
@@ -10,8 +10,7 @@ module.exports = (db) => {
       .query(query)
       .then((result) => result.rows);
   };
-
-  // Get a single user given its email
+  // Select a single user record
   const getUserByEmail = email => {
     const query = {
       text: `SELECT * FROM users WHERE email = $1`,
@@ -21,37 +20,128 @@ module.exports = (db) => {
       .query(query)
       .then((result) => result.rows[0]);
   };
-
-  // Add a new user to database
+  // Insert a new user record
   const addUser = (email, password, name) => {
     const hash = bcrypt.hashSync(password, 10);
     const query = {
       text:
-        `INSERT INTO users (email, PASSWORD, name)
-        VALUES ($1, $2, $3) RETURNING *`,
+        `INSERT INTO users 
+        (email, PASSWORD, name)
+        VALUES ($1, $2, $3)
+        RETURNING *`,
       values: [email, hash, name]
     }
     return db.query(query)
       .then(result => result.rows[0]);
   };
 
-  // const getUsersPosts = () => {
-  //   const query = {
-  //     text: `SELECT users.id as user_id, first_name, last_name, email, posts.id as post_id, title, content
-  //       FROM users
-  //       INNER JOIN posts
-  //       ON users.id = posts.user_id`
-  //   }
+  // Select all diaries records from an user
+  const getDiariesByUser = user_id => {
+    const query = {
+      text: `SELECT * FROM diaries WHERE user_id = $1`,
+      values: [user_id]
+    }
+    return db
+      .query(query)
+      .then((result) => result.rows);
+  };
+  // Insert a new diary record
+  const addDiary = (user_id, title, content) => {
+    const query = {
+      text:
+        `INSERT INTO diaries 
+        (user_id, title, content, date)
+        VALUES ($1, $2, $3, $4)
+        RETURNING *`,
+      values: [user_id, title, content, new Date().toLocaleString()]
+    }
+    return db.query(query)
+      .then(result => result.rows[0]);
+  };
+  // Update a diary record
+  const updateDiary = (id, title, content) => {
+    const query = {
+      text:
+        `UPDATE diaries
+        SET title = $2, content = $3
+        WHERE id = $1
+        RETURNING *`,
+      values: [id, title, content]
+    }
+    return db.query(query)
+      .then(result => result.rows[0]);
+  };
+  // Delete a diary record
+  const deleteDiary = (diary_id) => {
+    const query = {
+      text:
+        `DELETE FROM diaries WHERE id = $1
+        RETURNING *`,
+      values: [diary_id]
+    }
+    return db.query(query)
+      .then(result => result.rows[0]);
+  };
 
-  //   return db.query(query)
-  //     .then(result => result.rows)
-  //     .catch(err => err);
-
-  // }
+  // Select all plans record from an user
+  const getPlansByUser = user_id => {
+    const query = {
+      text: `SELECT * FROM plans WHERE user_id = $1`,
+      values: [user_id]
+    }
+    return db
+      .query(query)
+      .then((result) => result.rows);
+  };
+  // Insert a new plan record
+  const addPlan = (user_id, title, start, end, allDay) => {
+    const query = {
+      text:
+        `INSERT INTO plans 
+        (user_id, title, start_date, end_date, all_day)
+        VALUES ($1, $2, $3, $4, $5)
+        RETURNING *`,
+      values: [user_id, title, start, end, allDay]
+    }
+    return db.query(query)
+      .then(result => result.rows[0]);
+  };
+  // Delete a plan record
+  const deletePlan = (plan_id) => {
+    const query = {
+      text:
+        `DELETE FROM plans WHERE id = $1
+        RETURNING *`,
+      values: [plan_id]
+    }
+    return db.query(query)
+      .then(result => result.rows[0]);
+  };
+  // Update a plan record
+  const updatePlan = (id, title, start, end, allDay) => {
+    const query = {
+      text:
+        `UPDATE plans
+        SET title = $2, start_date = $3, end_date = $4, all_day = $5 
+        WHERE id = $1
+        RETURNING *`,
+      values: [id, title, start, end, allDay]
+    }
+    return db.query(query)
+      .then(result => result.rows[0]);
+  };
 
   return {
     getUsers,
     getUserByEmail,
-    addUser
+    addUser,
+    getDiariesByUser,
+    addDiary,
+    updateDiary,
+    deleteDiary,
+    getPlansByUser,
+    addPlan,
+    updatePlan,
+    deletePlan
   };
 };

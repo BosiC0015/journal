@@ -1,19 +1,13 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const bcrypt = require('bcrypt');
-
-// Examples:
-// /* GET users listing. */
-// const {
-//   getPostsByUsers
-// } = require('../helpers/dataHelpers');
 
 module.exports = ({
   getUsers,
   getUserByEmail,
   addUser
 }) => {
-  /* GET all users listing */
+  // GET all users listing
   router.get('/', (req, res) => {
     getUsers()
       .then(users => res.json(users))
@@ -22,7 +16,7 @@ module.exports = ({
       }));
   });
 
-  /* Login a user given by email */
+  // Login a user
   router.post(`/:email`, (req, res) => {
     const { email, password } = req.body;
     getUserByEmail(email)
@@ -41,7 +35,7 @@ module.exports = ({
       }));
   });
 
-  /* Add a new user to database */
+  // Add a new user
   router.post('/', (req, res) => {
     const { email, password, name } = req.body;
     getUserByEmail(email)
@@ -52,7 +46,7 @@ module.exports = ({
           });
         }
         else {
-          return addUser(email, password, name)
+          return addUser(email, password, name);
         }
       })
       .then(newUser => res.json(newUser))
@@ -64,24 +58,3 @@ module.exports = ({
 
   return router;
 };
-
-//   /* GET users listing. */
-//   router.get('/', (req, res) => {
-//     getUsers()
-//       .then((users) => res.json(users))
-//       .catch((err) => res.json({
-//         error: err.message
-//       }));
-//   });
-
-//   router.get('/posts', (req, res) => {
-//     getUsersPosts()
-//       .then((usersPosts) => {
-//         const formattedPosts = getPostsByUsers(usersPosts);
-//         res.json(formattedPosts);
-//       })
-//       .catch((err) => res.json({
-//         error: err.message
-//       }));
-//   });
-//   })

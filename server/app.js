@@ -12,6 +12,8 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const habitsRouter = require('./routes/habits');
 const januaryHabitsRouter = require('./routes/januaryHabits');
+const diariesRouter = require('./routes/diaries');
+const plansRouter = require('./routes/plans');
 
 const app = express();
 
@@ -26,5 +28,7 @@ app.use('/', indexRouter);
 app.use('/api/users', usersRouter(dbHelpers));
 app.use('/api/habits', habitsRouter(trackerHelpers));
 app.use('/api/januaryhabits', januaryHabitsRouter(trackerHelpers));
+app.use('/api/diaries', diariesRouter(dbHelpers));
+app.use('/api/plans', plansRouter(dbHelpers));
 
 module.exports = app;

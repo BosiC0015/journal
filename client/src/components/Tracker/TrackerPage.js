@@ -54,6 +54,10 @@ export default function TrackerPage(props) {
       })
       .catch(err => console.log(err))
   };
+  
+export default function TrackerPage(props) {
+  const [newHabit, setNewHabit] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const saveNewStatusAsTrue = (day, habit_id) => {
     const data = { day: day, habit_id: habit_id };
@@ -67,6 +71,19 @@ export default function TrackerPage(props) {
     return axios
       .post(`/api/januaryhabits/false`, data)
       .catch(err => console.log(err.message))
+  };
+  const clear = (event) => {
+    event.target.value = '';
+    setErrorMsg('');
+  }
+  const validate = (newHabit) => {
+    if (newHabit === '') {
+      setErrorMsg('Your new habit cannot be empty!');
+      return;
+    }
+    setErrorMsg('');
+    save(newHabit);
+    setNewHabit('');
   };
 
 
@@ -106,7 +123,7 @@ export default function TrackerPage(props) {
         <section className="tracker">
           <div className="tracker__habits-list">
             <HabitItem name="My Habits" />
-            { habitsList }
+            {habitsList}
           </div>
           <div className="tracker__checkboxes">
             <DateList days={31} />
@@ -114,6 +131,21 @@ export default function TrackerPage(props) {
           </div>
         </section>
         <Form myHabits={habitsArray} onSave={saveNewHabit} />
+            <DateList days={days} />
+            {trackerBoxes}
+          </div>
+        </section>
+        <section className="add-habit">
+          <input
+            className="add-habit__input"
+            placeholder="Add New Habit"
+            type="text"
+            onFocus={(event) => clear(event)}
+            onChange={(event) => setNewHabit(event.target.value)}
+          />
+          <button className="add-habit__submit" onClick={() => validate(newHabit)}>Save</button>
+        </section>
+        <section className="validation">{errorMsg}</section>
       </div>
     </main>
   );

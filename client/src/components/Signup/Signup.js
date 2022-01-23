@@ -1,15 +1,15 @@
-import useApplicationData from "../hooks/useApplicationData";
-import SignupForm from "./Forms/SignupForm";
+import useApplicationData from "../../hooks/useApplicationData";
+import SignupForm from "../Forms/SignupForm";
 import "./Signup.scss"
-import NavBar from './NavBar/NavBar';
+import NavBar from '../NavBar/NavBar';
 
 export default function Signup() {
   const { signup } = useApplicationData();
-
+  // Signup page
   return (
     <main>
       <NavBar />
-      <h2>Sign Up Page</h2>
+      <h1>Sign Up Page</h1>
       <SignupForm onSignup={signup} />
     </main >
   );

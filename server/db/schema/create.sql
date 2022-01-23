@@ -20,18 +20,18 @@ CREATE TABLE users(
 CREATE TABLE diaries(
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  title VARCHAR(255),
-  content text,
-  DATE TIMESTAMP NOT NULL
+  title VARCHAR(255) NOT NULL,
+  content jsonb,
+  date TIMESTAMP NOT NULL
 );
 
 CREATE TABLE plans(
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   title VARCHAR(255) NOT NULL,
-  descri text,
-  TYPE VARCHAR(255) NOT NULL,
-  scheduled_at TIMESTAMP NOT NULL
+  start_date TIMESTAMP NOT NULL,
+  end_date TIMESTAMP NOT NULL,
+  all_day BOOLEAN NOT NULL
 );
 
 CREATE TABLE habits (

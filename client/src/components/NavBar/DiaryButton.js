@@ -2,14 +2,9 @@ import React from 'react';
 import Button from '../Button/Button';
 import { useNavigate } from "react-router-dom";
 
-export default function LogoutButton(props) {
+export default function DiaryButton(props) {
   const navigate = useNavigate();
   return (
-    <Button onClick={() => {
-      props.onLogout();
-      navigate("/");
-    }}
-    >
-      {props.name}</Button>
+    <Button onClick={() => navigate("/diary")}>{props.name}</Button>
   );
 };

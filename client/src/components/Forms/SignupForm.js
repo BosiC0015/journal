@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Button from "../Button";
-import "./SignupForm.scss";
+import Button from "../Button/Button";
+import "./styles.scss";
 import { useNavigate } from "react-router-dom";
 
 export default function SignupForm(props) {
@@ -11,11 +11,11 @@ export default function SignupForm(props) {
   const [password_confirmation, setPassword_confirmation] = useState("");
   const [error, setError] = useState('');
 
+  // Navigate to home page when user trigger cancel button
   const cancel = () => {
     navigate("/");
-    // transition(BACK);
   };
-
+  // Validation for user input
   const validate = () => {
     if (!email.length ||
       !password.length ||
@@ -35,13 +35,13 @@ export default function SignupForm(props) {
     setError('');
     return true;
   };
-
+  // Call onSignup() when user trigger confirm button
   const createAccount = (email, password, name) => {
-    const user = { email: email, password: password, name: name };
+    const user = { email, password, name };
     if (validate()) {
       props.onSignup(user)
         .then(() => {
-          alert('Successfully Signed Up');
+          alert('Successfully Signed Up\nPlease Login to Your Account');
           navigate("/");
           // transition(HOME);
         })
@@ -54,32 +54,39 @@ export default function SignupForm(props) {
 
   return (
     <section className="signup">
-      <form autoComplete="off" onSubmit={event => event.preventDefault()}>
+      <form
+        autoComplete="off"
+        onKeyDown={e => e.key === 'Enter' && e.preventDefault()}
+        onSubmit={e => e.preventDefault()}>
         <div className="email">
+          <label for="email">Your Email </label>
           <input
             placeholder="Please Enter Your Email"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            type="text"
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
           />
         </div>
         <div className="password">
+          <label for="Password">Password </label>
           <input
             placeholder="Please Enter Your Password"
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            type="text"
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
           />
         </div>
         <div className="password__confirmation">
+          <label for="Password">Confirm Password </label>
           <input
             placeholder="Please Enter Your Password Again"
             value={password_confirmation}
-            onChange={(event) => setPassword_confirmation(event.target.value)}
-            type="text"
+            onChange={(e) => setPassword_confirmation(e.target.value)}
+            type="password"
           />
         </div>
         <div className="name">
+          <label for="Password">Your Name   </label>
           <input
             placeholder="Please Enter Your Name"
             value={name}
