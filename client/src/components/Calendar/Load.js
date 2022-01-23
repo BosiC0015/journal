@@ -9,7 +9,6 @@ export default function Load(props) {
   const onAdd = (email, title, start, end, allDay) => {
     props.addPlan(email, title, start, end, allDay)
       .then(() => {
-        window.location.reload();
         alert('Successfully Added');
       })
       .catch(err => {

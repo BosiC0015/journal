@@ -26,13 +26,13 @@ export default function Calendar() {
     }
   }
   function renderEventContent(eventInfo) {
-    console.log(
-      eventInfo.event.id,
-      eventInfo.event.title,
-      eventInfo.event.start,
-      eventInfo.event.end,
-      eventInfo.event.allDay
-    );
+    // console.log(
+    //   eventInfo.event.id,
+    //   eventInfo.event.title,
+    //   eventInfo.event.start,
+    //   eventInfo.event.end,
+    //   eventInfo.event.allDay
+    // );
     return (
       <>
         <b>{eventInfo.timeText}</b>
@@ -89,7 +89,20 @@ export default function Calendar() {
           renderEventContent={renderEventContent}
         />}
       {/* When there are plans exist */}
-      {events &&
+      {events && !diariesEvents &&
+        <Load
+          addPlan={addPlan}
+          deletePlan={deletePlan}
+          updatePlan={updatePlan}
+          email={userState.user.email}
+          events={events}
+          weekendsVisible={planState.weekendsVisible}
+          deleteDiary={deleteDiary}
+          handleEventClick={handleEventClick}
+          handleDateSelect={handleDateSelect}
+          renderEventContent={renderEventContent}
+        />}
+      {events && diariesEvents &&
         <Load
           addPlan={addPlan}
           deletePlan={deletePlan}
