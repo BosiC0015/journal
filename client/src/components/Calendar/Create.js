@@ -2,7 +2,7 @@
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction'; import { INITIAL_EVENTS, initialized, createEventId, handleDateClick, renderEventContent, handleWeekendsToggle, handleDateSelect, handleEventClick, handleEvents } from './event-utils'
+import interactionPlugin from '@fullcalendar/interaction';
 
 export default function Create(props) {
   // Call addPlan() when user click the grid

@@ -1,7 +1,7 @@
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction'; import { INITIAL_EVENTS, initialized, createEventId, handleDateClick, renderEventContent, handleWeekendsToggle, handleDateSelect, handleEventClick, handleEvents } from './event-utils'
+import interactionPlugin from '@fullcalendar/interaction';
 
 
 export default function Load(props) {
@@ -9,6 +9,7 @@ export default function Load(props) {
   const onAdd = (email, title, start, end, allDay) => {
     props.addPlan(email, title, start, end, allDay)
       .then(() => {
+        window.location.reload();
         alert('Successfully Added');
       })
       .catch(err => {

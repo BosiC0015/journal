@@ -10,10 +10,10 @@ import Load from './Load';
 export default function Calendar() {
   const navigate = useNavigate();
   const { userState } = useUserData();
-  const { diaryState, updateDiary, deleteDiary } = useDiariesData();
+  const { diaryState } = useDiariesData();
   const { planState, addPlan, deletePlan, updatePlan } = usePlansData();
 
-  const events = getCalendarEvents(planState.plans);
+  let events = getCalendarEvents(planState.plans);
   const diariesEvents = getCalendarDiaries(diaryState.diaries);
 
   function handleEventClick(clickInfo) {
@@ -26,13 +26,6 @@ export default function Calendar() {
     }
   }
   function renderEventContent(eventInfo) {
-    // console.log(
-    //   eventInfo.event.id,
-    //   eventInfo.event.title,
-    //   eventInfo.event.start,
-    //   eventInfo.event.end,
-    //   eventInfo.event.allDay
-    // );
     return (
       <>
         <b>{eventInfo.timeText}</b>
@@ -51,8 +44,7 @@ export default function Calendar() {
     const title = prompt('Please enter a new title for your event')
     const calendarApi = selectInfo.view.calendar
     calendarApi.unselect() // clear date selection
-
-    if (title) {
+    if (title.replace(/\s/g, '').length) {
       calendarApi.addEvent({
         title,
         start: selectInfo.startStr,
@@ -61,35 +53,32 @@ export default function Calendar() {
         backgroundColor: 'lightblue'
       })
     }
+    else {
+      alert('Error: Title cannot be blank');
+    }
   };
 
+  if (!events && diariesEvents) {
+    events = diariesEvents;
+  }
+  else if (events && diariesEvents) {
+    events = events.concat(diariesEvents);
+  }
   return (
     <main>
       {/* When plans are empty and no diaries */}
-      {!events && !diariesEvents &&
+      {!events &&
         <Create
           addPlan={addPlan}
           email={userState.user.email}
           weekendsVisible={planState.weekendsVisible}
-          handleEventClick={handleEventClick}
-          handleDateSelect={handleDateSelect}
-          renderEventContent={renderEventContent}
-        />}
-      {/* When plans are empty and have diaries */}
-      {!events && diariesEvents &&
-        <Create
-          addPlan={addPlan}
-          email={userState.user.email}
-          weekendsVisible={planState.weekendsVisible}
-          events={diariesEvents}
-          updateDiary={updateDiary}
-          deleteDiary={deleteDiary}
+          events={events}
           handleEventClick={handleEventClick}
           handleDateSelect={handleDateSelect}
           renderEventContent={renderEventContent}
         />}
       {/* When there are plans exist */}
-      {events && !diariesEvents &&
+      {events &&
         <Load
           addPlan={addPlan}
           deletePlan={deletePlan}
@@ -97,20 +86,6 @@ export default function Calendar() {
           email={userState.user.email}
           events={events}
           weekendsVisible={planState.weekendsVisible}
-          deleteDiary={deleteDiary}
-          handleEventClick={handleEventClick}
-          handleDateSelect={handleDateSelect}
-          renderEventContent={renderEventContent}
-        />}
-      {events && diariesEvents &&
-        <Load
-          addPlan={addPlan}
-          deletePlan={deletePlan}
-          updatePlan={updatePlan}
-          email={userState.user.email}
-          events={events.concat(diariesEvents)}
-          weekendsVisible={planState.weekendsVisible}
-          deleteDiary={deleteDiary}
           handleEventClick={handleEventClick}
           handleDateSelect={handleDateSelect}
           renderEventContent={renderEventContent}
