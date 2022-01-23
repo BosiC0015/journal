@@ -74,6 +74,7 @@ const useUserData = () => {
       user: {},
       isLoggedin: false
     });
+    window.location.reload();
   };
 
   // Call for set user data
