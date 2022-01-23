@@ -1,10 +1,10 @@
-import useApplicationData from "../../hooks/useApplicationData";
+import useUserData from "../../hooks/useUserData";
 import LoginForm from "../Forms/LoginForm";
 import "./Login.scss"
 import NavBar from '../NavBar/NavBar';
 
 export default function Login() {
-  const { login } = useApplicationData();
+  const { login } = useUserData();
   // Login page
   return (
     <main>

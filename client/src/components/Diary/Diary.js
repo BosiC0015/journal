@@ -1,14 +1,15 @@
 import React from "react";
-import useApplicationData from "../../hooks/useApplicationData";
+import useDiariesData from "../../hooks/useDiariesData";
 import NavBar from '../NavBar/NavBar';
 import Create from "./Create";
 import Edit from "./Edit";
 import { getDiaryForToday } from "../../helpers/selectors";
+import useUserData from "../../hooks/useUserData";
 
 export default function Diary() {
-  const { state, submitDiary, updateDiary, deleteDiary } = useApplicationData();
-
-  const diary = getDiaryForToday(state.diaries, new Date());
+  const { userState } = useUserData();
+  const { diaryState, submitDiary, updateDiary, deleteDiary } = useDiariesData();
+  const diary = getDiaryForToday(diaryState.diaries, new Date());
 
   return (
     <main>
@@ -17,7 +18,7 @@ export default function Diary() {
       {/* When diaries are empty */}
       {!diary &&
         <Create
-          email={state.user.email}
+          email={userState.user.email}
           onSubmitDiary={submitDiary}
         />
       }
@@ -25,7 +26,7 @@ export default function Diary() {
       {diary &&
         <Edit
           key={diary.id}
-          email={state.user.email}
+          email={userState.user.email}
           id={diary.id}
           title={diary.title}
           content={diary.content}
