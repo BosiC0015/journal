@@ -8,6 +8,7 @@ export default function LogoutButton(props) {
     <Button onClick={() => {
       props.onLogout();
       navigate("/");
+      window.location.reload();
     }}
     >
       {props.name}</Button>
