@@ -114,7 +114,7 @@ const usePlansData = () => {
     }
   }, []);
 
-
+  console.log(planState.plans);
   return { planState, addPlan, deletePlan, updatePlan, setPlansData, clearPlansData }
 
 };

@@ -1,9 +1,8 @@
 
-import FullCalendar, { formatDate } from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import interactionPlugin from '@fullcalendar/interaction'
-import { INITIAL_EVENTS, initialized, createEventId, handleDateClick, renderEventContent, handleWeekendsToggle, handleDateSelect, handleEventClick, handleEvents } from './event-utils'
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction'; import { INITIAL_EVENTS, initialized, createEventId, handleDateClick, renderEventContent, handleWeekendsToggle, handleDateSelect, handleEventClick, handleEvents } from './event-utils'
 
 export default function Create(props) {
   // Call addPlan() when user click the grid
@@ -19,35 +18,30 @@ export default function Create(props) {
 
   return (
     <FullCalendar
-      style={{ height: 300, margin: "30px" }}
+      //style={{ height: 300, margin: "30px" }}
       plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
       headerToolbar={{
         left: 'prev,next today',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
       }}
-      dateClick={handleDateClick} // bind with an arrow function
-      eventContent={renderEventContent}
+      eventContent={props.renderEventContent}
       initialView="dayGridMonth"
       editable={true}
       selectable={true}
       selectMirror={true}
       dayMaxEvents={true}
       weekends={props.weekendsVisible}
-      //initialEvents={INITIAL_EVENTS}
-      select={handleDateSelect}
-      eventContent={renderEventContent} // custom render function
-      eventClick={handleEventClick}
-      eventAdd={(e) => onAdd(props.email,
-        e.event.title,
-        e.event.start,
-        e.event.end,
-        e.event.allDay)}
-    //eventsSet={this.handleEvents}
-    // called after events are initialized/added/changed/removed
-    /* you can update a remote database when these fire:
-    eventChange={function(){}}
-    eventRemove={function(){}}*/
+      initialEvents={props.events}
+      select={props.handleDateSelect}
+      eventClick={props.handleEventClick}
+      eventAdd={(e) =>
+        onAdd(props.email,
+          e.event.title,
+          e.event.start,
+          e.event.end,
+          e.event.allDay)
+      }
     />
   );
 }
