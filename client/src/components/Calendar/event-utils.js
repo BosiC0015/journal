@@ -32,19 +32,20 @@ export function handleDateClick(arg) { // bind with an arrow function
 
 
 export function renderEventContent(eventInfo) {
-  // console.log(
-  //   eventInfo.event.title,
-  //   eventInfo.event.start,
-  //   eventInfo.event.end,
-  //   eventInfo.event.allDay
-  // );
   return (
     <>
       <b>{eventInfo.timeText}</b>
-      <i>{eventInfo.event.title}</i>
+      {
+        eventInfo.event.backgroundColor === 'lightblue' &&
+        <i>{'PLAN: ' + eventInfo.event.title}</i>
+      }
+      {
+        eventInfo.event.backgroundColor === 'orange' &&
+        <i>{'DIARY: ' + eventInfo.event.title}</i>
+      }
     </>
   )
-}
+};
 
 
 export function handleWeekendsToggle() {
@@ -54,21 +55,20 @@ export function handleWeekendsToggle() {
 }
 
 export function handleDateSelect(selectInfo) {
-  let title = prompt('Please enter a new title for your event')
-  let calendarApi = selectInfo.view.calendar
-
+  const title = prompt('Please enter a new title for your event')
+  const calendarApi = selectInfo.view.calendar
   calendarApi.unselect() // clear date selection
 
   if (title) {
     calendarApi.addEvent({
-      id: createEventId(),
       title,
       start: selectInfo.startStr,
       end: selectInfo.endStr,
-      allDay: selectInfo.allDay
+      allDay: selectInfo.allDay,
+      backgroundColor: 'lightblue'
     })
   }
-}
+};
 
 export function handleEventClick(clickInfo) {
   if (`Are you sure you want to delete the event '${clickInfo.event.title}'`) {

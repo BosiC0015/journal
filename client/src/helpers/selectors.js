@@ -1,8 +1,16 @@
 // Get user today's diary
-export function getDiaryForToday(items, date) {
-  if (items && items.length) {
+export function getDiaryById(diaries, id) {
+  if (diaries && diaries.length) {
+    return diaries.find(diary => diary.id === id);
+  }
+  return null;
+};
+
+// Get user today's diary
+export function getDiaryForToday(diaries, date) {
+  if (diaries && diaries.length) {
     const currentDate = date.toISOString().slice(0, 10);
-    return items.find(diary =>
+    return diaries.find(diary =>
       diary.date.slice(0, 10) === currentDate);
   }
   return null;
@@ -37,7 +45,24 @@ export function getCalendarEvents(plans) {
         title: plan.title,
         start: plan.start_date,
         end: plan.end_date,
-        allDay: plan.all_day
+        allDay: plan.all_day,
+        backgroundColor: 'lightblue'
+      }));
+  }
+  return null;
+};
+
+// Convert Dairies into events to show them on calendar
+export function getCalendarDiaries(diaries) {
+  if (diaries && diaries.length) {
+    return diaries.map(diary =>
+      Object.create({
+        id: diary.id,
+        title: diary.title,
+        start: diary.date,
+        allDay: true,
+        editable: false,
+        backgroundColor: 'orange'
       }));
   }
   return null;

@@ -1,9 +1,7 @@
-
-import FullCalendar, { formatDate } from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import interactionPlugin from '@fullcalendar/interaction'
-import { INITIAL_EVENTS, initialized, createEventId, handleDateClick, renderEventContent, handleWeekendsToggle, handleDateSelect, handleEventClick, handleEvents } from './event-utils'
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
 
 
 export default function Load(props) {
@@ -11,6 +9,7 @@ export default function Load(props) {
   const onAdd = (email, title, start, end, allDay) => {
     props.addPlan(email, title, start, end, allDay)
       .then(() => {
+        window.location.reload();
         alert('Successfully Added');
       })
       .catch(err => {
@@ -40,15 +39,14 @@ export default function Load(props) {
 
   return (
     <FullCalendar
-      style={{ height: 300, margin: "30px" }}
+      //style={{ height: 300, margin: "30px" }}
       plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
       headerToolbar={{
         left: 'prev,next today',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
       }}
-      dateClick={handleDateClick} // bind with an arrow function
-      eventContent={renderEventContent}
+      eventContent={props.renderEventContent}
       initialView="dayGridMonth"
       editable={true}
       selectable={true}
@@ -56,25 +54,23 @@ export default function Load(props) {
       dayMaxEvents={true}
       weekends={props.weekendsVisible}
       initialEvents={props.events}
-      select={handleDateSelect}
-      eventContent={renderEventContent} // custom render function
-      eventClick={handleEventClick}
-      eventAdd={(e) => onAdd(props.email,
-        e.event.title,
-        e.event.start,
-        e.event.end,
-        e.event.allDay)}
+      select={props.handleDateSelect}
+      eventClick={props.handleEventClick}
+      eventAdd={(e) =>
+        onAdd(props.email,
+          e.event.title,
+          e.event.start,
+          e.event.end,
+          e.event.allDay)
+      }
       eventRemove={(e) => onDelete(e.event.id)}
-      eventChange={(e) => onChange(e.event.id,
-        e.event.title,
-        e.event.start,
-        e.event.end,
-        e.event.allDay)}
-    //eventsSet={this.handleEvents}
-    // called after events are initialized/added/changed/removed
-    /* you can update a remote database when these fire:
-    eventChange={function(){}}
-    eventRemove={function(){}}*/
+      eventChange={(e) =>
+        onChange(e.event.id,
+          e.event.title,
+          e.event.start,
+          e.event.end,
+          e.event.allDay)
+      }
     />
   );
 }
