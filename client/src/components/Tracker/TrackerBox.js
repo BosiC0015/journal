@@ -1,21 +1,34 @@
 import React, { useState } from "react";
+import useVisualMode from "../../hooks/useVisualMode";
 import "./styles.scss";
 
 
 export default function TrackerBox(props) {
-  const [boxClass, setBoxClass] = useState('tracker-box')
+  const NO = "NO";
+  const YES = "YES";
+  const { mode, transition, back } = useVisualMode(
+    props.status ? YES : NO
+  );
 
-  const check = () => {
-    if (boxClass === 'tracker-box') {
-      setBoxClass('tracker-box__checked');
+  const click = (day, habit_id) => {
+    if (mode === NO) {
+      props
+        .saveAsTrue(props.day, props.habit_id)
+        .then(() => transition(YES))
+        .catch(err => console.log(err.message))
     } else {
-      setBoxClass('tracker-box');
-    }
+      props
+        .saveAsFalse(props.day, props.habit_id)
+        .then(() => transition(NO))
+        .catch(err => console.log(err.message))
+    };
   };
+
 
   return (
     <div>
-      <button className={boxClass} onClick={check} />
+      {mode === NO && <button className='tracker-box' onClick={click} />}
+      {mode === YES && <button className='tracker-box__checked' onClick={click} />}
     </div>
   );
 };

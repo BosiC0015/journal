@@ -1,63 +1,107 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import DateList from "./DateList";
 import BoxRow from "./BoxRow";
 import HabitItem from "./HabitItem";
 import NavBar from "../NavBar/NavBar";
+import Form from "./Form";
+import Loading from "./Loading";
+import trackerHelpers from "../../helpers/trackerHelpers";
 import './styles.scss';
-import classNames from "classnames";
-
-
-const myHabits = [
-  'get up before 8.00',
-  'sleep before 0.00'
-];
-
-const days = 31;
-const firstDay = 'Saturday';
+import moment from "moment";
 
 
 export default function TrackerPage(props) {
-  const [newHabit, setNewHabit] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
-  
+  const { getMyHabitsArray, getStatusForHabit } = trackerHelpers();
+  const [loading, setLoading] = useState(true)
 
-  const save = (newHabit) => {
-    myHabits.push(newHabit);
+  // set initial state
+  const [state, setState] = useState ({
+    myHabits: [],
+    habitsStatus: []
+  });
+  const setMyHabits = (myHabits) => setState({...state, myHabits});
+  const setHabitsStatus = (habitsStatus) => setState(prev => ({...prev, habitsStatus}));
+  // make axios requests to retreive data from server
+  useEffect(() => {
+    Promise.all([
+      axios.get('/api/habits'),
+      axios.get('/api/januaryhabits')
+    ]).then((all) => {
+      setMyHabits([...all[0].data]);
+      setHabitsStatus([...all[1].data]);
+      setLoading(false);
+    })
+  }, [])
+  // console.log(state);
+
+
+  const habitsArray = getMyHabitsArray(state);
+  const countArray = Array.from({length: habitsArray.length}, (_, i) => i + 1);
+
+  // save data to db
+  const saveNewHabit = (content) => {
+    const newHabit = { id: habitsArray.length + 1, content: content, created_at: moment().format('L') }
+    // console.log(newHabit)
+    return axios
+      .post(`/api/habits`, newHabit)
+      .then(res => {
+        const data = res.data
+        console.log('res:', res)
+        const myNewHabits = state.myHabits
+        myNewHabits.push(data[0])
+        setMyHabits(myNewHabits)
+      })
+      .catch(err => console.log(err))
   };
 
-  const clear = (event) => {
-    event.target.value = '';
-    setErrorMsg('');
-  }
-  
-  const validate = (newHabit) => {
-    if (newHabit === '') {
-      setErrorMsg('Your new habit cannot be empty!');
-      return;
-    }
-    setErrorMsg('');
-    save(newHabit);
-    setNewHabit('');
+  const saveNewStatusAsTrue = (day, habit_id) => {
+    const data = { day: day, habit_id: habit_id };
+    return axios
+      .post(`/api/januaryhabits/true`, data)
+      .catch(err => console.log(err.message))
   };
-  
 
-  const countArray = [...Array(myHabits.length).keys()];
+  const saveNewStatusAsFalse = (day, habit_id) => {
+    const data = { day: day, habit_id: habit_id };
+    return axios
+      .post(`/api/januaryhabits/false`, data)
+      .catch(err => console.log(err.message))
+  };
 
-  const habitsList = myHabits.map(elm => (
-    <HabitItem key={myHabits.indexOf(elm)} name={elm} />
-  ));
 
-  const trackerBoxes = countArray.map((elm) => (
-    <BoxRow key={elm} days={days} />
-  ));
+  // render page components
+  const habitsList = habitsArray.map(elm => {
+    return (
+      <HabitItem key={habitsArray.indexOf(elm)} name={elm} />
+    );
+  });
+  const trackerBoxes = countArray.map((elm) => {
+    return (
+      <BoxRow
+        key={elm}
+        habit_id={elm}
+        days={31}
+        statusObj={getStatusForHabit(state, elm)}
+        saveNewStatusAsTrue={saveNewStatusAsTrue}
+        saveNewStatusAsFalse={saveNewStatusAsFalse}
+      />
+    );
+  });
 
+
+  if (loading) {
+    return (
+      <Loading />
+    );
+  };
 
   return (
     <main>
       <NavBar />
       <div className="main-container">
         <section className="month">
-          <h1 className="month__title">January Tracker</h1>
+          <h1 className="month__title">January Habit Tracker</h1>
         </section>
         <section className="tracker">
           <div className="tracker__habits-list">
@@ -65,21 +109,11 @@ export default function TrackerPage(props) {
             { habitsList }
           </div>
           <div className="tracker__checkboxes">
-            <DateList days={days} />
+            <DateList days={31} />
             { trackerBoxes }
           </div>
         </section>
-        <section className="add-habit">
-          <input 
-            className="add-habit__input" 
-            placeholder="Add New Habit"
-            type="text"
-            onFocus={(event) => clear(event)}
-            onChange={(event) => setNewHabit(event.target.value)}
-          />
-          <button className="add-habit__submit" onClick={() => validate(newHabit)}>Save</button>
-        </section>
-        <section className="validation">{errorMsg}</section>
+        <Form myHabits={habitsArray} onSave={saveNewHabit} />
       </div>
     </main>
   );
