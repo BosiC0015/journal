@@ -59,7 +59,7 @@ export default function SignupForm(props) {
         onKeyDown={e => e.key === 'Enter' && e.preventDefault()}
         onSubmit={e => e.preventDefault()}>
         <div className="email">
-          <label for="email">Your Email </label>
+          <label htmlFor="email">Your Email </label>
           <input
             placeholder="Please Enter Your Email"
             value={email}
@@ -68,7 +68,7 @@ export default function SignupForm(props) {
           />
         </div>
         <div className="password">
-          <label for="Password">Password </label>
+          <label htmlFor="Password">Password </label>
           <input
             placeholder="Please Enter Your Password"
             value={password}
@@ -77,7 +77,7 @@ export default function SignupForm(props) {
           />
         </div>
         <div className="password__confirmation">
-          <label for="Password">Confirm Password </label>
+          <label htmlFor="Password">Confirm Password </label>
           <input
             placeholder="Please Enter Your Password Again"
             value={password_confirmation}
@@ -86,7 +86,7 @@ export default function SignupForm(props) {
           />
         </div>
         <div className="name">
-          <label for="Password">Your Name   </label>
+          <label htmlFor="Password">Your Name   </label>
           <input
             placeholder="Please Enter Your Name"
             value={name}

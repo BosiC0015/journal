@@ -7,45 +7,38 @@ export function getDiaryForToday(items, date) {
   }
   return null;
 };
+
 // Update items array by given a target item
 export function updatetItemsById(items, target) {
   if (items && items.length) {
-    for (let i in items) {
-      if (items[i].id === target.id) {
-        items[i] = target;
-      }
-    }
+    const index = items.findIndex(itm => itm.id === target.id);
+    items[index] = target;
     return items;
   }
   return null;
 };
+
 // Delete a target item from a given items array
 export function deleteItemsById(items, target) {
-  console.log(items, target);
   if (items && items.length) {
-    for (let i in items) {
-      if (items[i].id === target.id) {
-        items.splice(i, 1);
-      }
-    }
+    const index = items.findIndex(itm => itm.id === target.id);
+    items.splice(index, 1);
     return items;
   }
   return null;
 };
+
 // Convert plans into events to show them on calendar
 export function getCalendarEvents(plans) {
   if (plans && plans.length) {
-    const events = [];
-    for (const plan of plans) {
-      events.push({
+    return plans.map(plan =>
+      Object.create({
         id: plan.id,
         title: plan.title,
         start: plan.start_date,
         end: plan.end_date,
         allDay: plan.all_day
-      });
-    }
-    return events;
+      }));
   }
   return null;
 };

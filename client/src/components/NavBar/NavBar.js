@@ -8,12 +8,12 @@ import SignupButton from './SignupButton';
 import LogoutButton from './LogoutButton';
 import DiaryButton from './DiaryButton';
 import './NavBar.scss';
-import useApplicationData from "../../hooks/useApplicationData";
+import useUserData from "../../hooks/useUserData";
 
 
 
 export default function NavBar() {
-  const { state, logout } = useApplicationData();
+  const { userState, logout } = useUserData();
 
   return (
     <header className='nav-bar'>
@@ -25,20 +25,20 @@ export default function NavBar() {
         <ul className='nav-bar__redirect-link'><TrackerButton /></ul>
       </div>
       <div className='nav-bar__user'>
-        {!state.isLoggedin &&
+        {!userState.isLoggedin &&
           <ul className='nav-bar__user-action'>
             <LoginButton name='Login' />
           </ul>
         }
-        {!state.isLoggedin &&
+        {!userState.isLoggedin &&
           <ul className='nav-bar__user-action'>
             <SignupButton name='Sign Up' />
           </ul>
         }
-        {state.isLoggedin &&
+        {userState.isLoggedin &&
           <ul className='nav-bar__user-action'>
             <aside className='welcome__text'>
-              Hi {state.user.name}
+              Hi {userState.user.name}
             </aside>
             <LogoutButton name='Logout' onLogout={logout} />
           </ul>

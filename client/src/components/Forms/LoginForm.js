@@ -44,7 +44,7 @@ export default function LoginForm(props) {
         onKeyDown={e => e.key === 'Enter' && e.preventDefault()}
         onSubmit={e => e.preventDefault()}>
         <div className="email">
-          <label for="Email">Your Email </label>
+          <label htmlFor="Email">Your Email </label>
           <input
             placeholder="Please Enter Your Email"
             value={email}
@@ -53,7 +53,7 @@ export default function LoginForm(props) {
           />
         </div>
         <div className="password">
-          <label for="Password">Password </label>
+          <label htmlFor="Password">Password </label>
           <input
             placeholder="Please Enter Your Password"
             value={password}

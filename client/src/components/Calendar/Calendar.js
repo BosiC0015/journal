@@ -1,12 +1,14 @@
 
 import { getCalendarEvents } from '../../helpers/selectors';
-import useApplicationData from '../../hooks/useApplicationData'
+import useUserData from '../../hooks/useUserData'
+import usePlansData from '../../hooks/usePlansData';
 import Create from './Create';
 import Load from './Load';
 
 export default function Calendar() {
-  const { state, addPlan, deletePlan, updatePlan } = useApplicationData();
-  const events = getCalendarEvents(state.plans);
+  const { userState } = useUserData();
+  const { planState, addPlan, deletePlan, updatePlan } = usePlansData();
+  const events = getCalendarEvents(planState.plans);
 
   return (
     <main>
@@ -14,8 +16,8 @@ export default function Calendar() {
       {!events &&
         <Create
           addPlan={addPlan}
-          email={state.user.email}
-          weekendsVisible={state.weekendsVisible}
+          email={userState.user.email}
+          weekendsVisible={planState.weekendsVisible}
         />}
       {/* When there are plans exist */}
       {events &&
@@ -23,9 +25,9 @@ export default function Calendar() {
           addPlan={addPlan}
           deletePlan={deletePlan}
           updatePlan={updatePlan}
-          email={state.user.email}
+          email={userState.user.email}
           events={events}
-          weekendsVisible={state.weekendsVisible}
+          weekendsVisible={planState.weekendsVisible}
         />}
     </main>
   );
