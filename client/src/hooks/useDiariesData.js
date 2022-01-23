@@ -20,7 +20,6 @@ const useDiariesData = () => {
         addUserDiary(data);
       });
   };
-
   // Update a existed diary for an user
   async function updateDiary(id, title, content) {
     const timeout = setTimeout(() => {
@@ -37,7 +36,6 @@ const useDiariesData = () => {
         updateUserDiary(data);
       });
   };
-
   // Delete a existed diary for an user
   async function deleteDiary(id) {
     const timeout = setTimeout(() => {
@@ -58,7 +56,6 @@ const useDiariesData = () => {
         deleteUserDiary(data);
       });
   };
-
   // Add new diary to local data and cookie
   function addUserDiary(diary) {
     // Copy of current user diaries
@@ -69,7 +66,6 @@ const useDiariesData = () => {
     localStorage.setItem('diaries', JSON.stringify(diaries));
     setDiariesData(diaries);
   };
-
   // Update existed local diaries data and cookie
   function updateUserDiary(diary) {
     // Copy of current user diaries
@@ -80,7 +76,6 @@ const useDiariesData = () => {
     localStorage.setItem('diaries', JSON.stringify(diaries));
     setDiariesData(diaries);
   };
-
   // Delete and update existed local diaries data and cookie
   function deleteUserDiary(diary) {
     // Copy of current user diaries
@@ -91,7 +86,6 @@ const useDiariesData = () => {
     localStorage.setItem('diaries', JSON.stringify(diaries));
     setDiariesData(diaries);
   };
-
   // Call for set diaries data
   function setDiariesData(diariesData) {
     dispatch({
@@ -99,7 +93,6 @@ const useDiariesData = () => {
       diaries: diariesData
     })
   };
-
   // Call for clear diaries data when user logout
   function clearDiariesData() {
     dispatch({

@@ -1,5 +1,7 @@
 const db = require('./db');
-const dbHelpers = require('./helpers/dbHelpers')(db);
+const usersHelpers = require('./helpers/usersHelper')(db);
+const plansHelpers = require('./helpers/plansHelpers')(db);
+const diariesHelpers = require('./helpers/diariesHelpers')(db);
 const trackerHelpers = require('./helpers/trackerHelpers')(db);
 
 const express = require('express');
@@ -25,10 +27,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/users', usersRouter(dbHelpers));
+app.use('/api/users', usersRouter(usersHelpers));
 app.use('/api/habits', habitsRouter(trackerHelpers));
 app.use('/api/januaryhabits', januaryHabitsRouter(trackerHelpers));
-app.use('/api/diaries', diariesRouter(dbHelpers));
-app.use('/api/plans', plansRouter(dbHelpers));
+app.use('/api/diaries', diariesRouter(diariesHelpers));
+app.use('/api/plans', plansRouter(plansHelpers));
 
 module.exports = app;

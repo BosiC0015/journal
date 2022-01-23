@@ -10,7 +10,6 @@ const useUserData = () => {
   const { setDiariesData, clearDiariesData } = useDiariesData();
   const { setPlansData, clearPlansData } = usePlansData();
 
-
   // Signup an account by given an user object
   async function signup(user) {
     const timeout = setTimeout(() => {
@@ -28,7 +27,6 @@ const useUserData = () => {
         }
       });
   };
-
   // Login an account and retrieve account data
   async function login(email, password) {
     const timeout = setTimeout(() => {
@@ -63,7 +61,6 @@ const useUserData = () => {
         setPlansData(planData);
       });
   };
-
   // Reset local data and cookie when user logout
   function logout() {
     clearDiariesData();
@@ -75,7 +72,6 @@ const useUserData = () => {
       isLoggedin: false
     });
   };
-
   // Call for set user data
   function setUserData(userData) {
     dispatch({
@@ -85,13 +81,11 @@ const useUserData = () => {
     })
   };
 
-
   // Initialize necessary states
   const [userState, dispatch] = useReducer(dataReducer, {
     user: {},
     isLoggedin: false
   });
-
 
   // Get data from cookie when page refreshs
   useEffect(() => {

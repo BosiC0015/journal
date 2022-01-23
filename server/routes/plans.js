@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../db');
+const usersHelpers = require('../helpers/usersHelper')(db);
+
+const { getUserByEmail } = usersHelpers;
 
 module.exports = ({
-  getUserByEmail,
   getPlansByUser,
   addPlan,
   updatePlan,

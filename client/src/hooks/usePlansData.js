@@ -21,7 +21,6 @@ const usePlansData = () => {
         addUserPlan(data);
       });
   };
-
   // Update a existed plan for an user
   async function updatePlan(id, title, start, end, allDay) {
     const timeout = setTimeout(() => {
@@ -38,7 +37,6 @@ const usePlansData = () => {
         updateUserPlan(data);
       });
   };
-
   // Delete a existed plan for an user
   async function deletePlan(id) {
     const timeout = setTimeout(() => {
@@ -58,7 +56,6 @@ const usePlansData = () => {
         deleteUserPlan(data);
       });
   };
-
   // Add new plan to local data and cookie
   function addUserPlan(plan) {
     // Copy of current user plans
@@ -69,7 +66,6 @@ const usePlansData = () => {
     localStorage.setItem('plans', JSON.stringify(plans));
     setPlansData(plans);
   };
-
   // Update existed local plans data and cookie
   function updateUserPlan(plan) {
     // Copy of current user plans
@@ -80,7 +76,6 @@ const usePlansData = () => {
     localStorage.setItem('plans', JSON.stringify(plans));
     setPlansData(plans);
   };
-
   // Delete and update existed local plans data and cookie
   function deleteUserPlan(plan) {
     // Copy of current user plans
@@ -91,7 +86,6 @@ const usePlansData = () => {
     localStorage.setItem('plans', JSON.stringify(plans));
     setPlansData(plans);
   };
-
   // Call for set plans data
   function setPlansData(plansData) {
     dispatch({
@@ -99,8 +93,7 @@ const usePlansData = () => {
       plans: plansData
     })
   };
-
-  //
+  // Call for clean plans data when user logout
   function clearPlansData() {
     dispatch({
       type: CLEAR_PLANS,
