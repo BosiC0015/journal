@@ -53,9 +53,9 @@ const useUserData = () => {
           throw new Error('Something wrong. Please try again!');
         }
         // set all realted data and update login status
-        localStorage.setItem('user', JSON.stringify(userData));
-        localStorage.setItem('diaries', JSON.stringify(diaryData));
-        localStorage.setItem('plans', JSON.stringify(planData));
+        sessionStorage.setItem('user', JSON.stringify(userData));
+        sessionStorage.setItem('diaries', JSON.stringify(diaryData));
+        sessionStorage.setItem('plans', JSON.stringify(planData));
         setUserData(userData);
         setDiariesData(diaryData);
         setPlansData(planData);
@@ -65,7 +65,7 @@ const useUserData = () => {
   function logout() {
     clearDiariesData();
     clearPlansData();
-    localStorage.clear();
+    sessionStorage.clear();
     dispatch({
       type: CLEAR_USER,
       user: {},
@@ -89,7 +89,7 @@ const useUserData = () => {
 
   // Get data from cookie when page refreshs
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    const user = sessionStorage.getItem("user");
     if (user) {
       setUserData(JSON.parse(user));
     }

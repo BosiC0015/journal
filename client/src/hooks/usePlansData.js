@@ -63,7 +63,7 @@ const usePlansData = () => {
     // Add new plan to the copy
     plans.push(plan);
     // Update cookie and current plan data
-    localStorage.setItem('plans', JSON.stringify(plans));
+    sessionStorage.setItem('plans', JSON.stringify(plans));
     setPlansData(plans);
   };
   // Update existed local plans data and cookie
@@ -73,7 +73,7 @@ const usePlansData = () => {
     // Update the copy of plans
     plans = updatetItemsById(plans, plan);
     // Update cookie and current plan data
-    localStorage.setItem('plans', JSON.stringify(plans));
+    sessionStorage.setItem('plans', JSON.stringify(plans));
     setPlansData(plans);
   };
   // Delete and update existed local plans data and cookie
@@ -83,7 +83,7 @@ const usePlansData = () => {
     // Update the copy of plans
     plans = deleteItemsById(plans, plan);
     // Update cookie and current plan data
-    localStorage.setItem('plans', JSON.stringify(plans));
+    sessionStorage.setItem('plans', JSON.stringify(plans));
     setPlansData(plans);
   };
   // Call for set plans data
@@ -108,7 +108,7 @@ const usePlansData = () => {
   });
 
   useEffect(() => {
-    const plans = localStorage.getItem("plans");
+    const plans = sessionStorage.getItem("plans");
     if (plans) {
       setPlansData(JSON.parse(plans));
     }

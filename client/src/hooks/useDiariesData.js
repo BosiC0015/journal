@@ -63,7 +63,7 @@ const useDiariesData = () => {
     // Add new diary to the copy
     diaries.push(diary);
     // Update cookie and current diary data
-    localStorage.setItem('diaries', JSON.stringify(diaries));
+    sessionStorage.setItem('diaries', JSON.stringify(diaries));
     setDiariesData(diaries);
   };
   // Update existed local diaries data and cookie
@@ -73,7 +73,7 @@ const useDiariesData = () => {
     // Update the copy of diaries
     diaries = updatetItemsById(diaries, diary);
     // Update cookie and current diary data
-    localStorage.setItem('diaries', JSON.stringify(diaries));
+    sessionStorage.setItem('diaries', JSON.stringify(diaries));
     setDiariesData(diaries);
   };
   // Delete and update existed local diaries data and cookie
@@ -83,7 +83,7 @@ const useDiariesData = () => {
     // Update the copy of diaries
     diaries = deleteItemsById(diaries, diary);
     // Update cookie and current diary data
-    localStorage.setItem('diaries', JSON.stringify(diaries));
+    sessionStorage.setItem('diaries', JSON.stringify(diaries));
     setDiariesData(diaries);
   };
   // Call for set diaries data
@@ -107,7 +107,7 @@ const useDiariesData = () => {
   });
 
   useEffect(() => {
-    const diaries = localStorage.getItem("diaries");
+    const diaries = sessionStorage.getItem("diaries");
     if (diaries) {
       setDiariesData(JSON.parse(diaries));
     }
