@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useUserData from '../../hooks/useUserData'
 import usePlansData from '../../hooks/usePlansData';
 import useDiariesData from "../../hooks/useDiariesData";
+import Button from "../Button/Button";
 import Create from './Create';
 import Load from './Load';
 
@@ -13,29 +14,28 @@ export default function Calendar() {
   const { diaryState } = useDiariesData();
   const { planState, addPlan, deletePlan, updatePlan } = usePlansData();
 
-  let events = getCalendarEvents(planState.plans);
-  const diariesEvents = getCalendarDiaries(diaryState.diaries);
-
-  function handleEventClick(clickInfo) {
-    const event = clickInfo.event;
+  function handleEventClick({ event, el }) {
+    el.ondblclick = (() => {
+      if (event.backgroundColor === 'lightblue') {
+        event.remove();
+      }
+      return;
+    });
     if (event.backgroundColor === 'orange') {
       navigate("/diary");
     }
-    else {
-      event.remove();
-    }
-  }
-  function renderEventContent(eventInfo) {
+  };
+  function renderEventContent(info) {
     return (
       <>
-        <b>{eventInfo.timeText}</b>
+        <b>{info.timeText}</b>
         {
-          eventInfo.event.backgroundColor === 'lightblue' &&
-          <i>{'PLAN: ' + eventInfo.event.title}</i>
+          info.event.backgroundColor === 'lightblue' &&
+          <i>{'PLAN: ' + info.event.title}</i>
         }
         {
-          eventInfo.event.backgroundColor === 'orange' &&
-          <i>{'DIARY: ' + eventInfo.event.title}</i>
+          info.event.backgroundColor === 'orange' &&
+          <i>{'DIARY: ' + info.event.title}</i>
         }
       </>
     )
@@ -44,7 +44,7 @@ export default function Calendar() {
     const title = prompt('Please enter a new title for your event')
     const calendarApi = selectInfo.view.calendar
     calendarApi.unselect() // clear date selection
-    if (title.replace(/\s/g, '').length) {
+    if (title && title.replace(/\s/g, '').length) {
       calendarApi.addEvent({
         title,
         start: selectInfo.startStr,
@@ -53,20 +53,20 @@ export default function Calendar() {
         backgroundColor: 'lightblue'
       })
     }
-    else {
-      alert('Error: Title cannot be blank');
-    }
   };
 
+  const diariesEvents = getCalendarDiaries(diaryState.diaries);
+  let events = getCalendarEvents(planState.plans);
   if (!events && diariesEvents) {
     events = diariesEvents;
   }
   else if (events && diariesEvents) {
     events = events.concat(diariesEvents);
   }
+
   return (
     <main>
-      {/* When plans are empty and no diaries */}
+      {/* When plans are empty */}
       {!events &&
         <Create
           addPlan={addPlan}
