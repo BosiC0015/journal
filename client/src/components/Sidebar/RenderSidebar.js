@@ -3,6 +3,7 @@ import renderSidebarEvent from './RenderSidebarEvent';
 import "./sideBar.css";
 
 
+
 export default function renderSidebar(props) {
   return (
     <div className='demo-app-sidebar'>
@@ -14,23 +15,24 @@ export default function renderSidebar(props) {
           <li>Click an event to delete it</li>
         </ul>
       </div>
-      {/* <div className='demo-app-sidebar-section'>
+      {/*  
+       <div className='demo-app-sidebar-section'>
           <label>
             <input
               type='checkbox'
-              checked={this.state.weekendsVisible}
-              onChange={this.handleWeekendsToggle}
+              checked={state.weekendsVisible}
+              onChange={handleWeekendsToggle}
             ></input>
             toggle weekends
           </label>
         </div>
-     
+    
         <div className='demo-app-sidebar-section'>
-           <h2>All Events ({this.state.currentEvents.length})</h2>
+           <h2>All Events ({state.currentEvents.length})</h2>
           <ul>
-            {this.state.currentEvents.map(renderSidebarEvent)}
+            {state.currentEvents.map(renderSidebarEvent)}
           </ul> 
-        </div>  */}
+        </div>   */}
     </div>
   )
 

@@ -22,7 +22,10 @@ export default function Calendar() {
       navigate("/diary");
     }
     else {
-      event.remove();
+      if (window.confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+        clickInfo.event.remove()
+      }
+     
     }
   }
   function renderEventContent(eventInfo) {
