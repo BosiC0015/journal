@@ -29,12 +29,12 @@ module.exports = (db) => {
       .catch(err => console.log(err.message))
   }
 
-  const addNewHabit = (content, time) => {
+  const addNewHabit = (user_id, content, time) => {
     const queryString = `
       INSERT INTO habits (user_id, content, created_at) 
-      VALUES (1, $1, $2) RETURNING *;
+      VALUES ($1, $2, $3) RETURNING *;
     `;
-    const values = [content, time];
+    const values = [user_id, content, time];
 
     return db.query(queryString, values)
       .then(res => res.rows)

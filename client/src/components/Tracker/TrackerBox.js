@@ -10,7 +10,7 @@ export default function TrackerBox(props) {
     props.status ? YES : NO
   );
 
-  const click = (day, habit_id) => {
+  const click = () => {
     if (mode === NO) {
       props
         .saveAsTrue(props.day, props.habit_id)

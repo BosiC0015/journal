@@ -9,10 +9,12 @@ import Loading from "./Loading";
 import trackerHelpers from "../../helpers/trackerHelpers";
 import './styles.scss';
 import moment from "moment";
+import useUserData from "../../hooks/useUserData";
 
 
 export default function TrackerPage(props) {
-  const { getMyHabitsArray, getStatusForHabit } = trackerHelpers();
+  const { getMyHabitsArray, getHabitsForUser, getStatusForHabit } = trackerHelpers();
+  const { userState } = useUserData();
   const [loading, setLoading] = useState(true)
 
   // set initial state
@@ -33,21 +35,21 @@ export default function TrackerPage(props) {
       setLoading(false);
     })
   }, [])
-  // console.log(state);
+  console.log(state);
 
-
-  const habitsArray = getMyHabitsArray(state);
-  const countArray = Array.from({ length: habitsArray.length }, (_, i) => i + 1);
+  // helper arrays
+  const habitsArray = getMyHabitsArray(state, userState.user.id);
+  const habitsForUser = getHabitsForUser(state, userState.user.id);
 
   // save data to db
-  const saveNewHabit = (content) => {
-    const newHabit = { id: habitsArray.length + 1, content: content, created_at: moment().format('L') }
+  const saveNewHabit = (user_id, content) => {
+    const newHabit = { id: state.myHabits.length + 1, user_id: user_id, content: content, created_at: moment().format('L') }
     // console.log(newHabit)
     return axios
       .post(`/api/habits`, newHabit)
       .then(res => {
-        const data = res.data
         console.log('res:', res)
+        const data = res.data
         const myNewHabits = state.myHabits
         myNewHabits.push(data[0])
         setMyHabits(myNewHabits)
@@ -76,13 +78,13 @@ export default function TrackerPage(props) {
       <HabitItem key={habitsArray.indexOf(elm)} name={elm} />
     );
   });
-  const trackerBoxes = countArray.map((elm) => {
+  const trackerBoxes = habitsForUser.map((elm) => {
     return (
       <BoxRow
-        key={elm}
-        habit_id={elm}
+        key={elm.habit_id}
+        habit_id={elm.habit_id}
         days={31}
-        statusObj={getStatusForHabit(state, elm)}
+        statusObj={getStatusForHabit(state, elm.habit_id)}
         saveNewStatusAsTrue={saveNewStatusAsTrue}
         saveNewStatusAsFalse={saveNewStatusAsFalse}
       />
@@ -95,7 +97,6 @@ export default function TrackerPage(props) {
       <Loading />
     );
   };
-
   return (
     <main>
       <NavBar />
@@ -113,7 +114,7 @@ export default function TrackerPage(props) {
             {trackerBoxes}
           </div>
         </section>
-        <Form myHabits={habitsArray} onSave={saveNewHabit} />
+        <Form myHabits={habitsArray} user_id={userState.user.id} onSave={saveNewHabit} />
       </div>
     </main>
   );

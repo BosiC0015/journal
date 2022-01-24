@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import moment from "moment";
 
 
 export default function Form(props) {
@@ -18,7 +17,7 @@ export default function Form(props) {
       return;
     }
     setErrorMsg('');
-    props.onSave(content)
+    props.onSave(props.user_id, content)
       .then(() => {
         alert('Added new habit');
       })

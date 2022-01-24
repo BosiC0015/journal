@@ -4,7 +4,7 @@ module.exports = ({ getStatusOfHabit, changeStatusOfHabitToTrue, changeStatusOfH
 
   router.get('/', (req, res) => {
     getStatusOfHabit()
-      .then(stauts => res.json(stauts))
+      .then(status => res.json(status))
       .catch(err => res.json(err.message))
   });
 

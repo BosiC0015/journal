@@ -10,15 +10,16 @@ module.exports = ({ getHabitsOfUser, addNewHabit, addTrackerBoxes }) => {
   });
 
   router.post('/', (req, res) => {
-    const { id, content, created_at } = req.body;
-    addNewHabit(content, created_at)
-      .then(newHabit => res.json(newHabit))
-      .then(res => {
+    const { id, user_id, content, created_at } = req.body;
+    addNewHabit(user_id ,content, created_at)
+      .then((newHabit) => res.json(newHabit))
+      .then((req, res) => {
         addTrackerBoxes(id)
         .then(habits => res.json(habits))
         .catch(err => console.log(err.message))
       })
-      .catch(err => res.json(err.message))
+      
+      .catch(err => console.log(err.message))
   });
 
   return router;
