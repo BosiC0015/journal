@@ -10,20 +10,13 @@ import Load from './Load';
 export default function Calendar() {
   const navigate = useNavigate();
   const { userState } = useUserData();
-  const { diaryState, deleteDiary } = useDiariesData();
+  const { diaryState } = useDiariesData();
   const { planState, addPlan, deletePlan, updatePlan } = usePlansData();
 
   function handleEventClick({ event, el }) {
     // Double Click Event
     el.ondblclick = (() => {
-      // Handle Plan Item
-      if (event.backgroundColor !== 'orange') {
-        if (window.confirm(`Are you sure you want to delete the PLAN: '${event.title}'`)) {
-          event.remove();
-        }
-      }
-      else {
-        event.editable = false;
+      if (event.backgroundColor === 'orange') {
         navigate("/diary", {
           state:
           {
@@ -33,8 +26,15 @@ export default function Calendar() {
             content: event.extendedProps
           }
         });
+        return;
       }
     });
+    // Handle Plan Item
+    if (event.backgroundColor !== 'orange') {
+      if (window.confirm(`Are you sure you want to delete the PLAN: '${event.title}'`)) {
+        event.remove();
+      }
+    }
   };
 
   function renderEventContent(info) {
