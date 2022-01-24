@@ -11,8 +11,9 @@ export default function renderSidebar(props) {
         <h2>Instructions</h2>
         <ul>
           <li>Select dates and you will be prompted to create a new event</li>
-          <li>Drag, drop, and resize events</li>
-          <li>Click an event to delete it</li>
+          <li>Drag, drop, and resize events (except diaries items)</li>
+          <li>Double Click an diary item to edit it</li>
+          <li>Double click an event item to delete it</li>
         </ul>
       </div>
       {/*  

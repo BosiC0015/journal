@@ -61,8 +61,8 @@ export function getCalendarDiaries(diaries) {
         title: diary.title,
         extendedProps: diary.content,
         start: diary.date,
-        allDay: true,
         editable: false,
+        allDay: true,
         backgroundColor: 'orange'
       }));
   }

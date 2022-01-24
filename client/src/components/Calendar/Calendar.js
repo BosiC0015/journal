@@ -4,38 +4,39 @@ import { useNavigate } from "react-router-dom";
 import useUserData from '../../hooks/useUserData'
 import usePlansData from '../../hooks/usePlansData';
 import useDiariesData from "../../hooks/useDiariesData";
-import Button from "../Button/Button";
 import Create from './Create';
 import Load from './Load';
-import Diary from '../Diary/Diary';
 
 export default function Calendar() {
   const navigate = useNavigate();
   const { userState } = useUserData();
-  const { diaryState } = useDiariesData();
+  const { diaryState, deleteDiary } = useDiariesData();
   const { planState, addPlan, deletePlan, updatePlan } = usePlansData();
 
   function handleEventClick({ event, el }) {
+    // Double Click Event
     el.ondblclick = (() => {
-      if (event.backgroundColor === 'lightblue') {
-      if (window.confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-        clickInfo.event.remove()
-      }
-      }
-      return;
-    });
-    if (event.backgroundColor === 'orange') {
-      navigate("/diary", {
-        state:
-        {
-          email: userState.user.email,
-          id: event.id,
-          title: event.title,
-          content: event.extendedProps
+      // Handle Plan Item
+      if (event.backgroundColor !== 'orange') {
+        if (window.confirm(`Are you sure you want to delete the PLAN: '${event.title}'`)) {
+          event.remove();
         }
-      });
-    }
+      }
+      else {
+        event.editable = false;
+        navigate("/diary", {
+          state:
+          {
+            email: userState.user.email,
+            id: event.id,
+            title: event.title,
+            content: event.extendedProps
+          }
+        });
+      }
+    });
   };
+
   function renderEventContent(info) {
     //console.log(info);
     return (
@@ -52,6 +53,7 @@ export default function Calendar() {
       </>
     )
   };
+
   function handleDateSelect(selectInfo) {
     const title = prompt('Please enter a new title for your event')
     const calendarApi = selectInfo.view.calendar
