@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import useVisualMode from "../../hooks/useVisualMode";
+import { useNavigate } from "react-router-dom";
 import "./styles.scss";
 
 
 export default function TrackerBox(props) {
   const NO = "NO";
   const YES = "YES";
+  const navigate = useNavigate();
   const { mode, transition, back } = useVisualMode(
     props.status ? YES : NO
   );
@@ -13,6 +15,7 @@ export default function TrackerBox(props) {
   const click = (day, habit_id) => {
     if (!props.isLoggedin) {
       alert('Please Login an Account');
+      navigate("/login");
       return;
     }
     if (mode === NO) {

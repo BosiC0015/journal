@@ -39,6 +39,7 @@ export default function Create(props) {
   const onSubmit = (title) => {
     if (!props.isLoggedin) {
       alert('Please Login an Account');
+      navigate("/login");
       return;
     }
     const content = editor.getJSON();

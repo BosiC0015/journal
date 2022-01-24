@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Form(props) {
+  const navigate = useNavigate();
   const [habit, setHabit] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -14,6 +16,7 @@ export default function Form(props) {
   const validateNewHabit = (content) => {
     if (!props.isLoggedin) {
       alert('Please Login an Account');
+      navigate("/login");
       return;
     }
     // const newHabit = { content: content, created_at: moment().format('L') };

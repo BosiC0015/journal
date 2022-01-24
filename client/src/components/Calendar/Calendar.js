@@ -57,6 +57,7 @@ export default function Calendar() {
   function handleDateSelect(selectInfo) {
     if (!userState.isLoggedin) {
       alert('Please Login an Account');
+      navigate("/login");
       return;
     }
     const title = prompt('Please enter a new title for your event')
