@@ -1,7 +1,5 @@
 import React from 'react';
 import TodayButton from './TodayButton';
-import ThisWeekButton from './ThisWeekButton';
-import ThisMonthButton from './ThisMonthButton';
 import TrackerButton from './TrackerButton';
 import LoginButton from './LoginButton';
 import SignupButton from './SignupButton';
@@ -19,8 +17,6 @@ export default function NavBar() {
     <header className='nav-bar'>
       <div className='nav-bar__redirect'>
         <ul className='nav-bar__redirect-link'><TodayButton /></ul>
-        <ul className='nav-bar__redirect-link'><ThisWeekButton /></ul>
-        <ul className='nav-bar__redirect-link'><ThisMonthButton /></ul>
         <ul className='nav-bar__redirect-link'><DiaryButton name='Diary' /></ul>
         <ul className='nav-bar__redirect-link'><TrackerButton /></ul>
       </div>
