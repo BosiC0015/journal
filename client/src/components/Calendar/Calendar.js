@@ -18,17 +18,13 @@ export default function Calendar() {
   function handleEventClick({ event, el }) {
     el.ondblclick = (() => {
       if (event.backgroundColor === 'lightblue') {
-        event.remove();
+      if (window.confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+        clickInfo.event.remove()
+      }
       }
       return;
     });
     if (event.backgroundColor === 'orange') {
-      // <Diary
-      //   email={userState.user.email}
-      //   id={event.id}
-      //   title={event.title}
-      //   content={event.content}
-      // />
       navigate("/diary", {
         state:
         {
