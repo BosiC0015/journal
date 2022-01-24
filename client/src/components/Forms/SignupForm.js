@@ -42,12 +42,10 @@ export default function SignupForm(props) {
       props.onSignup(user)
         .then(() => {
           alert('Successfully Signed Up\nPlease Login to Your Account');
-          navigate("/");
-          // transition(HOME);
+          navigate("/login");
         })
         .catch(err => {
           setError(`${err}`);
-          // transition(ERROR_SIGNUP, true);
         });
     }
   };
