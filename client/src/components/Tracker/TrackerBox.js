@@ -11,6 +11,10 @@ export default function TrackerBox(props) {
   );
 
   const click = (day, habit_id) => {
+    if (!props.isLoggedin) {
+      alert('Please Login an Account');
+      return;
+    }
     if (mode === NO) {
       props
         .saveAsTrue(props.day, props.habit_id)

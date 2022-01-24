@@ -9,9 +9,11 @@ import Loading from "./Loading";
 import trackerHelpers from "../../helpers/trackerHelpers";
 import './styles.scss';
 import moment from "moment";
+import useUserData from "../../hooks/useUserData";
 
 
 export default function TrackerPage(props) {
+  const { userState } = useUserData();
   const { getMyHabitsArray, getStatusForHabit } = trackerHelpers();
   const [loading, setLoading] = useState(true)
 
@@ -85,6 +87,7 @@ export default function TrackerPage(props) {
         statusObj={getStatusForHabit(state, elm)}
         saveNewStatusAsTrue={saveNewStatusAsTrue}
         saveNewStatusAsFalse={saveNewStatusAsFalse}
+        isLoggedin={userState.isLoggedin}
       />
     );
   });
@@ -113,7 +116,9 @@ export default function TrackerPage(props) {
             {trackerBoxes}
           </div>
         </section>
-        <Form myHabits={habitsArray} onSave={saveNewHabit} />
+        <Form myHabits={habitsArray}
+          onSave={saveNewHabit}
+          isLoggedin={userState.isLoggedin} />
       </div>
     </main>
   );

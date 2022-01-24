@@ -23,6 +23,7 @@ export default function Diary() {
           <Create
             email={userState.user.email}
             onSubmitDiary={submitDiary}
+            isLoggedin={userState.isLoggedin}
           />
         }
         {/* Edit exisited today diary */}

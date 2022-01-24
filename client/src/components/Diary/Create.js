@@ -37,6 +37,10 @@ export default function Create(props) {
   };
   // Call onSubmitDiary() when user create a new diary
   const onSubmit = (title) => {
+    if (!props.isLoggedin) {
+      alert('Please Login an Account');
+      return;
+    }
     const content = editor.getJSON();
     if (validate()) {
       props.onSubmitDiary(props.email, title, content)

@@ -93,12 +93,9 @@ const useUserData = () => {
     if (user) {
       setUserData(JSON.parse(user));
     }
-    else {
-      localStorage.clear();
-    }
   }, []);
 
-  //console.log(state.user, state.diaries, state.plans, state.isLoggedin);
+  //console.log(userState.user, userState.isLoggedin);
   return { userState, signup, login, logout }
 };
 

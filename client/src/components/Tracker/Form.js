@@ -10,8 +10,12 @@ export default function Form(props) {
     event.target.value = '';
     setErrorMsg('');
   }
-  
+
   const validateNewHabit = (content) => {
+    if (!props.isLoggedin) {
+      alert('Please Login an Account');
+      return;
+    }
     // const newHabit = { content: content, created_at: moment().format('L') };
     if (content === '') {
       setErrorMsg('Your new habit cannot be empty!');
@@ -28,7 +32,7 @@ export default function Form(props) {
   return (
     <div>
       <section className="add-habit">
-        <input 
+        <input
           className="add-habit__input"
           placeholder="Add New Habit"
           name="content"
