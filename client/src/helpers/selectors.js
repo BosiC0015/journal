@@ -59,6 +59,7 @@ export function getCalendarDiaries(diaries) {
       Object.create({
         id: diary.id,
         title: diary.title,
+        extendedProps: diary.content,
         start: diary.date,
         allDay: true,
         editable: false,
