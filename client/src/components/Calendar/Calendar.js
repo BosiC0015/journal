@@ -7,6 +7,7 @@ import useDiariesData from "../../hooks/useDiariesData";
 import Button from "../Button/Button";
 import Create from './Create';
 import Load from './Load';
+import Diary from '../Diary/Diary';
 
 export default function Calendar() {
   const navigate = useNavigate();
@@ -22,10 +23,25 @@ export default function Calendar() {
       return;
     });
     if (event.backgroundColor === 'orange') {
-      navigate("/diary");
+      // <Diary
+      //   email={userState.user.email}
+      //   id={event.id}
+      //   title={event.title}
+      //   content={event.content}
+      // />
+      navigate("/diary", {
+        state:
+        {
+          email: userState.user.email,
+          id: event.id,
+          title: event.title,
+          content: event.extendedProps
+        }
+      });
     }
   };
   function renderEventContent(info) {
+    //console.log(info);
     return (
       <>
         <b>{info.timeText}</b>
