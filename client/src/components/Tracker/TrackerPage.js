@@ -49,7 +49,7 @@ export default function TrackerPage(props) {
       .post(`/api/habits`, newHabit)
       .then(res => {
         const data = res.data
-        console.log('res:', res)
+        //console.log('res:', res)
         const myNewHabits = state.myHabits
         myNewHabits.push(data[0])
         setMyHabits(myNewHabits)
