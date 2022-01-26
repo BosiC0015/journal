@@ -14,7 +14,7 @@ module.exports = ({
   // GET all diaries listing from a user by given email
   router.get('/:email', (req, res) => {
     const { email } = req.params;
-    console.log(email);
+    //console.log(email);
     getUserByEmail(email)
       .then(user => {
         if (!user) {

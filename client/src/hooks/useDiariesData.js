@@ -50,7 +50,6 @@ const useDiariesData = () => {
           throw new Error('Cannot Delete the Removed Item!');
         }
         else if (data.error) {
-          console.log(data.error);
           throw new Error('Something wrong. Please try again!');
         }
         deleteUserDiary(data);

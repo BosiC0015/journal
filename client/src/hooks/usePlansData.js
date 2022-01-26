@@ -15,7 +15,6 @@ const usePlansData = () => {
         const data = res.data;
         clearTimeout(timeout);
         if (data.error) {
-          console.log(data.error);
           throw new Error('Something wrong. Please try again!');
         }
         addUserPlan(data);

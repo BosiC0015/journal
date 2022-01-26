@@ -13,6 +13,7 @@ export default function Diary() {
   const { diaryState, submitDiary, updateDiary, deleteDiary } = useDiariesData();
   const diary = getDiaryForToday(diaryState.diaries, new Date());
 
+  // user do not select any day diaries
   if (!location.state) {
     return (
       <main>
@@ -41,36 +42,22 @@ export default function Diary() {
       </main >
     );
   }
+  // User select a day diary from the calendar
   else {
     const { email, id, title, content } = location.state;
     return (
       <main>
         <NavBar />
         <h1 className="welcome-msg">Let's Write a Diary!  o(^▽^)o</h1>
-        {/* Today diary not exist but user select another day */}
-        {!diary &&
-          <Edit
-            key={id}
-            email={email}
-            id={id}
-            title={title}
-            content={content}
-            onSubmitDiary={updateDiary}
-            onDeleteDiary={deleteDiary}
-          />
-        }
-        {/* Edit another day diary */}
-        {diary &&
-          <Edit
-            key={id}
-            email={email}
-            id={id}
-            title={title}
-            content={content}
-            onSubmitDiary={updateDiary}
-            onDeleteDiary={deleteDiary}
-          />
-        }
+        <Edit
+          key={id}
+          email={email}
+          id={id}
+          title={title}
+          content={content}
+          onSubmitDiary={updateDiary}
+          onDeleteDiary={deleteDiary}
+        />
       </main >
     );
   }
