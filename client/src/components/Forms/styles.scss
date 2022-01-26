@@ -11,9 +11,25 @@ input {
   margin-left: 30%;
 }
 .password__confirmation{
-  margin-left: 24%;
+  margin-left: 27%;
   width: 70%;
 }
 .name{
-  margin-left: 29%;
+  margin-left: 30%;
+}
+
+.login__button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.signup__button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-left: 30%;
+  margin-right: 30%;
 }

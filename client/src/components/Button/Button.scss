@@ -23,7 +23,7 @@
   border-color: #ee5253;
   background-color: transparent;
   width: 20%;
-  margin-left: 40%;
+  // margin-left: 40%;
 }
 
 .button--confirm {
@@ -31,9 +31,16 @@
   border-color: #10ac84;
   background-color: transparent;
   width: 20%;
-  margin-left: 40%;
-  margin-top: 2%;
-  margin-bottom: 2%;
+  // margin-left: 40%;
+  // margin-top: 2%;
+  // margin-bottom: 2%;
+}
+
+.button--delete {
+  color: #818181;
+  border-color: #313131;
+  background-color: transparent;
+  width: 20%;
 }
 
 .button--danger:hover {

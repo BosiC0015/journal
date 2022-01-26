@@ -4,8 +4,12 @@
   width: 80%;
   height: 400px;
   margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 2%;
   margin-bottom: 2%;
+  padding: 1rem;
   background-color: rgb(248, 244, 238);
+  overflow-y: scroll;
 
   > * + * {
     margin-top: 0.75em;
@@ -63,13 +67,69 @@
 }
 
 .title{
-  margin-left: 30%;
-  width: 80%;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+
+  &__input {
+    display: block;
+    // width: 300px;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    margin: auto;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+  }
 }
+
 .edit-Button-Class{
   margin-left: 15%;
+  margin-right: 15%;
   margin-bottom: 2%;
   display: flex;
- 
- 
+  flex-wrap: wrap;
+}
+
+.edit-button {
+  display:inline-block;
+  width: 100px;
+  font-weight:400;
+  font-size: large;
+  text-align:center;
+  vertical-align:middle;
+  background-color:transparent;
+  border:1px solid transparent;
+  padding:.375rem .75rem;
+  font-size:1rem;
+  line-height:1.5;
+  border-radius:.25rem;
+  color:rgb(0, 0, 0);
+  background-color:#a2cdf0;
+  border-color: #305777;;
+}
+
+.welcome-msg {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  margin: auto;
+  width: 30%; 
+}
+
+.diary__button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.submit__validation {
+  color: #ff8843;
+  width: 400px;
+  padding: 1rem;
+  margin: auto;
+  font-size: xx-large;
 }

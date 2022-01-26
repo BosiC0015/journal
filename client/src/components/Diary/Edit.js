@@ -65,6 +65,7 @@ export default function Edit(props) {
     <section>
       <section className='title'>
         <input
+          className="title__input"
           placeholder="Title"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
@@ -78,7 +79,7 @@ export default function Edit(props) {
         <Button danger onClick={() => cancel()}>Cancel</Button>
         <Button confirm onClick={() =>
           onSubmit(title)}>Update</Button>
-        <Button onClick={() =>
+        <Button delete onClick={() =>
           onDelete()}>Delete</Button>
       </section>
     </section>

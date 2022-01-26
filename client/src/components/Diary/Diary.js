@@ -17,7 +17,7 @@ export default function Diary() {
     return (
       <main>
         <NavBar />
-        <h2>Let's Write a Diary</h2>
+        <h1 className="welcome-msg">Let's Write a Diary!  o(^▽^)o</h1>
         {/* There is no today diary */}
         {!diary &&
           <Create
@@ -46,7 +46,7 @@ export default function Diary() {
     return (
       <main>
         <NavBar />
-        <h2>Let's Write a Diary</h2>
+        <h1 className="welcome-msg">Let's Write a Diary!  o(^▽^)o</h1>
         {/* Today diary not exist but user select another day */}
         {!diary &&
           <Edit

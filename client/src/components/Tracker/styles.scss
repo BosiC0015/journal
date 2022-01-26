@@ -69,10 +69,10 @@ div.main-container {
   float: left;
 
   &__checked {
-    background-color: rgb(250, 237, 120);
+    background-color: #aedefa;
     border: solid;
     border-width: 1px;
-    border-color: rgb(209, 184, 73);
+    border-color: #507386;
     height: 50px;
     width: 50px;
     float: left;
@@ -93,13 +93,13 @@ div.main-container {
   display: flex;
   flex-direction: row;
   position: sticky;
-  width: 400px;
+  width: 600px;
   margin: auto;
   padding-top: 5%;
 
   &__input {
     display: block;
-    width: 300px;
+    width: 500px;
     height: calc(2.25rem + 2px);
     padding: .375rem .75rem;
     margin: auto;
@@ -127,15 +127,15 @@ div.main-container {
     line-height:1.5;
     border-radius:.25rem;
     color:rgb(0, 0, 0);
-    background-color:#f3d942;
-    border-color:#cfb025;
+    background-color:#a2cdf0;
+    border-color:#305777;;
   }
 }
 
 .validation {
   color: #ff8843;
-  width: 40%;
+  width: 550px;
   padding: 1rem;
   margin: auto;
-  font-size: large;
+  font-size: xx-large;
 }

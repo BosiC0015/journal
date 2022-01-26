@@ -59,6 +59,7 @@ export default function Create(props) {
     <section>
       <section className='title'>
         <input
+          className="title__input"
           placeholder="Title"
           value={title}
           onChange={(event) => setTitle(event.target.value)}

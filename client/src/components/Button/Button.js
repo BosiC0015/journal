@@ -8,7 +8,9 @@ export default function Button(props) {
     // Confirm button style
     ' button--confirm': props.confirm,
     // Cancel button style
-    ' button--danger': props.danger
+    ' button--danger': props.danger,
+    // Delete button style
+    ' button--delete':props.delete
   });
 
   return (

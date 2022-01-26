@@ -8,70 +8,94 @@ export default function MenuBar({ editor }) {
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         className={editor.isActive('bold') ? 'is-active' : ''}
+        className="edit-button"
       >
         bold
       </button>
       <button
         onClick={() => editor.chain().focus().toggleItalic().run()}
         className={editor.isActive('italic') ? 'is-active' : ''}
+        className="edit-button"
       >
         italic
       </button>
       <button
         onClick={() => editor.chain().focus().toggleStrike().run()}
         className={editor.isActive('strike') ? 'is-active' : ''}
+        className="edit-button"
       >
         strike
       </button>
-      <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>
+      <button 
+        onClick={() => editor.chain().focus().unsetAllMarks().run()}
+        className="edit-button"
+      >
         clear marks
-      </button>
-      <button onClick={() => editor.chain().focus().clearNodes().run()}>
-        clear nodes
-      </button>
-      <button
-        onClick={() => editor.chain().focus().setParagraph().run()}
-        className={editor.isActive('paragraph') ? 'is-active' : ''}
-      >
-        paragraph
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-        className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
-      >
-        h1
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-        className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
-      >
-        h2
       </button>
       <button
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={editor.isActive('bulletList') ? 'is-active' : ''}
+        className="edit-button"
       >
         bullet list
       </button>
       <button
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         className={editor.isActive('orderedList') ? 'is-active' : ''}
+        className="edit-button"
       >
         ordered list
       </button>
       <button
+        onClick={() => editor.chain().focus().clearNodes().run()}
+        className="edit-button"
+      >
+        clear nodes
+      </button>
+      <button
+        onClick={() => editor.chain().focus().setParagraph().run()}
+        // className={editor.isActive('paragraph') ? 'is-active' : ''}
+        className="edit-button"
+      >
+        paragraph
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+        // className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
+        className="edit-button"
+      >
+        h1
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+        // className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
+        className="edit-button"
+      >
+        h2
+      </button>
+      <button
         onClick={() => editor.chain().focus().toggleBlockquote().run()}
         className={editor.isActive('blockquote') ? 'is-active' : ''}
+        className="edit-button"
       >
         blockquote
       </button>
-      <button onClick={() => editor.chain().focus().setHorizontalRule().run()}>
+      <button
+        onClick={() => editor.chain().focus().setHorizontalRule().run()}
+        className="edit-button"
+      >
         horizontal rule
       </button>
-      <button onClick={() => editor.chain().focus().undo().run()}>
+      <button
+        onClick={() => editor.chain().focus().undo().run()}
+        className="edit-button"
+      >
         undo
       </button>
-      <button onClick={() => editor.chain().focus().redo().run()}>
+      <button
+        onClick={() => editor.chain().focus().redo().run()}
+        className="edit-button"
+      >
         redo
       </button>
     </div>

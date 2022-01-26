@@ -10,6 +10,11 @@
   
 }
 
+h2 {
+  font-size: larger;
+}
+
 .demo-app-sidebar-section {
   padding: 2em;
+  font-size: large;
 }
