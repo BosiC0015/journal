@@ -5,13 +5,13 @@
   justify-content: space-around;
   width: 100%;
   color: aliceblue;
-  position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
   
   &__redirect {
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: column;
     justify-content: space-around;
+    align-items: center;
 
     &-link {
       list-style-type: disc;
@@ -26,8 +26,9 @@
 
   &__user {
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: column;
     justify-content: space-around;
+    align-items: center;
 
     &-action {
       list-style-type: disc;
@@ -37,4 +38,23 @@
       padding-inline-end: 20px;
     }
   }
+}
+
+// for large screen
+@media only screen and (min-width: 800px) {
+  .nav-bar {    
+    &__redirect {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    &__user {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+  } 
 }
