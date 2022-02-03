@@ -1,10 +1,11 @@
-# Express Back-End with React Front-End
+# My Tiny Jounal
+My Tiny Journal is an express back-end with React front-end app. A user can schedule plans, write diaries and 
 
 ## Server Setup
 
 * Go to server directory ```cd server```
 * Start SQL server and run ```createdb journal -O labber```
-* Run ```npm i```
+* Run ```npm i``` to install al the dependencies
 * Create ```.env``` file by copying content from ```.env.example```
 * Run ```npm run dev```
 * Open http://localhost:3001/
@@ -12,8 +13,9 @@
 ## Client Setup
 
 * Go to client directory ```cd client```
-* Run ```npm i```
+* Run ```npm i``` to install al the dependencies
 * Run ```npm start```
+* Open http://localhost:3000/
 
 ## Ports
 
