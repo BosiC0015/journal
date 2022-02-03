@@ -3,8 +3,8 @@
 ## Server
 
 * Start SQL server and run "createdb journal -O labber"
-* Run "npm i"
-* Create .env file (Copy content from .env.example) 
+* Run ```npm i```
+* Create ```.env``` file by copying content from ```.env.example```
 * Run "npm run dev"
 * Open http://localhost:3001/
 
