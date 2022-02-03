@@ -1,5 +1,5 @@
 # My Tiny Jounal
-My Tiny Journal is an express back-end with React front-end app. A user can schedule plans, write diaries and 
+My Tiny Journal is an express back-end with React front-end app. A user can schedule plans, write diaries and track monthly habits.
 
 ## Server Setup
 
@@ -20,7 +20,7 @@ My Tiny Journal is an express back-end with React front-end app. A user can sche
 ## Ports
 
 * React front-end is running on port 3000
-* Express back-end is running on port 3001 (or any other)
+* Express back-end is running on port 3001
 
 <!-- ## Cors
 
