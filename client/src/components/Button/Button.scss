@@ -4,17 +4,16 @@
   font-size: 1.5rem;
   height: 2rem;
   line-height: 0rem;
-  width: 100%;
+  width: 120%;
   border-width: 2px;
   border-style: solid;
-  border-color: transparent;
+  // border-color: transparent; // temp comment
   color: lightgrey;
   background-color: transparent;
 }
 
 .button:hover {
-  color: rgb(153, 153, 153);
-  // background-color: rgb(238, 218, 192);
+  color: rgb(148, 148, 148);
   border: 2px solid transparent;
 }
 
