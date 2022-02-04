@@ -39,7 +39,9 @@ export default function LoginForm(props) {
 
   return (
     <section className="login">
+      <h1>Login Form</h1>
       <form
+        className="login-form"
         autoComplete="off"
         onKeyDown={e => e.key === 'Enter' && e.preventDefault()}
         onSubmit={e => e.preventDefault()}>
@@ -61,11 +63,16 @@ export default function LoginForm(props) {
             type="password"
           />
         </div>
-        <section className="login__validation">{error}</section>
-        <section className="login__button">
-          <Button danger onClick={() => cancel()}>Cancel</Button>
-          <Button confirm onClick={() =>
-            loginAccount(email, password)}>Confirm</Button>
+        <section className="login-validation">{error}</section>
+        <section className="login-button">
+          <button
+            className="login-button__confirm"
+            onClick={() => loginAccount(email, password)}
+          >Login</button>
+          <button
+            className="login-button__cancel"
+            onClick={() => cancel()}
+          >Cancel</button>
         </section>
       </form>
     </section>

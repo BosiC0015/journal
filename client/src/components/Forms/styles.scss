@@ -2,23 +2,86 @@ input {
   height: 2rem;
   width: 50%;
   margin-bottom: 2rem;
+  width: 100%;
 }
+
 .email{
-  margin-left: 30%;
-  margin-top: 5%;
+  margin: auto;
+  width: 50%;
+  padding-top: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
+
 .password{
-  margin-left: 30%;
+  margin: auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
+
 .password__confirmation{
   margin-left: 27%;
-  width: 70%;
+  width: auto;
 }
+
 .name{
   margin-left: 30%;
 }
 
-.login__button {
+.login-validation {
+  text-align: center;
+  color: #f7972a;
+}
+
+.login-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // margin: auto;
+  margin-left: 25%;
+  margin-right: 25%;
+
+  &__confirm {
+    display:inline-block;
+    width: 100%;
+    font-weight:400;
+    font-size: large;
+    text-align:center;
+    vertical-align:middle;
+    background-color:transparent;
+    border:1px solid transparent;
+    padding:.375rem .75rem;
+    font-size:1rem;
+    line-height:1.5;
+    border-radius:.25rem;
+    color:rgb(0, 0, 0);
+    background-color:#79cfdf;
+    border-color:#305777;;
+  }
+
+  &__cancel {
+    display:inline-block;
+    width: 100%;
+    font-weight:400;
+    font-size: large;
+    text-align:center;
+    vertical-align:middle;
+    background-color:transparent;
+    border:1px solid transparent;
+    padding:.375rem .75rem;
+    font-size:1rem;
+    line-height:1.5;
+    border-radius:.25rem;
+    color:rgb(0, 0, 0);
+    background-color:#eef7ff;
+    border-color:#305777;;
+  }
+}
+
+.signup-button {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -26,10 +89,33 @@ input {
   margin-right: 20%;
 }
 
-.signup__button {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin-left: 20%;
-  margin-right: 20%;
+.login {
+  padding-top: 216px;
+}
+
+h1 {
+  padding: "1rem 0";
+  text-align: center;
+}
+
+@media only screen and (min-width: 800px) {
+  .login {
+    padding-top: 72px;
+  }
+
+  .login-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+  
+  .signup-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
 }
