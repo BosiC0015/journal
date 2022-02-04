@@ -6,6 +6,7 @@
   width: 100%;
   color: aliceblue;
   position: fixed;
+  z-index: 10;
   
   &__redirect {
     display: flex;

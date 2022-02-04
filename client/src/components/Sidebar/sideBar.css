@@ -7,7 +7,6 @@
   font-family: Arial, Helvetica, sans-serif;
   font: italic;
   color: #faf5f5;
-  
 }
 
 h2 {
@@ -16,5 +15,5 @@ h2 {
 
 .demo-app-sidebar-section {
   padding: 2em;
-  font-size: large;
+  font-size: larger;
 }
