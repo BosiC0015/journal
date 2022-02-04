@@ -1,8 +1,8 @@
-
-import './App.css';
+import React from 'react';
 import NavBar from './components/NavBar/NavBar';
 import RenderSidebar from './components/Sidebar/RenderSidebar.js';
 import Calendar from './components/Calendar/Calendar';
+import './App.css';
 
 function App() {
 
