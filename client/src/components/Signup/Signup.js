@@ -1,6 +1,5 @@
 import useUserData from "../../hooks/useUserData";
 import SignupForm from "../Forms/SignupForm";
-import "./Signup.scss"
 import NavBar from '../NavBar/NavBar';
 
 export default function Signup() {
@@ -9,7 +8,6 @@ export default function Signup() {
   return (
     <main>
       <NavBar />
-      <h1>Sign Up Page</h1>
       <SignupForm onSignup={signup} />
     </main >
   );

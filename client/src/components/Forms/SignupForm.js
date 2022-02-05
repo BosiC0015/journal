@@ -1,7 +1,6 @@
 import { useState } from "react";
-import Button from "../Button/Button";
-import "./styles.scss";
 import { useNavigate } from "react-router-dom";
+import "./styles.scss";
 
 export default function SignupForm(props) {
   const navigate = useNavigate();
@@ -52,10 +51,12 @@ export default function SignupForm(props) {
 
   return (
     <section className="signup">
+      <h1>Sign Up Form</h1>
       <form
         autoComplete="off"
         onKeyDown={e => e.key === 'Enter' && e.preventDefault()}
-        onSubmit={e => e.preventDefault()}>
+        onSubmit={e => e.preventDefault()}
+      >
         <div className="email">
           <label htmlFor="email">Your Email </label>
           <input
@@ -92,12 +93,17 @@ export default function SignupForm(props) {
             type="text"
           />
         </div>
-        <section className="signup__validation">{error}</section>
-        <section className="signup__button">
-          <Button danger onClick={() => cancel()}>Cancel</Button>
-          <Button confirm onClick={() =>
-            createAccount(email, password, name)}>Confirm</Button>
-        </section>
+        <div className="signup-validation">{error}</div>
+        <div className="signup-button">
+          <button
+            className="signup-button__confirm" onClick={() =>
+            createAccount(email, password, name)}
+          >Sign Up</button>
+          <button
+            className="signup-button__cancel"
+            onClick={() => cancel()}
+          >Cancel</button>
+        </div>
       </form>
     </section>
   );
