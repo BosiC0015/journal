@@ -31,11 +31,14 @@ export default function NavBar() {
             <SignupButton name='Sign Up' />
           </ul>
         }
+        {userState.isLoggedin && 
+          <ul className='nav-bar__user-action'>
+            <span className='welcome-text'>Hello, {userState.user.name}!</span>
+          </ul>
+        }
         {userState.isLoggedin &&
           <ul className='nav-bar__user-action'>
-            <aside className='welcome__text'>
-              Hi {userState.user.name}
-            </aside>
+            {/* <aside className='welcome__text'>Hi {userState.user.name}</aside> */}
             <LogoutButton name='Logout' onLogout={logout} />
           </ul>
         }
