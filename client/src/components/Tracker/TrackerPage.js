@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import NavBar from "../NavBar/NavBar";
 import DateList from "./DateList";
 import BoxRow from "./BoxRow";
 import HabitItem from "./HabitItem";
-import NavBar from "../NavBar/NavBar";
 import Form from "./Form";
 import Loading from "./Loading";
 import trackerHelpers from "../../helpers/trackerHelpers";
-import './styles.scss';
-import moment from "moment";
 import useUserData from "../../hooks/useUserData";
+import moment from "moment";
+import './styles.scss';
 
 
 export default function TrackerPage(props) {
@@ -104,7 +104,9 @@ export default function TrackerPage(props) {
       <NavBar />
       <div className="main-container">
         <section className="month">
-          <h1 className="month__title">January Habit Tracker</h1>
+          <span className="month__title">
+            <center>January Habit Tracker</center>
+          </span>
         </section>
         <section className="tracker">
           <div className="tracker__habits-list">

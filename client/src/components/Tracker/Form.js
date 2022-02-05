@@ -34,6 +34,7 @@ export default function Form(props) {
 
   return (
     <div>
+      <section className="validation">{errorMsg}</section>
       <section className="add-habit">
         <input
           className="add-habit__input"
@@ -46,7 +47,6 @@ export default function Form(props) {
         />
         <button className="add-habit__submit" onClick={() => validateNewHabit(habit)}>Save</button>
       </section>
-      <section className="validation">{errorMsg}</section>
     </div>
   );
 };
