@@ -50,7 +50,6 @@ div.main-container {
   }
 
   &__date-box {
-    // font-size: large;
     background-color: transparent;
     border: solid;
     border-width: 1px;
@@ -58,6 +57,7 @@ div.main-container {
     height: 50px;
     width: 50px;
     float: left;
+    font-weight: 600;
   }
 
   &__checker {
