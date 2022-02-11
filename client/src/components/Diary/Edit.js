@@ -76,9 +76,9 @@ export default function Edit(props) {
       <EditorContent editor={editor} />
       <section className="submit__validation">{error}</section>
       <section className="diary__button">
-        <Button danger onClick={() => cancel()}>Cancel</Button>
         <Button confirm onClick={() =>
           onSubmit(title)}>Update</Button>
+        <Button danger onClick={() => cancel()}>Cancel</Button>
         <Button delete onClick={() =>
           onDelete()}>Delete</Button>
       </section>

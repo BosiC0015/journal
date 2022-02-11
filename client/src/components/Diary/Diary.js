@@ -18,27 +18,29 @@ export default function Diary() {
     return (
       <main>
         <NavBar />
-        <h1 className="welcome-msg">Let's Write a Diary!  o(^▽^)o</h1>
-        {/* There is no today diary */}
-        {!diary &&
-          <Create
-            email={userState.user.email}
-            onSubmitDiary={submitDiary}
-            isLoggedin={userState.isLoggedin}
-          />
-        }
-        {/* Edit exisited today diary */}
-        {diary &&
-          <Edit
-            key={diary.id}
-            email={userState.user.email}
-            id={diary.id}
-            title={diary.title}
-            content={diary.content}
-            onSubmitDiary={updateDiary}
-            onDeleteDiary={deleteDiary}
-          />
-        }
+        <div className="container">
+          <h1 className="welcome-msg">Let's Write a Diary!  o(^▽^)o</h1>
+          {/* There is no today diary */}
+          {!diary &&
+            <Create
+              email={userState.user.email}
+              onSubmitDiary={submitDiary}
+              isLoggedin={userState.isLoggedin}
+            />
+          }
+          {/* Edit exisited today diary */}
+          {diary &&
+            <Edit
+              key={diary.id}
+              email={userState.user.email}
+              id={diary.id}
+              title={diary.title}
+              content={diary.content}
+              onSubmitDiary={updateDiary}
+              onDeleteDiary={deleteDiary}
+            />
+          }
+        </div>
       </main >
     );
   }
@@ -48,16 +50,18 @@ export default function Diary() {
     return (
       <main>
         <NavBar />
-        <h1 className="welcome-msg">Let's Write a Diary!  o(^▽^)o</h1>
-        <Edit
-          key={id}
-          email={email}
-          id={id}
-          title={title}
-          content={content}
-          onSubmitDiary={updateDiary}
-          onDeleteDiary={deleteDiary}
-        />
+        <div className="container">
+          <h1 className="welcome-msg">Let's Write a Diary!  o(^▽^)o</h1>
+          <Edit
+            key={id}
+            email={email}
+            id={id}
+            title={title}
+            content={content}
+            onSubmitDiary={updateDiary}
+            onDeleteDiary={deleteDiary}
+          />
+        </div>
       </main >
     );
   }

@@ -70,9 +70,9 @@ export default function Create(props) {
       <EditorContent editor={editor} />
       <section className="submit__validation">{error}</section>
       <section className="diary__button">
-        <Button danger onClick={() => cancel()}>Cancel</Button>
         <Button confirm onClick={() =>
           onSubmit(title)}>Submit</Button>
+        <Button danger onClick={() => cancel()}>Cancel</Button>
       </section>
     </section>
   )
