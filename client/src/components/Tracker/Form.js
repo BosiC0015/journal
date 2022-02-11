@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
 
@@ -19,7 +18,6 @@ export default function Form(props) {
       navigate("/login");
       return;
     }
-    // const newHabit = { content: content, created_at: moment().format('L') };
     if (content === '') {
       setErrorMsg('Your new habit cannot be empty!');
       return;

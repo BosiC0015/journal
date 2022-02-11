@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import useVisualMode from "../../hooks/useVisualMode";
 import { useNavigate } from "react-router-dom";
 import "./styles.scss";
@@ -8,7 +8,7 @@ export default function TrackerBox(props) {
   const NO = "NO";
   const YES = "YES";
   const navigate = useNavigate();
-  const { mode, transition, back } = useVisualMode(
+  const { mode, transition } = useVisualMode(
     props.status ? YES : NO
   );
 
