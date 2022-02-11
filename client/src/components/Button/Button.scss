@@ -18,28 +18,63 @@
 }
 
 .button--danger {
-  color: #ee5253;
-  border-color: #ee5253;
-  background-color: transparent;
-  width: 20%;
-  // margin-left: 40%;
+  display:inline-block;
+  width: 100%;
+  font-weight:400;
+  font-size: large;
+  text-align:center;
+  vertical-align:middle;
+  background-color:transparent;
+  border:1px solid transparent;
+  padding:.375rem .75rem;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  font-size:1rem;
+  line-height:1.5;
+  border-radius:.25rem;
+  color:rgb(0, 0, 0);
+  background-color:#eef7ff;
+  border-color:#305777;
 }
 
 .button--confirm {
-  color: #10ac84;
-  border-color: #10ac84;
-  background-color: transparent;
-  width: 20%;
-  // margin-left: 40%;
-  // margin-top: 2%;
-  // margin-bottom: 2%;
+  display:inline-block;
+  width: 100%;
+  font-weight:400;
+  font-size: large;
+  text-align:center;
+  vertical-align:middle;
+  background-color:transparent;
+  border:1px solid transparent;
+  padding:.375rem .75rem;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  font-size:1rem;
+  line-height:1.5;
+  border-radius:.25rem;
+  color:rgb(0, 0, 0);
+  background-color:#73c0ff;
+  border-color:#305777;
 }
 
 .button--delete {
-  color: #818181;
-  border-color: #313131;
-  background-color: transparent;
-  width: 20%;
+  display:inline-block;
+  width: 100%;
+  font-weight:400;
+  font-size: large;
+  text-align:center;
+  vertical-align:middle;
+  background-color:transparent;
+  border:1px solid transparent;
+  padding:.375rem .75rem;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  font-size:1rem;
+  line-height:1.5;
+  border-radius:.25rem;
+  color:rgb(0, 0, 0);
+  background-color:#afafaf;
+  border-color:#313131;
 }
 
 .button--danger:hover {
