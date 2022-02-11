@@ -1,14 +1,19 @@
 import React from 'react';
-import renderSidebarEvent from './RenderSidebarEvent';
-import "./sideBar.css";
-
+import { IconContext } from 'react-icons';
+import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
+import '../../App.css'
 
 
 export default function renderSidebar(props) {
   return (
-    <div className='demo-app-sidebar'>
+    <div id='sidebar' className='demo-app-sidebar-hide'>
+      <IconContext.Provider value={{ id:'show', size: '3em' }}>
+        <div className='hide'>
+          <BsFillArrowLeftSquareFill onClick={props.hide} />
+        </div>
+      </IconContext.Provider>
       <div className='demo-app-sidebar-section'>
-        <h2>Instructions</h2>
+        <h2 className='instruction'>Instructions</h2>
         <ul>
           <li>Select dates and you will be prompted to create a new event</li>
           <li>Drag, drop, and resize events (except diaries items)</li>
@@ -16,25 +21,6 @@ export default function renderSidebar(props) {
           <li>Single click an event item to delete it</li>
         </ul>
       </div>
-      {/*  
-       <div className='demo-app-sidebar-section'>
-          <label>
-            <input
-              type='checkbox'
-              checked={state.weekendsVisible}
-              onChange={handleWeekendsToggle}
-            ></input>
-            toggle weekends
-          </label>
-        </div>
-    
-        <div className='demo-app-sidebar-section'>
-           <h2>All Events ({state.currentEvents.length})</h2>
-          <ul>
-            {state.currentEvents.map(renderSidebarEvent)}
-          </ul> 
-        </div>   */}
     </div>
-  )
-
+  );
 };
