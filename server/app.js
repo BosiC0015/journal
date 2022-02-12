@@ -13,7 +13,8 @@ const cors = require("cors");
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const habitsRouter = require('./routes/habits');
-const januaryHabitsRouter = require('./routes/januaryHabits');
+const januaryHabitsRouter = require('./routes/monthlyHabits');
+const februaryHabitsRouter = require('./routes/monthlyHabits');
 const diariesRouter = require('./routes/diaries');
 const plansRouter = require('./routes/plans');
 
@@ -30,6 +31,7 @@ app.use('/', indexRouter);
 app.use('/api/users', usersRouter(usersHelpers));
 app.use('/api/habits', habitsRouter(trackerHelpers));
 app.use('/api/januaryhabits', januaryHabitsRouter(trackerHelpers));
+app.use('/api/februaryhabits', februaryHabitsRouter(trackerHelpers));
 app.use('/api/diaries', diariesRouter(diariesHelpers));
 app.use('/api/plans', plansRouter(plansHelpers));
 
