@@ -28,7 +28,7 @@ export default function TrackerPage(props) {
   useEffect(() => {
     Promise.all([
       axios.get('/api/habits'),
-      axios.get('/api/januaryhabits')
+      axios.get('/api/februaryhabits')
     ]).then((all) => {
       setMyHabits([...all[0].data]);
       setHabitsStatus([...all[1].data]);
@@ -60,14 +60,14 @@ export default function TrackerPage(props) {
   const saveNewStatusAsTrue = (day, habit_id) => {
     const data = { day: day, habit_id: habit_id };
     return axios
-      .post(`/api/januaryhabits/true`, data)
+      .post(`/api/februaryhabits/true`, data)
       .catch(err => console.log(err.message))
   };
 
   const saveNewStatusAsFalse = (day, habit_id) => {
     const data = { day: day, habit_id: habit_id };
     return axios
-      .post(`/api/januaryhabits/false`, data)
+      .post(`/api/februaryhabits/false`, data)
       .catch(err => console.log(err.message))
   };
 
@@ -83,7 +83,7 @@ export default function TrackerPage(props) {
       <BoxRow
         key={elm}
         habit_id={elm}
-        days={31}
+        days={28}
         statusObj={getStatusForHabit(state, elm)}
         saveNewStatusAsTrue={saveNewStatusAsTrue}
         saveNewStatusAsFalse={saveNewStatusAsFalse}
@@ -105,7 +105,7 @@ export default function TrackerPage(props) {
       <div className="main-container">
         <section className="month">
           <span className="month__title">
-            <center>January Habit Tracker</center>
+            <center>February Habit Tracker</center>
           </span>
         </section>
         <section className="tracker">
@@ -114,7 +114,7 @@ export default function TrackerPage(props) {
             {habitsList}
           </div>
           <div className="tracker__checkboxes">
-            <DateList days={31} />
+            <DateList days={28} />
             {trackerBoxes}
           </div>
         </section>
