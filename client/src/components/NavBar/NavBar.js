@@ -5,8 +5,8 @@ import LoginButton from './LoginButton';
 import SignupButton from './SignupButton';
 import LogoutButton from './LogoutButton';
 import DiaryButton from './DiaryButton';
-import './NavBar.scss';
 import useUserData from "../../hooks/useUserData";
+import './NavBar.scss';
 
 
 

@@ -1,0 +1,40 @@
+div.cover {
+  background: linear-gradient(135deg, #e4ecf5, #66819b);
+}
+
+img.cover {
+  width: 100%;
+  height: auto;
+}
+
+div.home-msg {
+  padding-top: 60vh;
+  background: url('https://images.pexels.com/photos/9177833/pexels-photo-9177833.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+h1.home-msg {
+  padding: 5%;
+  text-align: center;
+  font-weight: 500;
+  background-color: #e4ecf550;
+}
+
+div.please {
+  margin-left: 50%;
+  margin-right: 15%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+div.please > h1 {
+  margin: 1rem;
+  font-weight: 400;
+}
+
+div.please > button {
+  width: 90px;
+}

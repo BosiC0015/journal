@@ -31,7 +31,6 @@ b { /* used for event dates/times */
 
 
 .demo-app {
-  padding-top: 216px;
   display: flex;
   flex-direction: column;
   min-height: 100%;
@@ -86,8 +85,5 @@ h2.instruction {
 }
 
 /* for large screen */
-@media only screen and (min-width: 800px) {
-  div.demo-app {
-    padding-top: 72px;
-  }
+@media only screen and (min-width: 768px) {
 }

@@ -1,18 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './index.css';
+import Cover from './Cover';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 import TrackerPage from './components/Tracker/TrackerPage';
 import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login"
 import Diary from "./components/Diary/Diary"
+import reportWebVitals from './reportWebVitals';
+import './index.css';
 
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      <Route path='/' element={<App />} />
+      <Route path='/' element={<Cover />} />
+      <Route path='/agenda' element={<App />} />
       <Route path='/tracker' element={<TrackerPage />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />

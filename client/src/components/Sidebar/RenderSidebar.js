@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconContext } from 'react-icons';
-import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
+import { BsArrowBarLeft } from 'react-icons/bs';
 import '../../App.css'
 
 
@@ -9,7 +9,7 @@ export default function renderSidebar(props) {
     <div id='sidebar' className='demo-app-sidebar-hide'>
       <IconContext.Provider value={{ id:'show', size: '3em' }}>
         <div className='hide'>
-          <BsFillArrowLeftSquareFill onClick={props.hide} />
+          <BsArrowBarLeft onClick={props.hide} />
         </div>
       </IconContext.Provider>
       <div className='demo-app-sidebar-section'>

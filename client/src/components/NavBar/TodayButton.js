@@ -5,6 +5,6 @@ import Button from '../Button/Button';
 export default function TodayButton(props) {
   const navigate = useNavigate();
   return (
-    <Button onClick={() => navigate('/')}>Agenda</Button>
+    <Button onClick={() => navigate('/agenda')}>Agenda</Button>
   );
 };

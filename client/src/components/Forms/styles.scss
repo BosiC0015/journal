@@ -1,11 +1,3 @@
-.login {
-  padding-top: 216px;
-}
-
-.signup {
-  padding-top: 216px;
-}
-
 h1 {
   text-align: center;
   margin-top: 2rem;
@@ -160,15 +152,7 @@ input {
   }
 }
 
-@media only screen and (min-width: 800px) {
-  .login {
-    padding-top: 72px;
-  }
-
-  .signup {
-    padding-top: 72px;
-  }
-
+@media only screen and (min-width: 768px) {
   .login-button {
     display: flex;
     flex-direction: row;
